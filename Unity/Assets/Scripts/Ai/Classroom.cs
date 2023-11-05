@@ -197,6 +197,7 @@ public class Classroom : MonoBehaviour
         List<string> filtered_args = new List<string>();
         foreach (string s in args)
         {
+            //Debug.Log("******* :"+s);
             if (s[0] != '-')
             {
                 filtered_args.Add(s);
@@ -215,7 +216,7 @@ public class Classroom : MonoBehaviour
         }
         catch {
             Debug.LogError("Parsing Command line arguments failed!");
-            Application.Quit();
+            //Application.Quit();
         };
     }
 
@@ -244,7 +245,7 @@ public class Classroom : MonoBehaviour
             simulationConfig = new SimulationConfig(JsonUtility.FromJson<SerializableSimulationConfig>(json));
         } catch {
             Debug.LogError("Loading Simulation Config failed!");
-            Application.Quit();
+            //Application.Quit();
         };
 
     }
@@ -254,7 +255,10 @@ public class Classroom : MonoBehaviour
         int nAgents = 0;
         for (int i = 0; i < Math.Min(gameConfig.agent_types.Length, gameConfig.nAgents.Length); i++)
         {
-            for(int k = 0; k < gameConfig.nAgents[i]; k++)
+            Debug.Log("Agent_types : "+ gameConfig.agent_types.Length.ToString());
+            Debug.Log("Agents : " + gameConfig.nAgents.Length.ToString());
+
+            for (int k = 0; k < gameConfig.nAgents[i]; k++)
             {
                 int newseed = random.Next();
                 System.Random newRandom = new System.Random(newseed);
@@ -323,7 +327,7 @@ public class Classroom : MonoBehaviour
     public void EndSimulation()
     {
         Debug.Log("Ending Simulation!");
-        Application.Quit();
+        //Application.Quit();
     }
 
     public double Mean(List<double> values)
