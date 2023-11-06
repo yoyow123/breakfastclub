@@ -449,8 +449,10 @@ public class Agent : MonoBehaviour
                 LogInfo(String.Format("Starting Action {0}.", best_action));
             else
             {
+                Debug.Log("Starting Action failed:" + best_action);
+
                 LogInfo(String.Format("Starting Action {0} failed!", best_action));
-                throw new Exception("This must not happen!");
+                //throw new Exception("This must not happen!");
             }
         }
     }
