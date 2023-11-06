@@ -6,7 +6,7 @@ public class Break : AgentBehavior
     private float xS;
     private float zS;
 
-    public Break(Agent agent) : base(agent, AgentBehavior.Actions.Break, "Break", agent.SC.Break) {
+    public Break(Agent agent) : base(agent, AgentBehavior.Actions.Break, "Rest", agent.SC.Break) {
         xS = agent.classroom.groundfloorTransform.GetComponent<Collider>().bounds.size.x * (float)0.5;
         zS = agent.classroom.groundfloorTransform.GetComponent<Collider>().bounds.size.z * (float)0.5;
     }

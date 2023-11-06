@@ -7,7 +7,7 @@ public class StudyGroup : AgentBehavior
     private Table lastTable;
     private Vector3 destination;
 
-    public StudyGroup(Agent agent) : base(agent, AgentBehavior.Actions.StudyGroup, "StudyGroup", agent.SC.StudyGroup) { }
+    public StudyGroup(Agent agent) : base(agent, AgentBehavior.Actions.StudyGroup, "InteractionTime", agent.SC.StudyGroup) { }
     /*
      *  • requirements: no quarrel, free individual table, attention
      *  • effects: learning, reduces energy every turn

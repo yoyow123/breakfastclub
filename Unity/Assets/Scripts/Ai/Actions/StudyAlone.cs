@@ -7,7 +7,7 @@ public class StudyAlone : AgentBehavior
     private Table lastTable;
     private Vector3 destination;
 
-    public StudyAlone(Agent agent) : base(agent, AgentBehavior.Actions.StudyAlone, "StudyAlone", agent.SC.StudyAlone) { }
+    public StudyAlone(Agent agent) : base(agent, AgentBehavior.Actions.StudyAlone, "SoloTime", agent.SC.StudyAlone) { }
     /*
      *  • requirements: no quarrel, free individual table, attention
      *  • effects: learning, reduces energy every turn

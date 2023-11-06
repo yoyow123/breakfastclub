@@ -4,7 +4,7 @@ public class Chat : AgentBehavior
 {
     private Agent otherAgent;
 
-    public Chat(Agent agent) : base(agent, AgentBehavior.Actions.Chat, "Chat", agent.SC.Chat) { }
+    public Chat(Agent agent) : base(agent, AgentBehavior.Actions.Chat, "Communication", agent.SC.Chat) { }
 
     // An Agent can chat if there is another Agent disponible
     public override bool possible()

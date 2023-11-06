@@ -4,7 +4,7 @@ public class Quarrel : AgentBehavior
 {
     private Agent otherAgent;
 
-    public Quarrel(Agent agent) : base(agent, AgentBehavior.Actions.Quarrel, "Quarrel", agent.SC.Quarrel) { }  
+    public Quarrel(Agent agent) : base(agent, AgentBehavior.Actions.Quarrel, "Disagreement", agent.SC.Quarrel) { }  
 
     public override bool possible()
     {
