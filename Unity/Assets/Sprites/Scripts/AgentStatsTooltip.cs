@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class AgentStatsTooltip : MonoBehaviour
 {
 
-    [NonSerialized] public Text TitleText;
-    [NonSerialized] public Text NameText;
-    [NonSerialized] public Text GoNameText;
-    [NonSerialized] public Text EnergyText;
-    [NonSerialized] public Text HappinessText;
-    [NonSerialized] public Text AttentionText;
-    [NonSerialized] public Text PersonalityText;
-    [NonSerialized] public Text ScoreText;
-    [NonSerialized] public Text LogText;
-    [NonSerialized] public Text ActionText;
-    [NonSerialized] public Text DesireText;
+    public Text TitleText;
+    public Text NameText;
+    public Text AgentText;
+    public Text MotivationText;
+    public Text HappinessText;
+    public Text AttentionText;
+    public Text PersonalityText;
+    public Text ScoreText;
+    public Text LogText;
+    public Text ActionText;
+    public Text DesireText;
 
     public Vector3 position_offset;
 
@@ -25,17 +25,17 @@ public class AgentStatsTooltip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TitleText = transform.Find("TitleText").GetComponent<Text>();
+/*        TitleText = transform.Find("TitleText").GetComponent<Text>();
         NameText = transform.Find("NameText").GetComponent<Text>();
-        GoNameText = transform.Find("GoNameText").GetComponent<Text>();
-        EnergyText = transform.Find("MotivationText").GetComponent<Text>();
+        AgentText = transform.Find("AgentText").GetComponent<Text>();
+        MotivationText = transform.Find("MotivationText").GetComponent<Text>();
         HappinessText = transform.Find("HappinessText").GetComponent<Text>();
         AttentionText = transform.Find("AttentionText").GetComponent<Text>();
         PersonalityText = transform.Find("PersonalityText").GetComponent<Text>();
         ScoreText = transform.Find("ScoreText").GetComponent<Text>();
         LogText = transform.Find("LogText").GetComponent<Text>();
         ActionText = transform.Find("ActionText").GetComponent<Text>();
-        DesireText = transform.Find("DesireText").GetComponent<Text>();
+        DesireText = transform.Find("DesireText").GetComponent<Text>();*/
     }
 
     public void SetAgent(Agent newAgent)
@@ -56,8 +56,8 @@ public class AgentStatsTooltip : MonoBehaviour
             transform.position = agent.transform.position + position_offset;
             //Debug.Log("Plotting" + transform.position);
             NameText.text = agent.studentname;
-            GoNameText.text = agent.name;
-            EnergyText.text = agent.motivation.ToString("0.00");
+            AgentText.text = agent.name;
+            MotivationText.text = agent.motivation.ToString("0.00");
             HappinessText.text = agent.happiness.ToString("0.00");
             AttentionText.text = agent.attention.ToString("0.00");
             PersonalityText.text = agent.personality.ToString();
