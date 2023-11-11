@@ -2039,7 +2039,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5143422797045124950}
-  - component: {fileID: 4080980132838990712}
+  - component: {fileID: 8404881622381006520}
   m_Layer: 5
   m_Name: AgentStatsTags
   m_TagString: Untagged
@@ -2073,7 +2073,7 @@ RectTransform:
   m_AnchoredPosition: {x: 23.73999, y: -764.15}
   m_SizeDelta: {x: 218.135, y: 161.363}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &4080980132838990712
+--- !u!114 &8404881622381006520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2082,21 +2082,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5078891343525668167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe3d58d1f13242c38c6b1677137e856, type: 3}
+  m_Script: {fileID: 11500000, guid: c1b5cb0e67279c24bab634b11538cfd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleText: {fileID: 5755021116569385499}
-  NameText: {fileID: 0}
-  AgentText: {fileID: 0}
-  MotivationText: {fileID: 0}
-  HappinessText: {fileID: 0}
-  AttentionText: {fileID: 0}
-  PersonalityText: {fileID: 0}
-  ScoreText: {fileID: 0}
-  LogText: {fileID: 0}
-  ActionText: {fileID: 0}
-  DesireText: {fileID: 0}
-  position_offset: {x: 1, y: 1, z: -4}
 --- !u!1 &5143422796492956885
 GameObject:
   m_ObjectHideFlags: 0

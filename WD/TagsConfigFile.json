@@ -1,0 +1,8 @@
+{
+    "name":"BasicSimulation",
+    "Tags":
+    [
+        {"field":"ATTRIBUTE", "value": "A"},
+        {"field":"ACTION", "value": "COFFEESHOP"}
+    ]
+}

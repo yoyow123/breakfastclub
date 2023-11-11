@@ -70,6 +70,7 @@ public class SimulationConfig
         this.Quarrel = List2Dict(sSC.Quarrel); 
         this.StudyGroup = List2Dict(sSC.StudyGroup); 
         this.StudyAlone = List2Dict(sSC.StudyAlone);
+
     }
 
     private Dictionary<string, double>List2Dict(NamedConfigValue[] list)
@@ -86,6 +87,7 @@ public class Classroom : MonoBehaviour
 
     public string configfile = "ConfigFile.json";
     public string simulationConfigFile = "SimulationConfigFile.json";
+    public string tagsConfigFile = "TagsConfigFile.json";
     public TMPro.TextMeshProUGUI tickCounterText;
     public TMPro.TextMeshProUGUI onScreenLogText;
 
@@ -104,6 +106,7 @@ public class Classroom : MonoBehaviour
 
     private GameConfig gameConfig = new GameConfig();
     public SimulationConfig simulationConfig;
+    public TagsConfigs tagsConfig;
 
     public double[] peerActionScores { get; private set; }
 
@@ -130,6 +133,7 @@ public class Classroom : MonoBehaviour
 
 
         LoadSimulationConfig(simulationConfigFile);
+        LoadTagsConfig(tagsConfigFile);
         LoadGameConfig(configfile);
 
         SpawnAgents();
@@ -137,7 +141,7 @@ public class Classroom : MonoBehaviour
         // Find all Agents
         agents = FindObjectsOfType<Agent>();
 
-
+       
 
         peerActionScores = new double[agents[0].scores.Length];
 
@@ -250,6 +254,22 @@ public class Classroom : MonoBehaviour
 
     }
 
+    private void LoadTagsConfig(string configpath)
+    {
+        try
+        {
+            Debug.Log($"Reading classroom config from {configpath} ...");
+            string json = System.IO.File.ReadAllText(@configpath);
+            tagsConfig = new TagsConfigs(JsonUtility.FromJson<SerializableTagsConfig>(json));
+        }
+        catch
+        {
+            Debug.LogError("Loading Tag Config failed!");
+            //Application.Quit();
+        };
+
+    }
+
     private void SpawnAgents()
     {
         int nAgents = 0;
@@ -314,6 +334,7 @@ public class Classroom : MonoBehaviour
                 Time.timeScale = 0.0f;
                 SetScreenMessage("Simulation Paused");
             }
+            Debug.Log("Tag Configs : " + tagsConfig.Tags["ACTION"]);
             gamePaused = !gamePaused;
         }
         else if(Input.GetKeyDown("q"))

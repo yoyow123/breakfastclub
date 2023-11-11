@@ -21,6 +21,7 @@ public class AgentUI : MonoBehaviour
     private Agent agent;
     private Canvas UICanvas;
     private AgentStatsTooltip statsTooltip;
+    private AgentStatsTags statsTag;
     private Animator agentAnimator;
     private Animator bubbleAnimator;
 
