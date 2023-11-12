@@ -292,8 +292,9 @@ public class Classroom : MonoBehaviour
                 Personality p = new Personality(newRandom, sampleConfig.agent_types[i]);
 
                 Debug.Log($"Spawning Agent {nAgents} with seed {newseed} ...");
-                GameObject newAgent = asp.SpawnAgent(newRandom, p);
-                newAgent.name = $"Agent{nAgents:D2}";
+              //  GameObject newAgent = asp.SpawnAgent(newRandom, p);
+                GameObject n_agent = asp.SpawnAgent(sampleConfig.agent_types[0].name, newRandom, p);
+                n_agent.name = $"Agent{nAgents:D2}";
                 nAgents++;
             }
         }
