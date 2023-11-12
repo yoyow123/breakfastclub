@@ -7,14 +7,26 @@ using System.IO;
 using System.Text;
 
 [Serializable]
+public class SampleConfig {
+    public string name;
+    public int seed;
+    public int ticks;
+    public double timeScale;
+    public PersonalityType[] agent_types;
+    public int[] nAgents;
+
+}
+[Serializable]
 public class TagsConfigs
 {
+    public SampleConfig sampleConfig;  
     public string name;
     public Dictionary<string, string> Tags;
 
     public TagsConfigs(SerializableTagsConfig sc) {
+        
         name = sc.name;
-        Tags = List2Dict(sc.Tags);
+  //      Tags = List2Dict(sc.Tags);
     }
     private Dictionary<string, string> List2Dict(NamedConfigStrValue[] list)
     {
@@ -27,8 +39,8 @@ public class TagsConfigs
 [Serializable]
 //json structure
 public struct SerializableTagsConfig {
+    public SampleConfig sampleConfig;
     public string name;
-    public NamedConfigStrValue[] Tags;
 }
 
 [Serializable]

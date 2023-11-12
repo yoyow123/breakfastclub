@@ -87,7 +87,7 @@ public class Classroom : MonoBehaviour
 
     public string configfile = "ConfigFile.json";
     public string simulationConfigFile = "SimulationConfigFile.json";
-    public string tagsConfigFile = "TagsConfigFile.json";
+    public string tagsConfigFile = "sample_personas_config.json";
     public TMPro.TextMeshProUGUI tickCounterText;
     public TMPro.TextMeshProUGUI onScreenLogText;
 
@@ -107,6 +107,7 @@ public class Classroom : MonoBehaviour
     private GameConfig gameConfig = new GameConfig();
     public SimulationConfig simulationConfig;
     public TagsConfigs tagsConfig;
+    public SampleConfig sampleConfig = new SampleConfig();
 
     public double[] peerActionScores { get; private set; }
 
@@ -146,7 +147,7 @@ public class Classroom : MonoBehaviour
         peerActionScores = new double[agents[0].scores.Length];
 
         //onScreenLogText.text = $"Seed {gameConfig.seed}\nConfig file {configfile}";
-        Debug.Log($"Seed: {gameConfig.seed}\nConfig file: {configfile}");
+        Debug.Log($"Seed: {gameConfig.seed}\nConfig file: {configfile}\nAgents:{gameConfig.nAgents.Length}");
     }
 
     void SetScreenMessage(string message)
@@ -259,8 +260,13 @@ public class Classroom : MonoBehaviour
         try
         {
             Debug.Log($"Reading classroom config from {configpath} ...");
+/*            if (File.Exists(configpath))
+                Debug.Log("**Config file exists.");
+            else
+                Debug.Log("** No Config file is found.");*/
+
             string json = System.IO.File.ReadAllText(@configpath);
-            tagsConfig = new TagsConfigs(JsonUtility.FromJson<SerializableTagsConfig>(json));
+            sampleConfig = JsonUtility.FromJson<SampleConfig>(json);
         }
         catch
         {
@@ -273,17 +279,17 @@ public class Classroom : MonoBehaviour
     private void SpawnAgents()
     {
         int nAgents = 0;
-        for (int i = 0; i < Math.Min(gameConfig.agent_types.Length, gameConfig.nAgents.Length); i++)
+        for (int i = 0; i < Math.Min(sampleConfig.agent_types.Length, sampleConfig.nAgents.Length); i++)
         {
-            Debug.Log("Agent_types : "+ gameConfig.agent_types.Length.ToString());
-            Debug.Log("Agents : " + gameConfig.nAgents.Length.ToString());
+            Debug.Log("Agent_types : "+ sampleConfig.agent_types.Length.ToString());
+            Debug.Log("Agents : " + sampleConfig.nAgents.Length.ToString());
 
-            for (int k = 0; k < gameConfig.nAgents[i]; k++)
+            for (int k = 0; k < sampleConfig.nAgents[i]; k++)
             {
                 int newseed = random.Next();
                 System.Random newRandom = new System.Random(newseed);
                 AgentSpawner asp = AgentSpawners[random.Next(AgentSpawners.Length)];
-                Personality p = new Personality(newRandom, gameConfig.agent_types[i]);
+                Personality p = new Personality(newRandom, sampleConfig.agent_types[i]);
 
                 Debug.Log($"Spawning Agent {nAgents} with seed {newseed} ...");
                 GameObject newAgent = asp.SpawnAgent(newRandom, p);
@@ -295,7 +301,7 @@ public class Classroom : MonoBehaviour
 
 
     // Used to create a teamplate json config file that later can be edited by hand
-    private void createGameConfig(string filename)
+    /*private void createGameConfig(string filename)
     {
         GameConfig gc = new GameConfig();
         gc.name = "TestConfig";
@@ -315,7 +321,7 @@ public class Classroom : MonoBehaviour
         sw.Write(json);
         sw.Close();
     }
-
+*/
     private void Update()
     {
         tickCounterText.text = $"Tick: {(int)turnCnt:D}\nNoise: {noise:F2}";
@@ -334,7 +340,9 @@ public class Classroom : MonoBehaviour
                 Time.timeScale = 0.0f;
                 SetScreenMessage("Simulation Paused");
             }
-            Debug.Log("Tag Configs : " + tagsConfig.Tags["ACTION"]);
+            Debug.Log("Tag Configs:" + sampleConfig.agent_types[0].name) ;
+            Debug.Log("Tag Configs : " + sampleConfig.name);
+            Debug.Log("Tag Configs : " + sampleConfig.seed);
             gamePaused = !gamePaused;
         }
         else if(Input.GetKeyDown("q"))

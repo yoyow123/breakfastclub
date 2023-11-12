@@ -11,8 +11,18 @@ public struct PersonalityType
     public double extraversion;
     public double agreeableness;
     public double neuroticism;
+    public string typeName1;
+    public string typeName2;
+    public string roleName;
+    public string roleDescripton;
+    public double incentives;
+    public double engagement;
+    public double focus;
+    public string[] tags;
 
-    public PersonalityType(string name, double o, double c, double e, double a, double n)
+    public PersonalityType(string name, double o, double c, double e, double a, double n, 
+                                        string type1, string type2, string roleName, string roleDes,
+                                        double incentives, double engage, double focus, string[] tags)
     {
         this.name = name;
         openess = o;
@@ -20,10 +30,18 @@ public struct PersonalityType
         extraversion = e;
         agreeableness = a;
         neuroticism = n;
+        typeName1 = type1;
+        typeName2 = type2;
+        this.roleName = roleName;
+        this.roleDescripton = roleDes;
+        this.incentives = incentives;
+        this.engagement = engage;
+        this.focus = focus;
+        this.tags = tags;
     }
 }
 
-
+[Serializable]
 public class Personality
 {
     public string name { get; protected set; }

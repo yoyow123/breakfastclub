@@ -29,6 +29,7 @@ public class Agent : MonoBehaviour
     private GlobalRefs GR;
     private CSVLogger Logger;
     public SimulationConfig SC;
+    public SampleConfig sampleConfig;
 
     [HideInInspector] public Classroom classroom;
     [HideInInspector] public NavMeshAgent navagent;
@@ -70,7 +71,7 @@ public class Agent : MonoBehaviour
         Logger = GR.logger;
         classroom = GR.classroom;
         SC = classroom.simulationConfig;
-
+     
         // Define all possible actions
         behaviors.Add("Break", new Break(this));
         behaviors.Add("Quarrel", new Quarrel(this));
