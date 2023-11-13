@@ -87,7 +87,7 @@ public class Classroom : MonoBehaviour
 
     public string configfile = "ConfigFile.json";
     public string simulationConfigFile = "SimulationConfigFile.json";
-    public string tagsConfigFile = "sample_personas_config.json";
+    public string sampleConfigFile = "sample_personas_config.json";
     public TMPro.TextMeshProUGUI tickCounterText;
     public TMPro.TextMeshProUGUI onScreenLogText;
 
@@ -96,7 +96,7 @@ public class Classroom : MonoBehaviour
     [NonSerialized] public AgentSpawner[] AgentSpawners;
     public AgentSpawner asp;
 
-    [NonSerialized] public Agent[] agents;
+    public Agent[] agents;
     [NonSerialized] public bool gamePaused = false;
     [NonSerialized] public Transform groundfloorTransform;
 
@@ -135,7 +135,7 @@ public class Classroom : MonoBehaviour
 
 
         LoadSimulationConfig(simulationConfigFile);
-        LoadTagsConfig(tagsConfigFile);
+        LoadTagsConfig(sampleConfigFile);
         LoadGameConfig(configfile);
 
         SpawnAgents();
@@ -348,6 +348,7 @@ public class Classroom : MonoBehaviour
         }
         else if (Input.GetKeyDown("r")) {
             Debug.Log("Reload config");
+            Reload();
 
         }
     }
@@ -526,7 +527,16 @@ public class Classroom : MonoBehaviour
         return available;
     }
 
-    public void ReloadConfig() { 
-    
+    public void Reload() {
+
+        LoadTagsConfig(sampleConfigFile);
+        foreach (Agent a in agents) {
+            Destroy(a.gameObject);
+        }
+        SpawnAgents();
+        agents = FindObjectsOfType<Agent>();
+
     }
+    
+      
 }

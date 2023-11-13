@@ -6325,7 +6325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configfile: ../Ressources/ClassroomConfigs/ClassroomConfig.json
   simulationConfigFile: ../Ressources/SimulationConfigs/SimulationConfigFile.json
-  tagsConfigFile: ../Ressources/TagConfigs/sample_personas_config.json
+  sampleConfigFile: ../Ressources/SampleConfigs/sample_personas_config.json
   tickCounterText: {fileID: 1126949122}
   onScreenLogText: {fileID: 39722383}
   asp: {fileID: 1910439737}
