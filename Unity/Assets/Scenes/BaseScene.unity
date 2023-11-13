@@ -6328,9 +6328,24 @@ MonoBehaviour:
   tagsConfigFile: ../Ressources/TagConfigs/sample_personas_config.json
   tickCounterText: {fileID: 1126949122}
   onScreenLogText: {fileID: 39722383}
+  asp: {fileID: 1910439737}
   turnCnt: 0
   tagsConfig:
+    sampleConfig:
+      name: 
+      seed: 0
+      ticks: 0
+      timeScale: 0
+      agent_types: []
+      nAgents: 
     name: 
+  sampleConfig:
+    name: 
+    seed: 0
+    ticks: 0
+    timeScale: 0
+    agent_types: []
+    nAgents: 
 --- !u!1 &1996133811
 GameObject:
   m_ObjectHideFlags: 0

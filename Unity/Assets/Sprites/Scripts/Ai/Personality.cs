@@ -51,6 +51,23 @@ public class Personality
     public double agreeableness { get; protected set; }
     public double neuroticism { get; protected set; }
 
+    public string typeName1{ get; protected set; }
+
+    public string typeName2 { get; protected set; }
+
+    public string roleName { get; protected set; }
+
+    public string roleDescripton { get; protected set; }
+
+    public double incentives { get; protected set; }
+
+    public double engagement { get; protected set; }
+
+    public double focus { get; protected set; }
+
+    public string[] tags { get; protected set; }
+
+
     public Personality(string name, double o, double c, double e, double a, double n)
     {
         this.name = name;
@@ -59,6 +76,23 @@ public class Personality
         extraversion = e;
         agreeableness = a;
         neuroticism = n;
+    }
+
+    public Personality(PersonalityType pt) {
+        name = pt.name;
+        openess = pt.openess;
+        conscientousness = pt.conscientousness;
+        extraversion = pt.extraversion;
+        agreeableness = pt.agreeableness;
+       neuroticism = pt.neuroticism;
+        typeName1 = pt.typeName1;
+        typeName2 = pt.typeName2;
+        roleName = pt.roleName;
+        roleDescripton = pt.roleDescripton;
+        incentives = pt.incentives;
+        engagement = pt.engagement;
+        focus = pt.focus;
+        tags = pt.tags;
     }
 
     public Personality(Random random, PersonalityType pt)
