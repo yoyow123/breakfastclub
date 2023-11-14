@@ -16,7 +16,7 @@ public class SampleConfig {
     public int[] nAgents;
 
 }
-[Serializable]
+/*[Serializable]
 public class TagsConfigs
 {
     public SampleConfig sampleConfig;  
@@ -53,4 +53,4 @@ public struct NamedConfigStrValue
         this.field = field;
         this.value = value;
     }
-}
+}*/

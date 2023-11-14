@@ -107,7 +107,7 @@ public class Classroom : MonoBehaviour
 
     private GameConfig gameConfig = new GameConfig();
     public SimulationConfig simulationConfig;
-    public TagsConfigs tagsConfig;
+    public SampleConfig tagsConfig;
     public SampleConfig sampleConfig = new SampleConfig();
 
     public double[] peerActionScores { get; private set; }
