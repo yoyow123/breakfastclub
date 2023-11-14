@@ -22,14 +22,11 @@ public class AgentStatsTags : MonoBehaviour
     void Update()
     {
         if (agent)
-        {
-            Debug.Log("Agent has " + agent.personality.tags.Length + " tags");
-      /*      for (int i = 0; i < agent.personality.tags.Length; i++) {
-                GameObject g = Instantiate(tagsPrefab);
-                g.transform.SetParent(tagGroup);
-                g.transform.localScale = Vector3.one;
-                g.GetComponentInChildren<TextMeshPro>().text = agent.personality.tags[i];
-            }*/
+        {       
+            for (int i = 0; i < tagGroup.childCount; i++) {
+                GameObject tagObj = tagGroup.GetChild(i).gameObject;
+                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = agent.personality.tags[i];
+            }
         }
     }
     public void SetAgent(Agent newAgent)
