@@ -98,7 +98,7 @@ public class Classroom : MonoBehaviour
 
     public Agent[] agents;
     [NonSerialized] public bool gamePaused = false;
-    [NonSerialized] public Transform groundfloorTransform;
+    public Transform groundfloorTransform;
 
     private GlobalRefs GR;
     private CSVLogger Logger;
@@ -182,7 +182,7 @@ public class Classroom : MonoBehaviour
     {
         GR = GlobalRefs.Instance;
         Logger = GR.logger;
-        groundfloorTransform = transform.Find("Groundfloor").GetComponent<Transform>();
+       // groundfloorTransform = transform.Find("Groundfloor").GetComponent<Transform>();
 
         // Find all Tables
         groupTables = Array.ConvertAll(GameObject.FindGameObjectsWithTag("GTable"), item => item.GetComponent<Table>());

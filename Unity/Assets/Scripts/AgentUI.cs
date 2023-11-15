@@ -5,12 +5,13 @@ using System;
 
 public class AgentUI : MonoBehaviour
 {
-    // Idle 0
-    // Walking/Break 1
-    // Chat 2
-    // Quarrel 3
-    // Study 4
-    public enum AnimationState : int { Idle=0, Walking, Chat, Quarrel, Study};
+    // SoloTime 0
+    // Rest 1
+    // Walk 2
+    // Diagreement 3
+    // Communication 4
+    // InteractionTime 5 
+    public enum AnimationState : int { SoloTime=0, Walking, Rest,  Diagreement, Communication, InteractionTime};
 
     public bool isFront;
     public AnimationState animationstate;
@@ -68,27 +69,27 @@ public class AgentUI : MonoBehaviour
             isFront = true;
             if ((agent.currentAction is Quarrel) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
             {
-                animationstate = AnimationState.Quarrel;
+                animationstate = AnimationState.Diagreement;
             }
             else
             if (agent.currentAction is Break)
             {
                 //animationstate = AnimationState.Walking;
-                animationstate = AnimationState.Idle;
+                animationstate = AnimationState.Rest;
             }
             else
             if (((agent.currentAction is StudyAlone) || (agent.currentAction is StudyGroup)) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
             {
-                animationstate = AnimationState.Study;
+                animationstate = AnimationState.SoloTime;
             }
             else
             if ((agent.currentAction is Chat) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
             {
-                animationstate = AnimationState.Chat;
+                animationstate = AnimationState.Communication;
             }
             else
             {
-                animationstate = AnimationState.Idle;
+                animationstate = AnimationState.SoloTime;
             }
         }
         //isFront = (navAgent.destination - transform.position).z < 0.5;
