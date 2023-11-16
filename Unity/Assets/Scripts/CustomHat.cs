@@ -27,8 +27,7 @@ public class CustomHat : MonoBehaviour
         if (agent)
         {
             string colorName = agent.personality.color;
-            Debug.Log("Agent " + agent.name + "Color : " + colorName);
-
+           // Debug.Log("Agent " + agent.name + "Color : " + colorName);
             SetColorHat(colorName);
 
         }

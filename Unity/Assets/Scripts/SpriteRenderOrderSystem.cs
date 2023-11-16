@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class SpriteRenderOrderSystem : MonoBehaviour
 {
-    SpriteRenderer[] renderers;
+   [SerializeField]  private SpriteRenderer[] renderers;
+
     // Start is called before the first frame update
     void Start()
     {
-       renderers = FindObjectsOfType<SpriteRenderer>();
+        renderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         foreach (SpriteRenderer renderer in renderers) {
-            renderer.sortingOrder = (int)renderer.transform.position.y * -100;
-        }
+            int defaultOrder = renderer.sortingOrder;
+            if (transform.position.z < -0.75 && renderer.sortingOrder -1 == defaultOrder )
+                renderer.sortingOrder++;
+            else
+                renderer.sortingOrder = defaultOrder;
+        }   
     }
 }

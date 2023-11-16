@@ -8,6 +8,8 @@ public class AgentStatsTags : MonoBehaviour
 {
     public Transform tagGroup;
 
+    public Transform additionalTagGroup;
+
     public GameObject tagsPrefab;
     public Agent agent { protected set; get; }
 
@@ -26,6 +28,11 @@ public class AgentStatsTags : MonoBehaviour
             for (int i = 0; i < tagGroup.childCount; i++) {
                 GameObject tagObj = tagGroup.GetChild(i).gameObject;
                 tagObj.GetComponentInChildren<TextMeshProUGUI>().text = agent.personality.tags[i];
+            }
+
+            for (int i = 0; i < additionalTagGroup.childCount; i++) {
+                GameObject tagObj = additionalTagGroup.GetChild(i).gameObject;
+                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = agent.personality.additionalTags[i];
             }
         }
     }

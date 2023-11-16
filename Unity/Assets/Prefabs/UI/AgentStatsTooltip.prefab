@@ -2127,6 +2127,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3591437671294870710, guid: ff0fe2b0089d2ec4da14f8c4a4fa488c,
+        type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591437671294870710, guid: ff0fe2b0089d2ec4da14f8c4a4fa488c,
+        type: 3}
+      propertyPath: m_FillCenter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591437671294870710, guid: ff0fe2b0089d2ec4da14f8c4a4fa488c,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5078891343525668167, guid: ff0fe2b0089d2ec4da14f8c4a4fa488c,
         type: 3}
       propertyPath: m_Name
@@ -2252,11 +2267,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8404881622381006520, guid: ff0fe2b0089d2ec4da14f8c4a4fa488c,
+        type: 3}
+      propertyPath: additionalTagGroup
+      value: 
+      objectReference: {fileID: 1452973703311074332}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff0fe2b0089d2ec4da14f8c4a4fa488c, type: 3}
 --- !u!224 &6001297376781701353 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5143422797045124950, guid: ff0fe2b0089d2ec4da14f8c4a4fa488c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1452973703431970751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1452973703311074332 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 417135523, guid: ff0fe2b0089d2ec4da14f8c4a4fa488c,
     type: 3}
   m_PrefabInstance: {fileID: 1452973703431970751}
   m_PrefabAsset: {fileID: 0}

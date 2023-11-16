@@ -15,7 +15,7 @@ public class AgentUI : MonoBehaviour
     public enum AnimationState : int { SoloTime = 0, Rest, Walking, Diagreement, Communication, InteractionTime };
 
     public bool isFront;
-    public AnimationState animationstate;
+    public AnimationState _animationstate;
     public float distanceMoved;
 
     private NavMeshAgent navAgent;
@@ -58,46 +58,44 @@ public class AgentUI : MonoBehaviour
     // If agents are too far away from their navAgent destination their animation will be walking
     private void SetAnimationState()
     {
-        distanceMoved = Vector3.Distance(transform.position, prevPosition);
-        Debug.Log("Distance Moved " + distanceMoved);
-        if(distanceMoved > 0.5)
+        /*        distanceMoved = Vector3.Distance(transform.position, prevPosition);
+                Debug.Log("Distance Moved " + distanceMoved);
+                if(distanceMoved > 0.4)
+                {
+                    textureController.SetTexture(0);
+                    animationstate = AnimationState.Walking;
+                   // isFront = !((transform.position - prevPosition).x < 1);
+                }*/
+        // isFront = true;
+        if ((agent.currentAction is Disagreement) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
         {
-            textureController.SetTexture(0);
-            animationstate = AnimationState.Walking;
-           // isFront = !((transform.position - prevPosition).x < 1);
+            textureController.SetTexture(2);
+            _animationstate = AnimationState.Diagreement;
+        }
+        else if (agent.currentAction is Rest)
+        {
+            textureController.SetTexture(1);
+            //animationstate = AnimationState.Walking;
+            _animationstate = AnimationState.Rest;
         }
         else
+        if ((agent.currentAction is InteractionTime) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
         {
-           // isFront = true;
-            if ((agent.currentAction is Disagreement) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
-            {
-                textureController.SetTexture(2);
-                animationstate = AnimationState.Diagreement;
-            }
-            else
-            if (agent.currentAction is Rest)
-            {
-                textureController.SetTexture(1);
-                //animationstate = AnimationState.Walking;
-                animationstate = AnimationState.Rest;
-            }
-            else
-            if (((agent.currentAction is SoloTime) || (agent.currentAction is InteractionTime)) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
-            {
-                textureController.SetTexture(0);
-                animationstate = AnimationState.SoloTime;
-            }
-            else
-            if ((agent.currentAction is Communication) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
-            {
-                textureController.SetTexture(0);
-                animationstate = AnimationState.Communication;
-            }
-            else
-            {
-                textureController.SetTexture(0);
-                animationstate = AnimationState.SoloTime;
-            }
+            Debug.Log("Agent " + agent.name + " Interaction Time");
+            textureController.SetTexture(0);
+            _animationstate = AnimationState.InteractionTime;
+        }
+        else
+        if ((agent.currentAction is Communication) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
+        {
+            textureController.SetTexture(0);
+            _animationstate = AnimationState.Communication;
+        }
+        else if ((agent.currentAction is SoloTime) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
+        {
+            Debug.Log("Agent " + agent.name + " Solo Time");
+            textureController.SetTexture(0);
+            _animationstate = AnimationState.SoloTime;
         }
         //isFront = (navAgent.destination - transform.position).z < 0.5;
         //isFront = !((transform.position - prevPosition).z > 0.01) || ((transform.position - prevPosition).x > 0.01);
@@ -107,9 +105,9 @@ public class AgentUI : MonoBehaviour
         prevPosition = transform.position;
 
 
-        agentAnimator.SetInteger("AgentAnimationState", (int)animationstate);
+        agentAnimator.SetInteger("AgentAnimationState", (int)_animationstate);
         agentAnimator.SetBool("IsFront", isFront);
-        bubbleAnimator.SetInteger("AgentAnimationState", (int)animationstate);
+        bubbleAnimator.SetInteger("AgentAnimationState", (int)_animationstate);
 
         /*
         if ((agent.currentAction is Disagreement) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
