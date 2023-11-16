@@ -78,7 +78,7 @@
 			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
-			"name": "Eva",
+			"name": "Owen",
 			"openess": 0.3,
 			"conscientousness": 0.5,
 			"extraversion": 0.7,
@@ -96,7 +96,7 @@
 			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
-			"name": "Frank",
+			"name": "Frankie",
 			"openess": 0.6,
 			"conscientousness": 0.4,
 			"extraversion": 0.3,
@@ -185,7 +185,7 @@
 			"tags": ["artificial intelligence", "computer vision", "algorithm", "automation"],
 			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},{
-			"name": "Alice",
+			"name": "Ceci",
 			"openess": 0.8,
 			"conscientousness": 0.2,
 			"extraversion": 0.5,
@@ -221,7 +221,7 @@
 		  "additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
-			"name": "Charlie",
+			"name": "Cherry",
 			"openess": 0.5,
 			"conscientousness": 0.3,
 			"extraversion": 0.9,
@@ -239,7 +239,7 @@
 			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
-		    "name": "David",
+		    "name": "Dave",
 			"openess": 0.1,
 			"conscientousness": 0.6,
 			"extraversion": 0.4,
@@ -293,7 +293,7 @@
 			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
-			"name": "Grace",
+			"name": "Lelia",
 			"openess": 0.9,
 			"conscientousness": 0.3,
 			"extraversion": 0.7,
@@ -311,7 +311,7 @@
 			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
-			"name": "Henry",
+			"name": "Sara",
 			"openess": 0.4,
 			"conscientousness": 0.1,
 			"extraversion": 0.8,
@@ -329,7 +329,7 @@
 			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
-			"name": "Ivy",
+			"name": "April",
 			"openess": 0.2,
 			"conscientousness": 0.5,
 			"extraversion": 0.6,
@@ -347,7 +347,7 @@
 			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
-			"name": "Jack",
+			"name": "Peter",
 			"openess": 0.1,
 			"conscientousness": 0.8,
 			"extraversion": 0.6,

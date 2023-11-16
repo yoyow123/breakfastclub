@@ -12,7 +12,7 @@ public class AgentUI : MonoBehaviour
     // Diagreement 3
     // Communication 4
     // InteractionTime 5 
-    public enum AnimationState : int { SoloTime=0, Walking, Rest,  Diagreement, Communication, InteractionTime};
+    public enum AnimationState : int { SoloTime = 0, Rest, Walking, Diagreement, Communication, InteractionTime };
 
     public bool isFront;
     public AnimationState animationstate;
@@ -25,8 +25,8 @@ public class AgentUI : MonoBehaviour
     [SerializeField] private AgentStatsTooltip statsTooltip;
     [SerializeField] private AgentStatsTags statsTags;
     [SerializeField] private TextureController textureController;
-    private Animator agentAnimator;
-    private Animator bubbleAnimator;
+    [SerializeField] private Animator agentAnimator;
+    [SerializeField] private Animator bubbleAnimator;
 
     //private bool showStats = false;
     private TMPro.TextMeshPro AgentNameText;
@@ -39,8 +39,6 @@ public class AgentUI : MonoBehaviour
         navAgent = gameObject.GetComponent<NavMeshAgent>();
         cam = FindObjectOfType<Camera>();
         agent = gameObject.GetComponent<Agent>();
-        agentAnimator = transform.Find("AgentAnimation").gameObject.GetComponent<Animator>();
-        bubbleAnimator = transform.Find("BubbleAnimation").gameObject.GetComponent<Animator>();
 
         UICanvas = FindObjectOfType<Canvas>();
         statsTooltip = UICanvas.transform.Find("AgentStatsTooltip").GetComponent<AgentStatsTooltip>();
@@ -61,15 +59,16 @@ public class AgentUI : MonoBehaviour
     private void SetAnimationState()
     {
         distanceMoved = Vector3.Distance(transform.position, prevPosition);
-        if(distanceMoved > 0.02)
+        Debug.Log("Distance Moved " + distanceMoved);
+        if(distanceMoved > 0.5)
         {
             textureController.SetTexture(0);
             animationstate = AnimationState.Walking;
-            isFront = !((transform.position - prevPosition).x < 0.02);
+           // isFront = !((transform.position - prevPosition).x < 1);
         }
         else
         {
-            isFront = true;
+           // isFront = true;
             if ((agent.currentAction is Disagreement) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
             {
                 textureController.SetTexture(2);
