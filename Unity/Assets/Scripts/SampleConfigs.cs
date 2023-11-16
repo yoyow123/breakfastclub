@@ -11,7 +11,7 @@ public class SampleConfig {
     public string name;
     public int seed;
     public int ticks;
-    public double timeScale;
+    public double timescale;
     public PersonalityType[] agent_types;
     public int[] nAgents;
 

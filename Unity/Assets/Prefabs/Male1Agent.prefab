@@ -116,6 +116,7 @@ MonoBehaviour:
   distanceMoved: 0
   statsTooltip: {fileID: 0}
   statsTags: {fileID: 0}
+  textureController: {fileID: 8600655383069843199}
 --- !u!114 &2988818297817782727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
     name: 
     seed: 0
     ticks: 0
-    timeScale: 0
+    timescale: 0
     agent_types: []
     nAgents: 
   classroom: {fileID: 0}
@@ -632,3 +633,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6400341015702856161}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8600655383069843199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3425337981202415390, guid: 336ff1a582a1cfa4ba6aa88c491077cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6400341015702856161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d8dc87df01e4958ab48153b19f0ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

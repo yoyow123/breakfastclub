@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.AI;
 using System;
+using Spriter2UnityDX;
 
 public class AgentUI : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class AgentUI : MonoBehaviour
     private Canvas UICanvas;
     [SerializeField] private AgentStatsTooltip statsTooltip;
     [SerializeField] private AgentStatsTags statsTags;
+    [SerializeField] private TextureController textureController;
     private Animator agentAnimator;
     private Animator bubbleAnimator;
 
@@ -61,6 +63,7 @@ public class AgentUI : MonoBehaviour
         distanceMoved = Vector3.Distance(transform.position, prevPosition);
         if(distanceMoved > 0.02)
         {
+            textureController.SetTexture(0);
             animationstate = AnimationState.Walking;
             isFront = !((transform.position - prevPosition).x < 0.02);
         }
@@ -69,26 +72,31 @@ public class AgentUI : MonoBehaviour
             isFront = true;
             if ((agent.currentAction is Quarrel) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
             {
+                textureController.SetTexture(2);
                 animationstate = AnimationState.Diagreement;
             }
             else
             if (agent.currentAction is Break)
             {
+                textureController.SetTexture(1);
                 //animationstate = AnimationState.Walking;
                 animationstate = AnimationState.Rest;
             }
             else
             if (((agent.currentAction is StudyAlone) || (agent.currentAction is StudyGroup)) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
             {
+                textureController.SetTexture(0);
                 animationstate = AnimationState.SoloTime;
             }
             else
             if ((agent.currentAction is Chat) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
             {
+                textureController.SetTexture(0);
                 animationstate = AnimationState.Communication;
             }
             else
             {
+                textureController.SetTexture(0);
                 animationstate = AnimationState.SoloTime;
             }
         }

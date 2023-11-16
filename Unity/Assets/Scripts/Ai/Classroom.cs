@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 
 [Serializable]
-public class GameConfig
+public class sampleConfig
 {
     public string name;
     public int seed;
@@ -85,7 +85,7 @@ public class Classroom : MonoBehaviour
 {
     public double noise { get; protected set; }
 
-    public string configfile = "ConfigFile.json";
+    //public string configfile = "ConfigFile.json";
     public string simulationConfigFile = "SimulationConfigFile.json";
     public string sampleConfigFile = "sample_personas_config.json";
     public TMPro.TextMeshProUGUI tickCounterText;
@@ -105,9 +105,8 @@ public class Classroom : MonoBehaviour
     [HideInInspector] public double turnCnt = 0;
     private int commandline_seed = 0;
 
-    private GameConfig gameConfig = new GameConfig();
+    //private GameConfig gameConfig = new GameConfig();
     public SimulationConfig simulationConfig;
-    public SampleConfig tagsConfig;
     public SampleConfig sampleConfig = new SampleConfig();
 
     public double[] peerActionScores { get; private set; }
@@ -135,8 +134,7 @@ public class Classroom : MonoBehaviour
 
 
         LoadSimulationConfig(simulationConfigFile);
-        LoadTagsConfig(sampleConfigFile);
-        LoadGameConfig(configfile);
+        LoadSampleConfig(sampleConfigFile);
 
         SpawnAgents();
 
@@ -147,8 +145,8 @@ public class Classroom : MonoBehaviour
 
         peerActionScores = new double[agents[0].scores.Length];
 
-        //onScreenLogText.text = $"Seed {gameConfig.seed}\nConfig file {configfile}";
-        Debug.Log($"Seed: {gameConfig.seed}\nConfig file: {configfile}\nAgents:{gameConfig.nAgents.Length}");
+        //onScreenLogText.text = $"Seed {sampleConfig.seed}\nConfig file {configfile}";
+        Debug.Log($"Seed: {sampleConfig.seed}\nConfig file: {sampleConfigFile}\nAgents:{sampleConfig.nAgents.Length}");
     }
 
     void SetScreenMessage(string message)
@@ -172,7 +170,7 @@ public class Classroom : MonoBehaviour
 
         LogStats();
 
-        if ((gameConfig.ticks > 0) && (turnCnt >= gameConfig.ticks))
+        if ((sampleConfig.ticks > 0) && (turnCnt >= sampleConfig.ticks))
         {
             EndSimulation();
         }
@@ -214,7 +212,7 @@ public class Classroom : MonoBehaviour
         try
         {
             simulationConfigFile = filtered_args[1];
-            configfile = filtered_args[2];
+            sampleConfigFile = filtered_args[2];
             commandline_seed = int.Parse(filtered_args[3]);
             string logfilepath = filtered_args[4];
 
@@ -226,20 +224,20 @@ public class Classroom : MonoBehaviour
         };
     }
 
-    private void LoadGameConfig(string configpath)
+    private void LoadSampleConfig(string configpath)
     {
-        //createGameConfig("NewGameConfig.json");
+        //createsampleConfig("NewsampleConfig.json");
         Debug.Log($"Reading classroom config from {configpath} ...");
         string config = System.IO.File.ReadAllText(@configpath);
-        gameConfig = JsonUtility.FromJson<GameConfig>(config);
+        sampleConfig = JsonUtility.FromJson<SampleConfig>(config);
 
         // Command line seed overwrites config seed!
         if(commandline_seed != 0)
         { 
-            gameConfig.seed = commandline_seed;
+            sampleConfig.seed = commandline_seed;
         }
-        random = new System.Random(gameConfig.seed);
-        Time.timeScale = (float)gameConfig.timescale;
+        random = new System.Random(sampleConfig.seed);
+        Time.timeScale = (float)sampleConfig.timescale;
     }
 
     private void LoadSimulationConfig(string configpath)
@@ -256,15 +254,15 @@ public class Classroom : MonoBehaviour
 
     }
 
-    private void LoadTagsConfig(string configpath)
+ /*   private void LoadTagsConfig(string configpath)
     {
         try
         {
             Debug.Log($"Reading classroom config from {configpath} ...");
-/*            if (File.Exists(configpath))
+*//*            if (File.Exists(configpath))
                 Debug.Log("**Config file exists.");
             else
-                Debug.Log("** No Config file is found.");*/
+                Debug.Log("** No Config file is found.");*//*
 
             string json = System.IO.File.ReadAllText(@configpath);
             sampleConfig = JsonUtility.FromJson<SampleConfig>(json);
@@ -275,7 +273,7 @@ public class Classroom : MonoBehaviour
             //Application.Quit();
         };
 
-    }
+    }*/
 
     private void SpawnAgents()
     {
@@ -298,9 +296,9 @@ public class Classroom : MonoBehaviour
 
 
     // Used to create a teamplate json config file that later can be edited by hand
-    /*private void createGameConfig(string filename)
+    /*private void createsampleConfig(string filename)
     {
-        GameConfig gc = new GameConfig();
+        sampleConfig gc = new sampleConfig();
         gc.name = "TestConfig";
         gc.seed = 42;
         gc.ticks = 100;
@@ -328,7 +326,7 @@ public class Classroom : MonoBehaviour
             if (gamePaused)
             {
                 Debug.Log("Resume Game");
-                Time.timeScale = (float)gameConfig.timescale;
+                Time.timeScale = (float)sampleConfig.timescale;
                 SetScreenMessage("");
             }
             else
@@ -529,7 +527,7 @@ public class Classroom : MonoBehaviour
 
     public void Reload() {
 
-        LoadTagsConfig(sampleConfigFile);
+        LoadSampleConfig(sampleConfigFile);
         foreach (Agent a in agents) {
             Destroy(a.gameObject);
         }

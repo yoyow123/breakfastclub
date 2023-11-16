@@ -19,24 +19,22 @@ namespace Spriter2UnityDX {
 
 		private SpriteRenderer srenderer;
 		private Animator animator;
-		private int lastDisplayed;
+		private int spriteNum;
 		
 		private void Awake () {
 			srenderer = GetComponent<SpriteRenderer> ();
-			lastDisplayed = (int)DisplayedSprite;
 			animator = GetComponentInParent<Animator> ();
 		}
 
 		private void Start () {
-			srenderer.sprite = Sprites [lastDisplayed];
+			srenderer.sprite = Sprites [0];
 		}
 
 		private void Update () {
 			//Only change the sprite when the DisplayedSprite property has actually been changed
 			//It will ignore changes that happen during transitions because it might get messy otherwise
-			if ((int)DisplayedSprite != lastDisplayed && !IsTransitioning () ) {
-				lastDisplayed = (int)DisplayedSprite;
-				srenderer.sprite = Sprites [lastDisplayed];
+			if (!IsTransitioning () ) {
+				srenderer.sprite = Sprites [spriteNum];
 			}
 		}
 
@@ -44,6 +42,10 @@ namespace Spriter2UnityDX {
 			for (var i = 0; i < animator.layerCount; i++)
 				if (animator.IsInTransition(i)) return true;
 			return false;
+		}
+
+		public void SetTexture(int index) {
+			spriteNum = index;
 		}
 	}
 }
