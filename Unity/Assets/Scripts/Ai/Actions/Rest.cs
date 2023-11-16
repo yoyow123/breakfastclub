@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-public class Break : AgentBehavior
+public class Rest : AgentBehavior
 {
     private float xS;
     private float zS;
 
-    public Break(Agent agent) : base(agent, AgentBehavior.Actions.Break, "Rest", agent.SC.Break) {
+    public Rest(Agent agent) : base(agent, AgentBehavior.Actions.Rest, "Rest", agent.SC.Rest) {
         xS = agent.classroom.groundfloorTransform.GetComponentInChildren<Collider>().bounds.size.x * (float)0.5;
         zS = agent.classroom.groundfloorTransform.GetComponentInChildren<Collider>().bounds.size.z * (float)0.5;
     }
@@ -47,7 +47,7 @@ public class Break : AgentBehavior
         //Debug.Log("Random walk towards " + dest);
         agent.navagent.SetDestination(dest);
 
-        state = ActionState.EXECUTING;
+        state = ActionState.ACTION;
         return true;
     }
 

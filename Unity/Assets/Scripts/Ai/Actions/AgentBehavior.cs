@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class AgentBehavior
 {
-    public enum Actions : int { StudyAlone, StudyGroup, Break, Chat, Quarrel };
-    public enum ActionState : int { INACTIVE, TRANSITION, WAITING, EXECUTING };
+    public enum Actions : int { SoloTime, InteractionTime, Rest, Communication, Disagreement };
+    public enum ActionState : int { INACTIVE, MOVING, AWAITING, ACTION };
 
     public static double EXP1 = 1.718281828; //exp(1) - 1
 

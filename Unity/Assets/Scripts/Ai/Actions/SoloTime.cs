@@ -2,12 +2,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class StudyAlone : AgentBehavior
+public class SoloTime : AgentBehavior
 {
     private Table lastTable;
     private Vector3 destination;
 
-    public StudyAlone(Agent agent) : base(agent, AgentBehavior.Actions.StudyAlone, "SoloTime", agent.SC.StudyAlone) { }
+    public SoloTime(Agent agent) : base(agent, AgentBehavior.Actions.SoloTime, "SoloTime", agent.SC.SoloTime) { }
     /*
      *  • requirements: no quarrel, free individual table, attention
      *  • effects: learning, reduces energy every turn
@@ -25,7 +25,7 @@ public class StudyAlone : AgentBehavior
                     lastTable = table;
                     destination = seat.position;
                     agent.navagent.destination = destination;
-                    state = ActionState.TRANSITION;
+                    state = ActionState.MOVING;
                     transition_cnter = 2;
                     return true;
                 }
@@ -35,7 +35,7 @@ public class StudyAlone : AgentBehavior
                     return false;
                 }
 
-            case ActionState.TRANSITION:
+            case ActionState.MOVING:
                 transition_cnter--;
                 if (transition_cnter > 0)
                 {
@@ -43,11 +43,11 @@ public class StudyAlone : AgentBehavior
                 }
                 else
                 {
-                    state = ActionState.EXECUTING;
+                    state = ActionState.ACTION;
                 }
                 return true;
 
-            case ActionState.WAITING:
+            case ActionState.AWAITING:
                 retry_cnter++;
                 if (retry_cnter > (int)(config["MAX_RETRIES"]))
                 {
@@ -55,13 +55,13 @@ public class StudyAlone : AgentBehavior
                     state = ActionState.INACTIVE;
                     return false;
                 }
-                state = ActionState.EXECUTING;
+                state = ActionState.ACTION;
                 return true;
-            case ActionState.EXECUTING:
+            case ActionState.ACTION:
                 if (agent.classroom.noise >= agent.personality.conscientousness * config["NOISE_THRESHOLD"])
                 {
                     agent.LogDebug($"Its too loud! Cannot learn! {agent.classroom.noise} > {agent.personality.conscientousness * config["NOISE_THRESHOLD"]}. Will Wait!");
-                    state = ActionState.WAITING;
+                    state = ActionState.AWAITING;
                 }
                 else
                 {
@@ -88,7 +88,7 @@ public class StudyAlone : AgentBehavior
                 //throw new NotImplementedException();
                 return false;
 
-            case ActionState.TRANSITION:
+            case ActionState.MOVING:
             {
                 (double energy, double happiness) = calculateTransitionEffect();
                 agent.motivation = energy;
@@ -96,7 +96,7 @@ public class StudyAlone : AgentBehavior
                 return true;
             }
 
-            case ActionState.WAITING:
+            case ActionState.AWAITING:
             {
                 (double energy, double happiness) = calculateWaitingEffect();
                 agent.motivation = energy;
@@ -104,7 +104,7 @@ public class StudyAlone : AgentBehavior
                 return true;
             }
 
-            case ActionState.EXECUTING:
+            case ActionState.ACTION:
                 agent.motivation = boundValue(0.0, agent.motivation + config["MOTIVATION_INCREASE"], 1.0);
                 agent.happiness = boundValue(0.0, agent.happiness + config["HAPPINESS_INCREASE"], 1.0);
                 agent.navagent.destination = destination;
@@ -147,15 +147,15 @@ public class StudyAlone : AgentBehavior
         switch (state)
         {
             case ActionState.INACTIVE:
-            case ActionState.TRANSITION:
+            case ActionState.MOVING:
                 agent.LogDebug(String.Format("Stopping before reaching the Table!"));
                 break;
 
-            case ActionState.WAITING:
+            case ActionState.AWAITING:
                 agent.LogError(String.Format("Waiting in order to study alone!"));
                 break;
 
-            case ActionState.EXECUTING:
+            case ActionState.ACTION:
                 agent.LogDebug(String.Format("Ending study alone on table {0}!", lastTable));
                 break;
         }
@@ -174,12 +174,12 @@ public class StudyAlone : AgentBehavior
         {
             case ActionState.INACTIVE:
                 return String.Format($"{name}({state})");
-            case ActionState.TRANSITION:
-                return String.Format($"{name}({state}) walking towards {lastTable}");
-            case ActionState.WAITING:
-                return String.Format($"{name}({state}) waiting at {lastTable}");
-            case ActionState.EXECUTING:
-                return String.Format($"{name}({state}) studying at {lastTable}");
+            case ActionState.MOVING:
+                return String.Format($"{name}({state}) walking towards {lastTable} for some solo time.");
+            case ActionState.AWAITING:
+                return String.Format($"{name}({state}) peacefully wandering at  {lastTable}");
+            case ActionState.ACTION:
+                return String.Format($"{name}({state}) immersing in solo activities at  {lastTable}");
         }
         return "Invalid State!";
     }

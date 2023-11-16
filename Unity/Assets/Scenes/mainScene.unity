@@ -2658,7 +2658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77fd7220b12c46b39d0da3cadcf73d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configfile: ../Ressources/ClassroomConfigs/ClassroomConfig.json
   simulationConfigFile: ../Ressources/SimulationConfigs/SimulationConfigFile.json
   sampleConfigFile: ../Ressources/SampleConfigs/sample_personas_config.json
   tickCounterText: {fileID: 1126949122}
@@ -2667,18 +2666,11 @@ MonoBehaviour:
   agents: []
   groundfloorTransform: {fileID: 1699242827}
   turnCnt: 0
-  tagsConfig:
-    name: 
-    seed: 0
-    ticks: 0
-    timeScale: 0
-    agent_types: []
-    nAgents: 
   sampleConfig:
     name: 
     seed: 0
     ticks: 0
-    timeScale: 0
+    timescale: 0
     agent_types: []
     nAgents: 
 --- !u!4 &1505939163
@@ -3822,6 +3814,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 53743895512944484, guid: 7200a37e0882e7c4aa1b64a562f41b07,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 53743895512944484, guid: 7200a37e0882e7c4aa1b64a562f41b07,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 53743895512944484, guid: 7200a37e0882e7c4aa1b64a562f41b07,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 53743895512944484, guid: 7200a37e0882e7c4aa1b64a562f41b07,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3889,6 +3896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186632743565075274, guid: 7200a37e0882e7c4aa1b64a562f41b07,
+        type: 3}
+      propertyPath: position_offset.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9186632743565075274, guid: 7200a37e0882e7c4aa1b64a562f41b07,
         type: 3}

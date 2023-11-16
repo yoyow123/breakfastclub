@@ -28,11 +28,11 @@ public struct SerializableSimulationConfig
     public NamedConfigValue[] Agent;
     public NamedConfigValue[] AgentBehavior;
 
-    public NamedConfigValue[] Chat;
-    public NamedConfigValue[] Break;
-    public NamedConfigValue[] Quarrel;
-    public NamedConfigValue[] StudyGroup;
-    public NamedConfigValue[] StudyAlone;
+    public NamedConfigValue[] Communication;
+    public NamedConfigValue[] Rest;
+    public NamedConfigValue[] Disagreement;
+    public NamedConfigValue[] InteractionTime;
+    public NamedConfigValue[] SoloTime;
 }
 
 [Serializable]
@@ -53,11 +53,11 @@ public class SimulationConfig
     public Dictionary<string, double> Classroom;
     public Dictionary<string, double> Agent;
     public Dictionary<string, double> AgentBehavior;
-    public Dictionary<string, double> Chat;
-    public Dictionary<string, double> Break;
-    public Dictionary<string, double> Quarrel;
-    public Dictionary<string, double> StudyGroup;
-    public Dictionary<string, double> StudyAlone;
+    public Dictionary<string, double> Communication;
+    public Dictionary<string, double> Rest;
+    public Dictionary<string, double> Disagreement;
+    public Dictionary<string, double> InteractionTime;
+    public Dictionary<string, double> SoloTime;
 
     public SimulationConfig(SerializableSimulationConfig sSC)
     {
@@ -65,11 +65,11 @@ public class SimulationConfig
         this.Classroom = List2Dict(sSC.Classroom);
         this.Agent = List2Dict(sSC.Agent);
         this.AgentBehavior = List2Dict(sSC.AgentBehavior);
-        this.Chat = List2Dict(sSC.Chat);
-        this.Break = List2Dict(sSC.Break);
-        this.Quarrel = List2Dict(sSC.Quarrel); 
-        this.StudyGroup = List2Dict(sSC.StudyGroup); 
-        this.StudyAlone = List2Dict(sSC.StudyAlone);
+        this.Communication = List2Dict(sSC.Communication);
+        this.Rest= List2Dict(sSC.Rest);
+        this.Disagreement = List2Dict(sSC.Disagreement); 
+        this.InteractionTime = List2Dict(sSC.InteractionTime); 
+        this.SoloTime = List2Dict(sSC.SoloTime);
 
     }
 
@@ -459,7 +459,7 @@ public class Classroom : MonoBehaviour
         List<double> values = new List<double>();
         foreach (Agent agent in agents)
         {
-            if((agent.currentAction is StudyAlone) || (agent.currentAction is StudyGroup))
+            if((agent.currentAction is SoloTime) || (agent.currentAction is InteractionTime))
             {
                 values.Add(agent.attention);
             }

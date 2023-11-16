@@ -24,7 +24,7 @@ public class Agent : MonoBehaviour
     public double[] scores;
 
     [SerializeField] public int seed;
-    [NonSerialized] public string studentname;
+    [SerializeField] public string studentname;
 
     private GlobalRefs GR;
     private CSVLogger Logger;
@@ -73,16 +73,16 @@ public class Agent : MonoBehaviour
         SC = classroom.simulationConfig;
      
         // Define all possible actions
-        behaviors.Add("Break", new Break(this));
-        behaviors.Add("Quarrel", new Quarrel(this));
-        behaviors.Add("Chat", new Chat(this));
-        behaviors.Add("StudyAlone", new StudyAlone(this));
-        behaviors.Add("StudyGroup", new StudyGroup(this));
+        behaviors.Add("Rest", new Rest(this));
+        behaviors.Add("Disagreement", new Disagreement(this));
+        behaviors.Add("Communication", new Communication(this));
+        behaviors.Add("SoloTime", new SoloTime(this));
+        behaviors.Add("InteractionTime", new InteractionTime(this));
 
         // Set the default action state to Break
-        currentAction = behaviors["Break"];
+        currentAction = behaviors["Rest"];
         previousAction = null;
-        Desire = behaviors["Break"];
+        Desire = behaviors["Rest"];
         scores = new double[behaviors.Count];
 
         // Initiate Happiness and Motivation
@@ -220,9 +220,9 @@ public class Agent : MonoBehaviour
     {
         // Attention is zero untill the agent is actively studying!
         attention = 0.0;
-        if((currentAction is StudyAlone) || (currentAction is StudyGroup))
+        if((currentAction is SoloTime) || (currentAction is InteractionTime))
         {
-            if (currentAction.state == AgentBehavior.ActionState.EXECUTING)
+            if (currentAction.state == AgentBehavior.ActionState.ACTION)
             {
                 attention = AgentBehavior.boundValue(0.0, personality.conscientousness + motivation - classroom.noise*SC.Agent["ATTENTION_NOISE_SCALE"], 1.0);
             }
@@ -232,8 +232,8 @@ public class Agent : MonoBehaviour
     // If current_action equals desire we are happy, sad otherwise
     private void UpdateHappiness()
     {
-        // Do not touch happiness if in quarrel because it will be regulated by Action execution
-        if (currentAction is Quarrel)
+        // Do not touch happiness if in Disagreement because it will be regulated by Action execution
+        if (currentAction is Disagreement)
         {
             return;
         }
@@ -282,7 +282,7 @@ public class Agent : MonoBehaviour
             {
                 // Continue to execute the current action
                 newAction.execute();
-                if(newAction.state == AgentBehavior.ActionState.EXECUTING)
+                if(newAction.state == AgentBehavior.ActionState.ACTION)
                     ticksOnThisTask++;
             }
             return true;
@@ -343,7 +343,7 @@ public class Agent : MonoBehaviour
             LogDebug($"{newAction} is not possible. Executing break instead! ...");
             currentAction.end();
             previousAction = currentAction;
-            currentAction = behaviors["Break"];
+            currentAction = behaviors["Rest"];
             currentAction.execute();
 
             return false;
@@ -356,38 +356,38 @@ public class Agent : MonoBehaviour
         {
             InteractionRequest iR = (InteractionRequest)pendingInteractions.Dequeue();
             LogDebug(String.Format("Interaction Request from {0} for action {1}", iR.source, iR.action));
-            if (iR.action is Chat)
+            if (iR.action is Communication)
             {
-                HandleChat(iR.source);
+                HandleCommunication(iR.source);
             }
-            else if (iR.action is Quarrel)
+            else if (iR.action is Disagreement)
             {
-                HandleQuarrel(iR.source);
+                HandleDisagreement(iR.source);
             }
         }
     }
 
-    private void HandleChat(Agent otherAgent)
+    private void HandleCommunication(Agent otherAgent)
     {
-        if( (currentAction is Chat) || (Desire is Chat))
+        if( (currentAction is Communication) || (Desire is Communication))
         {
-            LogDebug(String.Format("Accept invitation to chat with {0} ...", otherAgent));
-            Chat chat = (Chat)behaviors["Chat"];
-            chat.acceptInviation(otherAgent);
-            StartAction(chat);
+            LogDebug(String.Format("Accept invitation to Communication with {0} ...", otherAgent));
+            Communication Communication = (Communication)behaviors["Communication"];
+            Communication.acceptInviation(otherAgent);
+            StartAction(Communication);
         }
         else
         {
-            // An agent is convinced to chat based on its conscientousness trait.
+            // An agent is convinced to Communication based on its conscientousness trait.
             // Agents high on consciousness are more difficult to convince/distract
             float x = random.Next(100) / 100.0f;
             LogDebug(String.Format("Agent proposal {0} >= {1} ...", x, personality.conscientousness));
             if (x >= personality.conscientousness)
             {
-                LogDebug(String.Format("Agent got convinced by {0} to start chatting ...", otherAgent));
-                Chat chat = (Chat)behaviors["Chat"];
-                chat.acceptInviation(otherAgent);
-                StartAction(chat, false, false);
+                LogDebug(String.Format("Agent got convinced by {0} to start Communicationting ...", otherAgent));
+                Communication Communication = (Communication)behaviors["Communication"];
+                Communication.acceptInviation(otherAgent);
+                StartAction(Communication, false, false);
             }
             else
             {
@@ -396,27 +396,27 @@ public class Agent : MonoBehaviour
         }
     }
 
-    private void HandleQuarrel(Agent otherAgent)
+    private void HandleDisagreement(Agent otherAgent)
     {
-        if( (currentAction is Quarrel) || (Desire is Quarrel))
+        if( (currentAction is Disagreement) || (Desire is Disagreement))
         {
-            LogDebug(String.Format("Agent wanted to Quarrel! Now he can do so with {0} ...", otherAgent));
-            Quarrel quarrel = (Quarrel)behaviors["Quarrel"];
-            quarrel.acceptInviation(otherAgent);
-            StartAction(quarrel);
+            LogDebug(String.Format("Agent wanted to Disagreement! Now he can do so with {0} ...", otherAgent));
+            Disagreement Disagreement = (Disagreement)behaviors["Disagreement"];
+            Disagreement.acceptInviation(otherAgent);
+            StartAction(Disagreement);
         }
         else
         {
-            // An agent is convinced to chat based on its conscientousness trait.
+            // An agent is convinced to Communication based on its conscientousness trait.
             // Agents high on consciousness are more difficult to convince/distract
             double x = random.Next(100) / 100.0;
             LogDebug(String.Format("Agent proposal {0} >= {1} ...", x, personality.agreeableness * happiness));
             if (x >= (personality.agreeableness * happiness))
             {
-                LogDebug(String.Format("Agent got convinced by {0} to start quarreling ...", otherAgent));
-                Quarrel quarrel = (Quarrel)behaviors["Quarrel"];
-                quarrel.acceptInviation(otherAgent);
-                StartAction(quarrel, false, false);
+                LogDebug(String.Format("Agent got convinced by {0} to start Disagreementing ...", otherAgent));
+                Disagreement Disagreement = (Disagreement)behaviors["Disagreement"];
+                Disagreement.acceptInviation(otherAgent);
+                StartAction(Disagreement, false, false);
             }
             else
             {

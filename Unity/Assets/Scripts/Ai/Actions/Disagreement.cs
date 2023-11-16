@@ -1,10 +1,10 @@
 ﻿using System;
 
-public class Quarrel : AgentBehavior
+public class Disagreement : AgentBehavior
 {
     private Agent otherAgent;
 
-    public Quarrel(Agent agent) : base(agent, AgentBehavior.Actions.Quarrel, "Disagreement", agent.SC.Quarrel) { }  
+    public Disagreement(Agent agent) : base(agent, AgentBehavior.Actions.Disagreement, "Disagreement", agent.SC.Disagreement) { }  
 
     public override bool possible()
     {
@@ -15,13 +15,13 @@ public class Quarrel : AgentBehavior
             case ActionState.INACTIVE:
                 if (engageOtherAgent())
                 {
-                    state = ActionState.TRANSITION;
+                    state = ActionState.MOVING;
                     transition_cnter = 2;
                     return true;
                 }
                 return false;
 
-            case ActionState.TRANSITION:
+            case ActionState.MOVING:
                 transition_cnter--;
                 if(transition_cnter > 0)
                 {
@@ -29,21 +29,21 @@ public class Quarrel : AgentBehavior
                 }
                 else
                 {
-                    state = ActionState.WAITING;
+                    state = ActionState.AWAITING;
                 }
                 return true;
 
             // Either Change to active if the other agent is responing, or try to interact again
             // If we tried long enough, change to another target.
-            case ActionState.WAITING:
-                if ((otherAgent.Desire is Quarrel) || (otherAgent.currentAction is Quarrel))
+            case ActionState.AWAITING:
+                if ((otherAgent.Desire is Disagreement) || (otherAgent.currentAction is Disagreement))
                 {
-                    agent.LogDebug($"{otherAgent} is already Quarreling, just join!");
-                    state = ActionState.EXECUTING;
+                    agent.LogDebug($"{otherAgent} is already Disagreementing, just join!");
+                    state = ActionState.ACTION;
                 }
                 else
                 {
-                    // We have someone we want to quarrel with but they have not responded 'yet', so try to convince them
+                    // We have someone we want to Disagreement with but they have not responded 'yet', so try to convince them
                     //if (retry_cnter >= (int)(config["MAX_RETRIES"]* agent.personality.conscientousness))
                     if (retry_cnter >= (int)config["MAX_RETRIES"])
                     {
@@ -56,18 +56,18 @@ public class Quarrel : AgentBehavior
                         retry_cnter++;
                         otherAgent.Interact(agent, this);
                         agent.navagent.destination = otherAgent.transform.position;
-                        agent.LogDebug(String.Format("Trying again {0} to quarrel with {1}", retry_cnter, otherAgent));
+                        agent.LogDebug(String.Format("Trying again {0} to Disagreement with {1}", retry_cnter, otherAgent));
                     }
                 }
                 return true;
-            case ActionState.EXECUTING:
-                if ((otherAgent.Desire is Quarrel) || (otherAgent.currentAction is Quarrel))
+            case ActionState.ACTION:
+                if ((otherAgent.Desire is Disagreement) || (otherAgent.currentAction is Disagreement))
                 {
-                    agent.LogDebug($"Continou to quarrel with {otherAgent} ...");
+                    agent.LogDebug($"Continou to Disagreement with {otherAgent} ...");
                     return true;
                 } else {
                     // The other left; Execution will return false
-                    agent.LogDebug(String.Format("Other agent {0} has left the quarrel ...", otherAgent));
+                    agent.LogDebug(String.Format("Other agent {0} has left the Disagreement ...", otherAgent));
                     otherAgent = null;
                     state = ActionState.INACTIVE;
                     return false;
@@ -90,15 +90,15 @@ public class Quarrel : AgentBehavior
         {
             case ActionState.INACTIVE:
             {
-                agent.LogError(String.Format("Trying to find someone to quarrel with!"));
+                agent.LogError(String.Format("Trying to find someone to Disagreement with!"));
                 if (engageOtherAgent())
                 {
-                    state = ActionState.TRANSITION;
+                    state = ActionState.MOVING;
                 }
                 return true;
             }
 
-            case ActionState.TRANSITION:
+            case ActionState.MOVING:
             {
                 (double energy, double happiness) = calculateTransitionEffect();
                 agent.motivation = energy;
@@ -107,7 +107,7 @@ public class Quarrel : AgentBehavior
                 return true;
             }
 
-            case ActionState.WAITING:
+            case ActionState.AWAITING:
             {
                 (double energy, double happiness) = calculateWaitingEffect();
                 agent.motivation = energy;
@@ -116,8 +116,8 @@ public class Quarrel : AgentBehavior
                 return true;
             }
 
-            case ActionState.EXECUTING:
-                agent.LogDebug($"Continue to quarrel with {otherAgent} ...");
+            case ActionState.ACTION:
+                agent.LogDebug($"Continue to Disagreement with {otherAgent} ...");
                 agent.motivation = boundValue(0.0, agent.motivation + config["MOTIVATION_INCREASE"], 1.0);
                 agent.happiness = boundValue(0.0, agent.happiness + config["HAPPINESS_INCREASE"], 1.0);
                 agent.navagent.destination = otherAgent.transform.position;
@@ -131,24 +131,24 @@ public class Quarrel : AgentBehavior
         switch (state)
         {
             case ActionState.INACTIVE:
-                // It can happen if the other one left the quarrel, and than we end quarrel
+                // It can happen if the other one left the Disagreement, and than we end Disagreement
                 //agent.LogError(String.Format("This should not happen!"));
                 //throw new NotImplementedException();
                 break;
 
-            case ActionState.TRANSITION:
+            case ActionState.MOVING:
                 // It can happen if the other one left the chat, and than we end chat
                 break;
 
-            case ActionState.WAITING:
+            case ActionState.AWAITING:
                 agent.LogDebug(String.Format("Giving up to wait for {0}!", otherAgent));
                 break;
 
-            case ActionState.EXECUTING:
-                agent.LogDebug(String.Format("Ending Quarrel with {0}!", otherAgent));
+            case ActionState.ACTION:
+                agent.LogDebug(String.Format("Ending Disagreement with {0}!", otherAgent));
                 otherAgent = null;
 
-                // Give the agent an happiness boost in order to not start quarrel again imediately
+                // Give the agent an happiness boost in order to not start Disagreement again imediately
                 agent.happiness += config["HAPPINESS_BOOST"];
                 break;
         }
@@ -164,7 +164,7 @@ public class Quarrel : AgentBehavior
 
         if (agent.classroom.agents.Length == 1)
         {
-            agent.LogDebug(String.Format("No other Agent to quarrel with!"));
+            agent.LogDebug(String.Format("No other Agent to Disagreement with!"));
             return false;
         }
 
@@ -176,7 +176,7 @@ public class Quarrel : AgentBehavior
             otherAgent = agent.classroom.agents[idx];
         } while (otherAgent == agent);
 
-        agent.LogDebug(String.Format("Agent tries to quarrel with agent {0}!", otherAgent));
+        agent.LogDebug(String.Format("Agent tries to Disagreement with agent {0}!", otherAgent));
         otherAgent.Interact(agent, this);
         agent.navagent.destination = otherAgent.transform.position;
 
@@ -185,9 +185,9 @@ public class Quarrel : AgentBehavior
 
     public void acceptInviation(Agent otherAgent)
     {
-        agent.LogDebug(String.Format("{0} is accepting invitation to quarrel with {1}!", agent, otherAgent));
+        agent.LogDebug(String.Format("{0} is accepting invitation to Disagreement with {1}!", agent, otherAgent));
         this.otherAgent = otherAgent;
-        state = ActionState.TRANSITION;
+        state = ActionState.MOVING;
     }
 
     public override string ToString()
@@ -196,12 +196,12 @@ public class Quarrel : AgentBehavior
         {
             case ActionState.INACTIVE:
                 return String.Format($"{name}({state})");
-            case ActionState.TRANSITION:
-                return String.Format($"{name}({state}) walking to {otherAgent.studentname}");
-            case ActionState.WAITING:
-                return String.Format($"{name}({state}) waiting for {otherAgent.studentname} retrying {retry_cnter}");
-            case ActionState.EXECUTING:
-                return String.Format($"{name}({state}) with {otherAgent.studentname}");
+            case ActionState.MOVING:
+                return String.Format($"{name}({state}) moving towards {otherAgent.studentname} to resolve differences");
+            case ActionState.AWAITING:
+                return String.Format($"{name}({state}) awaiting reconciliation with {otherAgent.studentname}");
+            case ActionState.ACTION:
+                return String.Format($"{name}({state}) finding common ground with {otherAgent.studentname}");
         }
         return "Invalid State!";
     }

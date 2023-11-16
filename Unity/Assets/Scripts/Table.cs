@@ -55,9 +55,9 @@ public class Table : MonoBehaviour
             Agent agent = agents[i];
             if (agent != null)
             {
-                if((agent.currentAction is StudyAlone) || (agent.currentAction is StudyGroup))
+                if((agent.currentAction is SoloTime) || (agent.currentAction is InteractionTime))
                 {
-                    if(agent.currentAction.state == AgentBehavior.ActionState.EXECUTING)
+                    if(agent.currentAction.state == AgentBehavior.ActionState.ACTION)
                     {
                         seats[i].parent.gameObject.SetActive(false);
                     }

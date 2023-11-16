@@ -25,7 +25,7 @@
         {"field":"NEUROTICISM_WEIGHT", "value": 1.0},
         {"field":"AGREEABLENESS_WEIGHT", "value": 1.0}
     ],
-    "Chat":
+    "Communication":
     [
         {"field":"NOISE", "value": 0.05},
         {"field":"MAX_RETRIES", "value": 3},
@@ -37,7 +37,7 @@
         {"field":"MOTIVATION_WEIGHT", "value": 0.30},
         {"field":"HAPPINESS_WEIGHT", "value": 0.30}
     ],
-    "Break":
+    "Rest":
     [
         {"field":"NOISE", "value": 0.03},
 
@@ -48,7 +48,7 @@
         {"field":"MOTIVATION_WEIGHT", "value": 0.30},
         {"field":"HAPPINESS_WEIGHT", "value": 0.30}
     ],
-    "Quarrel":
+    "Disagreement":
     [
         {"field":"NOISE", "value": 0.20},
         {"field":"MAX_RETRIES", "value": 3},
@@ -62,7 +62,7 @@
 
         {"field":"HAPPINESS_BOOST", "value": 0.3}
     ],
-    "StudyGroup":
+    "InteractionTime":
     [
         {"field":"NOISE", "value": 0.05},
         {"field":"MAX_RETRIES", "value": 3},
@@ -75,7 +75,7 @@
         {"field":"MOTIVATION_WEIGHT", "value": 0.30},
         {"field":"HAPPINESS_WEIGHT", "value": 0.30}
     ],
-    "StudyAlone":
+    "SoloTime":
     [
         {"field":"NOISE", "value": 0.02},
         {"field":"MAX_RETRIES", "value": 3},

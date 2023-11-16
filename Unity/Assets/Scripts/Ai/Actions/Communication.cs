@@ -1,12 +1,12 @@
 ﻿using System;
 
-public class Chat : AgentBehavior
+public class Communication : AgentBehavior
 {
     private Agent otherAgent;
 
-    public Chat(Agent agent) : base(agent, AgentBehavior.Actions.Chat, "Communication", agent.SC.Chat) { }
+    public Communication(Agent agent) : base(agent, AgentBehavior.Actions.Communication, "Communication", agent.SC.Communication) { }
 
-    // An Agent can chat if there is another Agent disponible
+    // An Agent can Communication if there is another Agent disponible
     public override bool possible()
     {
 
@@ -16,13 +16,13 @@ public class Chat : AgentBehavior
             case ActionState.INACTIVE:
                 if (engageOtherAgent())
                 {
-                    state = ActionState.TRANSITION;
+                    state = ActionState.MOVING;
                     transition_cnter = 2;
                     return true;
                 }
                 return false;
 
-            case ActionState.TRANSITION:
+            case ActionState.MOVING:
 
                 transition_cnter--;
                 if (transition_cnter > 0)
@@ -31,17 +31,17 @@ public class Chat : AgentBehavior
                 }
                 else
                 {
-                    state = ActionState.WAITING;
+                    state = ActionState.AWAITING;
                 }
                 return true;
 
             // Either Change to active if the other agent is responing, or try to interact again
             // If we tried long enough, change to another target.
-            case ActionState.WAITING:
-                if ((otherAgent.Desire is Chat) || (otherAgent.currentAction is Chat))
+            case ActionState.AWAITING:
+                if ((otherAgent.Desire is Communication) || (otherAgent.currentAction is Communication))
                 {
-                    agent.LogDebug(String.Format("Agent {0} is ready to chat, lets go ...", otherAgent));
-                    state = ActionState.EXECUTING;
+                    agent.LogDebug(String.Format("Agent {0} is ready to Communication, lets go ...", otherAgent));
+                    state = ActionState.ACTION;
                 }
                 else
                 {
@@ -49,7 +49,7 @@ public class Chat : AgentBehavior
                     //if (retry_cnter >= (int)(config["MAX_RETRIES"]*agent.personality.conscientousness))
                     if (retry_cnter >= (int)config["MAX_RETRIES"])
                     {
-                        agent.LogDebug(String.Format("Giving up to try to chat with {0}. Will try another agent ...", otherAgent));
+                        agent.LogDebug(String.Format("Giving up to try to Communication with {0}. Will try another agent ...", otherAgent));
                         //engageOtherAgent();
                         state = ActionState.INACTIVE;
                     }
@@ -58,20 +58,20 @@ public class Chat : AgentBehavior
                         retry_cnter++;
                         otherAgent.Interact(agent, this);
                         agent.navagent.destination = otherAgent.transform.position;
-                        agent.LogDebug(String.Format("Trying again {0} to chat with {1}", retry_cnter, otherAgent));
+                        agent.LogDebug(String.Format("Trying again {0} to Communication with {1}", retry_cnter, otherAgent));
                     }
                 }
                 return true;
-            case ActionState.EXECUTING:
-                if ((otherAgent.Desire is Chat) || (otherAgent.currentAction is Chat))
+            case ActionState.ACTION:
+                if ((otherAgent.Desire is Communication) || (otherAgent.currentAction is Communication))
                 {
-                    agent.LogDebug(String.Format("Still chatting with {0} ...", otherAgent));
+                    agent.LogDebug(String.Format("Still Communicationting with {0} ...", otherAgent));
                     return true;
                 }
                 else
                 {
                     // The other left; Execution will return false
-                    agent.LogDebug(String.Format("Other agent {0} has left the chat ...", otherAgent));
+                    agent.LogDebug(String.Format("Other agent {0} has left the Communication ...", otherAgent));
                     otherAgent = null;
                     state = ActionState.INACTIVE;
                     return false;
@@ -95,10 +95,10 @@ public class Chat : AgentBehavior
         {
             case ActionState.INACTIVE:
                 if (engageOtherAgent())
-                    state = ActionState.TRANSITION;
+                    state = ActionState.MOVING;
                 return true;
 
-            case ActionState.TRANSITION:
+            case ActionState.MOVING:
                 {
                     (double energy, double happiness) = calculateTransitionEffect();
                     agent.motivation = energy;
@@ -106,7 +106,7 @@ public class Chat : AgentBehavior
                     return true;
                 }
 
-            case ActionState.WAITING:
+            case ActionState.AWAITING:
                 {
                     (double energy, double happiness) = calculateWaitingEffect();
                     agent.motivation = energy;
@@ -114,7 +114,7 @@ public class Chat : AgentBehavior
                     return true;
                 }
 
-            case ActionState.EXECUTING:
+            case ActionState.ACTION:
                 agent.motivation = boundValue(0.0, agent.motivation + config["MOTIVATION_INCREASE"], 1.0);
                 agent.happiness = boundValue(0.0, agent.happiness + config["HAPPINESS_INCREASE"], 1.0);
                 agent.navagent.destination = otherAgent.transform.position;
@@ -123,7 +123,7 @@ public class Chat : AgentBehavior
         return false;
     }
 
-    // Find another agent to chat with
+    // Find another agent to Communication with
     private bool engageOtherAgent()
     {
         // Reset retry counter for all conditions
@@ -131,7 +131,7 @@ public class Chat : AgentBehavior
 
         if (agent.classroom.agents.Length == 1)
         {
-            agent.LogDebug(String.Format("No other Agent to chat with!"));
+            agent.LogDebug(String.Format("No other Agent to Communication with!"));
             return false;
         }
 
@@ -142,15 +142,15 @@ public class Chat : AgentBehavior
             idx = agent.random.Next(agent.classroom.agents.Length);
             otherAgent = agent.classroom.agents[idx];
 
-            // Dont try to chat with agents that are quarreling
-            if (otherAgent.currentAction is Quarrel)
+            // Dont try to Communication with agents that are quarreling
+            if (otherAgent.currentAction is Disagreement)
                 continue;
         } while (otherAgent == agent);
 
-        agent.LogDebug(String.Format("Agent tries to chat with agent {0}!", otherAgent));
-        if (otherAgent.currentAction is Chat)
+        agent.LogDebug(String.Format("Agent tries to Communication with agent {0}!", otherAgent));
+        if (otherAgent.currentAction is Communication)
         {
-            agent.LogDebug(String.Format($"{otherAgent} is already chatting, join chat!"));
+            agent.LogDebug(String.Format($"{otherAgent} is already Communicationting, join Communication!"));
         }
         else
         {
@@ -166,19 +166,19 @@ public class Chat : AgentBehavior
         switch (state)
         {
             case ActionState.INACTIVE:
-                // It can happen if the other one left the chat, and than we end chat
+                // It can happen if the other one left the Communication, and than we end Communication
                 break;
 
-            case ActionState.TRANSITION:
-                // It can happen if the other one left the chat, and than we end chat
+            case ActionState.MOVING:
+                // It can happen if the other one left the Communication, and than we end Communication
                 break;
 
-            case ActionState.WAITING:
+            case ActionState.AWAITING:
                 agent.LogDebug($"Giving up to wait for {otherAgent}!");
                 break;
 
-            case ActionState.EXECUTING:
-                agent.LogDebug($"Ending Chatting with {otherAgent}!");
+            case ActionState.ACTION:
+                agent.LogDebug($"Ending Communicationting with {otherAgent}!");
                 break;
         }
         retry_cnter = 0;
@@ -188,9 +188,9 @@ public class Chat : AgentBehavior
 
     public void acceptInviation(Agent otherAgent)
     {
-        agent.LogDebug(String.Format("{0} is accepting invitation to chat with {1}!", agent, otherAgent));
+        agent.LogDebug(String.Format("{0} is accepting invitation to Communication with {1}!", agent, otherAgent));
         this.otherAgent = otherAgent;
-        state = ActionState.TRANSITION;
+        state = ActionState.MOVING;
     }
 
     public override string ToString()
@@ -199,12 +199,12 @@ public class Chat : AgentBehavior
         {
             case ActionState.INACTIVE:
                 return String.Format($"{name}({state})");
-            case ActionState.TRANSITION:
-                return String.Format($"{name}({state}) walking to {otherAgent.studentname}");
-            case ActionState.WAITING:
-                return String.Format($"{name}({state}) waiting for {otherAgent.studentname} retrying {retry_cnter}");
-            case ActionState.EXECUTING:
-                return String.Format($"{name}({state}) with {otherAgent.studentname}");
+            case ActionState.MOVING:
+                return String.Format($"{name}({state}) walking to meet {otherAgent.studentname}");
+            case ActionState.AWAITING:
+                return String.Format($"{name}({state}) waiting to interact with {otherAgent.studentname}");
+            case ActionState.ACTION:
+                return String.Format($"{name}({state}) actively involving in a conversation with {otherAgent.studentname}");
         }
         return "Invalid State!";
     }

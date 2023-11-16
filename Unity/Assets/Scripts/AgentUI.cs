@@ -70,26 +70,26 @@ public class AgentUI : MonoBehaviour
         else
         {
             isFront = true;
-            if ((agent.currentAction is Quarrel) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
+            if ((agent.currentAction is Disagreement) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
             {
                 textureController.SetTexture(2);
                 animationstate = AnimationState.Diagreement;
             }
             else
-            if (agent.currentAction is Break)
+            if (agent.currentAction is Rest)
             {
                 textureController.SetTexture(1);
                 //animationstate = AnimationState.Walking;
                 animationstate = AnimationState.Rest;
             }
             else
-            if (((agent.currentAction is StudyAlone) || (agent.currentAction is StudyGroup)) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
+            if (((agent.currentAction is SoloTime) || (agent.currentAction is InteractionTime)) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
             {
                 textureController.SetTexture(0);
                 animationstate = AnimationState.SoloTime;
             }
             else
-            if ((agent.currentAction is Chat) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
+            if ((agent.currentAction is Communication) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
             {
                 textureController.SetTexture(0);
                 animationstate = AnimationState.Communication;
@@ -113,11 +113,11 @@ public class AgentUI : MonoBehaviour
         bubbleAnimator.SetInteger("AgentAnimationState", (int)animationstate);
 
         /*
-        if ((agent.currentAction is Quarrel) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
+        if ((agent.currentAction is Disagreement) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
         {
             if (distanceToDestination < 2.0)
             {
-                animationstate = AnimationState.Quarrel;
+                animationstate = AnimationState.Disagreement;
             } else { animationstate = AnimationState.Walking; }
         } else 
         if (agent.currentAction is Break)
@@ -125,7 +125,7 @@ public class AgentUI : MonoBehaviour
             animationstate = AnimationState.Walking;
             //animationstate = AnimationState.Idle;
         } else 
-        if (((agent.currentAction is StudyAlone) || (agent.currentAction is StudyGroup)) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING))
+        if (((agent.currentAction is StudyAlone) || (agent.currentAction is StudyGroup)) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
         {
             if (distanceToDestination < 1.0)
             {
@@ -133,11 +133,11 @@ public class AgentUI : MonoBehaviour
             }
             else { animationstate = AnimationState.Walking; }
         } else 
-        if ((agent.currentAction is Chat) && (agent.currentAction.state == AgentBehavior.ActionState.EXECUTING) )
+        if ((agent.currentAction is Communication) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION) )
         {
             if (distanceToDestination < 2.0)
             {
-                animationstate = AnimationState.Chat;
+                animationstate = AnimationState.Communication;
             }
             else { animationstate = AnimationState.Walking; }
         }
