@@ -115,6 +115,7 @@ public class Communication : AgentBehavior
                 }
 
             case ActionState.ACTION:
+                //actionCount++;
                 agent.motivation = boundValue(0.0, agent.motivation + config["MOTIVATION_INCREASE"], 1.0);
                 agent.happiness = boundValue(0.0, agent.happiness + config["HAPPINESS_INCREASE"], 1.0);
                 agent.navagent.destination = otherAgent.transform.position;

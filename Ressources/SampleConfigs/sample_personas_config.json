@@ -12,6 +12,7 @@
 			"extraversion": 0.5,
 			"agreeableness": 0.3,
 			"neuroticism": 0.6,
+			"color": "Neon",
 			"typeName1": "Introverted Thinking",
 			"typeName2": "Extraverted Feeling",
 			"roleName": "Self-Mastery Asserter",
@@ -19,7 +20,8 @@
 			"incentives": 0.7,
 			"engagement": 0.5,
 			"focus": 0.3,
-			"tags": ["machine learning", "neural networks", "data science", "algorithm"]
+			"tags": ["machine learning", "neural networks", "data science", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 		  "name": "Bob",
@@ -28,6 +30,7 @@
 		  "extraversion": 0.1,
 		  "agreeableness": 0.8,
 		  "neuroticism": 0.4,
+		  "color": "Blue",
 		  "typeName1": "Introverted Sensing",
 		  "typeName2": "Extraverted Intuition",
 		  "roleName": "Strategic Visionary",
@@ -35,7 +38,8 @@
 		  "incentives": 0.2,
 		  "engagement": 0.8,
 		  "focus": 0.6,
-		  "tags": ["artificial intelligence", "computer vision", "algorithm", "automation"]
+		  "tags": ["artificial intelligence", "computer vision", "algorithm", "automation"],
+		  "additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 			"name": "Charlie",
@@ -44,6 +48,7 @@
 			"extraversion": 0.9,
 			"agreeableness": 0.4,
 			"neuroticism": 0.1,
+			"color": "Green",
 			"typeName1": "Introverted Intuition",
 			"typeName2": "Extraverted Sensing",
 			"roleName": "Analytical Investigator",
@@ -51,7 +56,8 @@
 			"incentives": 0.9,
 			"engagement": 0.3,
 			"focus": 0.1,
-			"tags": ["machine learning", "neural networks", "natural language processing", "algorithm"]
+			"tags": ["machine learning", "neural networks", "natural language processing", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 		    "name": "David",
@@ -60,6 +66,7 @@
 			"extraversion": 0.4,
 			"agreeableness": 0.7,
 			"neuroticism": 0.2,
+			"color": "Orange",
 			"typeName1": "Introverted Feeling",
 			"typeName2": "Extraverted Thinking",
 			"roleName": "Engagement Ambassador",
@@ -67,7 +74,8 @@
 			"incentives": 0.4,
 			"engagement": 0.6,
 			"focus": 0.7,
-			"tags": ["natural language processing", "data science", "deep learning", "algorithm"]
+			"tags": ["natural language processing", "data science", "deep learning", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 			"name": "Eva",
@@ -76,6 +84,7 @@
 			"extraversion": 0.7,
 			"agreeableness": 0.2,
 			"neuroticism": 0.8,
+			"color": "Yellow",
 			"typeName1": "Introverted Sensing",
 			"typeName2": "Extraverted Intuition",
 			"roleName": "Strategic Visionary",
@@ -83,7 +92,8 @@
 			"incentives": 0.1,
 			"engagement": 0.9,
 			"focus": 0.4,
-			"tags": ["neural networks", "natural language processing", "computer vision", "chatbot"]
+			"tags": ["neural networks", "natural language processing", "computer vision", "chatbot"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 			"name": "Frank",
@@ -92,6 +102,7 @@
 			"extraversion": 0.3,
 			"agreeableness": 0.9,
 			"neuroticism": 0.2,
+			"color": "Red",
 			"typeName1": "Introverted Thinking",
 			"typeName2": "Extraverted Feeling",
 			"roleName": "Self-Mastery Asserter",
@@ -99,7 +110,8 @@
 			"incentives": 0.8,
 			"engagement": 0.2,
 			"focus": 0.5,
-			"tags": ["artificial intelligence", "data science", "deep learning", "algorithm"]
+			"tags": ["artificial intelligence", "data science", "deep learning", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 			"name": "Grace",
@@ -108,6 +120,7 @@
 			"extraversion": 0.7,
 			"agreeableness": 0.1,
 			"neuroticism": 0.5,
+			"color": "Tan",
 			"typeName1": "Introverted Intuition",
 			"typeName2": "Extraverted Sensing",
 			"roleName": "Analytical Investigator",
@@ -115,7 +128,8 @@
 			"incentives": 0.5,
 			"engagement": 0.4,
 			"focus": 0.6,
-			"tags": ["neural networks", "natural language processing", "computer vision", "algorithm"]
+			"tags": ["neural networks", "natural language processing", "computer vision", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 			"name": "Henry",
@@ -124,6 +138,7 @@
 			"extraversion": 0.8,
 			"agreeableness": 0.6,
 			"neuroticism": 0.3,
+			"color": "Mint",
 			"typeName1": "Introverted Feeling",
 			"typeName2": "Extraverted Thinking",
 			"roleName": "Engagement Ambassador",
@@ -131,7 +146,8 @@
 			"incentives": 0.3,
 			"engagement": 0.7,
 			"focus": 0.9,
-			"tags": ["machine learning", "data science", "deep learning", "chatbot"]
+			"tags": ["machine learning", "data science", "deep learning", "chatbot"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 			"name": "Ivy",
@@ -140,6 +156,7 @@
 			"extraversion": 0.6,
 			"agreeableness": 0.4,
 			"neuroticism": 0.7,
+			"color": "Mint",
 			"typeName1": "Introverted Sensing",
 			"typeName2": "Extraverted Intuition",
 			"roleName": "Self-Mastery Asserter",
@@ -147,7 +164,8 @@
 			"incentives": 0.6,
 			"engagement": 0.8,
 			"focus": 0.2,
-			"tags": ["machine learning", "neural networks", "natural language processing", "algorithm"]
+			"tags": ["machine learning", "neural networks", "natural language processing", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		},
 		{
 			"name": "Jack",
@@ -156,6 +174,7 @@
 			"extraversion": 0.6,
 			"agreeableness": 0.5,
 			"neuroticism": 0.1,
+			"color": "Tan",
 			"typeName1": "Introverted Intuition",
 			"typeName2": "Extraverted Sensing",
 			"roleName": "Strategic Visionary",
@@ -163,7 +182,187 @@
 			"incentives": 0.4,
 			"engagement": 0.6,
 			"focus": 0.7,
-			"tags": ["artificial intelligence", "computer vision", "algorithm", "automation"]
+			"tags": ["artificial intelligence", "computer vision", "algorithm", "automation"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},{
+			"name": "Alice",
+			"openess": 0.8,
+			"conscientousness": 0.2,
+			"extraversion": 0.5,
+			"agreeableness": 0.3,
+			"neuroticism": 0.6,
+			"color": "Neon",
+			"typeName1": "Introverted Thinking",
+			"typeName2": "Extraverted Feeling",
+			"roleName": "Self-Mastery Asserter",
+			"roleDescription": "Specialize, Strengthen and Organise",
+			"incentives": 0.7,
+			"engagement": 0.5,
+			"focus": 0.3,
+			"tags": ["machine learning", "neural networks", "data science", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+		  "name": "Bob",
+		  "openess": 0.2,
+		  "conscientousness": 0.7,
+		  "extraversion": 0.1,
+		  "agreeableness": 0.8,
+		  "neuroticism": 0.4,
+		  "color": "Blue",
+		  "typeName1": "Introverted Sensing",
+		  "typeName2": "Extraverted Intuition",
+		  "roleName": "Strategic Visionary",
+		  "roleDescription": "Inspire, Plan and Create",
+		  "incentives": 0.2,
+		  "engagement": 0.8,
+		  "focus": 0.6,
+		  "tags": ["artificial intelligence", "computer vision", "algorithm", "automation"],
+		  "additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+			"name": "Charlie",
+			"openess": 0.5,
+			"conscientousness": 0.3,
+			"extraversion": 0.9,
+			"agreeableness": 0.4,
+			"neuroticism": 0.1,
+			"color": "Green",
+			"typeName1": "Introverted Intuition",
+			"typeName2": "Extraverted Sensing",
+			"roleName": "Analytical Investigator",
+			"roleDescription": "Verify, Evaluate and Systemize",
+			"incentives": 0.9,
+			"engagement": 0.3,
+			"focus": 0.1,
+			"tags": ["machine learning", "neural networks", "natural language processing", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+		    "name": "David",
+			"openess": 0.1,
+			"conscientousness": 0.6,
+			"extraversion": 0.4,
+			"agreeableness": 0.7,
+			"neuroticism": 0.2,
+			"color": "Orange",
+			"typeName1": "Introverted Feeling",
+			"typeName2": "Extraverted Thinking",
+			"roleName": "Engagement Ambassador",
+			"roleDescription": "Connect, Empower and Nurture",
+			"incentives": 0.4,
+			"engagement": 0.6,
+			"focus": 0.7,
+			"tags": ["natural language processing", "data science", "deep learning", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+			"name": "Eva",
+			"openess": 0.3,
+			"conscientousness": 0.5,
+			"extraversion": 0.7,
+			"agreeableness": 0.2,
+			"neuroticism": 0.8,
+			"color": "Yellow",
+			"typeName1": "Introverted Sensing",
+			"typeName2": "Extraverted Intuition",
+			"roleName": "Strategic Visionary",
+			"roleDescription": "Inspire, Plan and Create",
+			"incentives": 0.1,
+			"engagement": 0.9,
+			"focus": 0.4,
+			"tags": ["neural networks", "natural language processing", "computer vision", "chatbot"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+			"name": "Frank",
+			"openess": 0.6,
+			"conscientousness": 0.4,
+			"extraversion": 0.3,
+			"agreeableness": 0.9,
+			"neuroticism": 0.2,
+			"color": "Red",
+			"typeName1": "Introverted Thinking",
+			"typeName2": "Extraverted Feeling",
+			"roleName": "Self-Mastery Asserter",
+			"roleDescription": "Specialize, Strengthen and Organise",
+			"incentives": 0.8,
+			"engagement": 0.2,
+			"focus": 0.5,
+			"tags": ["artificial intelligence", "data science", "deep learning", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+			"name": "Grace",
+			"openess": 0.9,
+			"conscientousness": 0.3,
+			"extraversion": 0.7,
+			"agreeableness": 0.1,
+			"neuroticism": 0.5,
+			"color": "Tan",
+			"typeName1": "Introverted Intuition",
+			"typeName2": "Extraverted Sensing",
+			"roleName": "Analytical Investigator",
+			"roleDescription": "Verify, Evaluate and Systemize",
+			"incentives": 0.5,
+			"engagement": 0.4,
+			"focus": 0.6,
+			"tags": ["neural networks", "natural language processing", "computer vision", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+			"name": "Henry",
+			"openess": 0.4,
+			"conscientousness": 0.1,
+			"extraversion": 0.8,
+			"agreeableness": 0.6,
+			"neuroticism": 0.3,
+			"color": "Mint",
+			"typeName1": "Introverted Feeling",
+			"typeName2": "Extraverted Thinking",
+			"roleName": "Engagement Ambassador",
+			"roleDescription": "Connect, Empower and Nurture",
+			"incentives": 0.3,
+			"engagement": 0.7,
+			"focus": 0.9,
+			"tags": ["machine learning", "data science", "deep learning", "chatbot"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+			"name": "Ivy",
+			"openess": 0.2,
+			"conscientousness": 0.5,
+			"extraversion": 0.6,
+			"agreeableness": 0.4,
+			"neuroticism": 0.7,
+			"color": "Mint",
+			"typeName1": "Introverted Sensing",
+			"typeName2": "Extraverted Intuition",
+			"roleName": "Self-Mastery Asserter",
+			"roleDescription": "Specialize, Strengthen and Organise",
+			"incentives": 0.6,
+			"engagement": 0.8,
+			"focus": 0.2,
+			"tags": ["machine learning", "neural networks", "natural language processing", "algorithm"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
+		},
+		{
+			"name": "Jack",
+			"openess": 0.1,
+			"conscientousness": 0.8,
+			"extraversion": 0.6,
+			"agreeableness": 0.5,
+			"neuroticism": 0.1,
+			"color": "Tan",
+			"typeName1": "Introverted Intuition",
+			"typeName2": "Extraverted Sensing",
+			"roleName": "Strategic Visionary",
+			"roleDescription": "Inspire, Plan and Create",
+			"incentives": 0.4,
+			"engagement": 0.6,
+			"focus": 0.7,
+			"tags": ["artificial intelligence", "computer vision", "algorithm", "automation"],
+			"additionalTags": ["Tag1", "Tag2", "Tag3"]
 		}
     ],
     "nAgents":[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]

@@ -48,6 +48,7 @@ public class Rest : AgentBehavior
         agent.navagent.SetDestination(dest);
 
         state = ActionState.ACTION;
+
         return true;
     }
 

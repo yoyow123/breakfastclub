@@ -40,7 +40,7 @@ public class Agent : MonoBehaviour
 
     public double happiness { get; set; }
     public double motivation { get; set; }
-    public double attention { get; protected set;}
+    public double attention { get; protected set; }
     private int lastMessagesIdx = 0;
     private string[] lastMessages = new string[5];
     private StringBuilder lastMessageStringBuilder = new StringBuilder();
@@ -55,6 +55,7 @@ public class Agent : MonoBehaviour
 
     public System.Random random;
 
+    public ActionCount actionCount = new ActionCount();
 
     public void initAgent(string name, System.Random random, Personality personality)
     {
@@ -71,7 +72,7 @@ public class Agent : MonoBehaviour
         Logger = GR.logger;
         classroom = GR.classroom;
         SC = classroom.simulationConfig;
-     
+
         // Define all possible actions
         behaviors.Add("Rest", new Rest(this));
         behaviors.Add("Disagreement", new Disagreement(this));
@@ -201,9 +202,9 @@ public class Agent : MonoBehaviour
     }
 
     // Helper function logging Agent state
-    private void LogState(bool include_info_log=true)
+    private void LogState(bool include_info_log = true)
     {
-        if(include_info_log)
+        if (include_info_log)
             LogX(String.Format($"Motivation {motivation} | Happiness {happiness} | Attenion {attention} | Action {currentAction} | Desire {Desire}"), "I");
         LogX(String.Format($"{motivation}|{happiness}|{attention}|{currentAction}|{Desire}"), "S");
     }
@@ -220,11 +221,11 @@ public class Agent : MonoBehaviour
     {
         // Attention is zero untill the agent is actively studying!
         attention = 0.0;
-        if((currentAction is SoloTime) || (currentAction is InteractionTime))
+        if ((currentAction is SoloTime) || (currentAction is InteractionTime))
         {
             if (currentAction.state == AgentBehavior.ActionState.ACTION)
             {
-                attention = AgentBehavior.boundValue(0.0, personality.conscientousness + motivation - classroom.noise*SC.Agent["ATTENTION_NOISE_SCALE"], 1.0);
+                attention = AgentBehavior.boundValue(0.0, personality.conscientousness + motivation - classroom.noise * SC.Agent["ATTENTION_NOISE_SCALE"], 1.0);
             }
         }
     }
@@ -239,7 +240,7 @@ public class Agent : MonoBehaviour
         }
 
         double change;
-        if(currentAction == Desire)
+        if (currentAction == Desire)
         {
             //change = HAPPINESS_INCREASE;
             change = SC.Agent["ACTION_ALIGNMENT_HAPPINESS_INCREASE"];
@@ -255,7 +256,7 @@ public class Agent : MonoBehaviour
     }
 
 
-    private bool StartAction(AgentBehavior newAction, bool setDesire=true, bool startAlternativeAction=true)
+    private bool StartAction(AgentBehavior newAction, bool setDesire = true, bool startAlternativeAction = true)
     {
         if (newAction.possible())
         {
@@ -282,7 +283,7 @@ public class Agent : MonoBehaviour
             {
                 // Continue to execute the current action
                 newAction.execute();
-                if(newAction.state == AgentBehavior.ActionState.ACTION)
+                if (newAction.state == AgentBehavior.ActionState.ACTION)
                     ticksOnThisTask++;
             }
             return true;
@@ -352,7 +353,7 @@ public class Agent : MonoBehaviour
 
     private void HandleInteractions()
     {
-        while(pendingInteractions.Count > 0)
+        while (pendingInteractions.Count > 0)
         {
             InteractionRequest iR = (InteractionRequest)pendingInteractions.Dequeue();
             LogDebug(String.Format("Interaction Request from {0} for action {1}", iR.source, iR.action));
@@ -369,7 +370,7 @@ public class Agent : MonoBehaviour
 
     private void HandleCommunication(Agent otherAgent)
     {
-        if( (currentAction is Communication) || (Desire is Communication))
+        if ((currentAction is Communication) || (Desire is Communication))
         {
             LogDebug(String.Format("Accept invitation to Communication with {0} ...", otherAgent));
             Communication Communication = (Communication)behaviors["Communication"];
@@ -398,7 +399,7 @@ public class Agent : MonoBehaviour
 
     private void HandleDisagreement(Agent otherAgent)
     {
-        if( (currentAction is Disagreement) || (Desire is Disagreement))
+        if ((currentAction is Disagreement) || (Desire is Disagreement))
         {
             LogDebug(String.Format("Agent wanted to Disagreement! Now he can do so with {0} ...", otherAgent));
             Disagreement Disagreement = (Disagreement)behaviors["Disagreement"];
@@ -447,7 +448,11 @@ public class Agent : MonoBehaviour
         {
             bool success = StartAction(best_action);
             if (success)
+            {
                 LogInfo(String.Format("Starting Action {0}.", best_action));
+
+                CalculateActionCount(best_action);
+            }
             else
             {
                 Debug.Log("Starting Action failed:" + best_action);
@@ -460,7 +465,7 @@ public class Agent : MonoBehaviour
 
 
     // Main Logic
-    private void CalculateActionScores() 
+    private void CalculateActionScores()
     {
         double rating = 0;
         AgentBehavior behavior = null;
@@ -472,7 +477,7 @@ public class Agent : MonoBehaviour
         //score_bias = (int)(ACTION_SCORE_BIAS * Math.Exp(-(1.0 - personality.conscientousness) * (float)ticksOnThisTask));
         score_bias = (int)(SC.Agent["ACTION_SCORE_BIAS"] * Math.Exp(-(1.0 - personality.conscientousness) * SC.Agent["ACTION_SCORE_DECAY"] * (float)ticksOnThisTask));
 
-        for (int actionidx=0; actionidx < behaviors.Count; actionidx++)
+        for (int actionidx = 0; actionidx < behaviors.Count; actionidx++)
         {
             behavior = behaviors.Values.ElementAt(actionidx);
             rating = behavior.rate();
@@ -483,7 +488,7 @@ public class Agent : MonoBehaviour
                 rating += score_bias;
             }
 
-            if(behavior == previousAction)
+            if (behavior == previousAction)
             {
                 rating -= score_bias;
             }
@@ -513,8 +518,8 @@ public class Agent : MonoBehaviour
     private int ChooseActionByDistribution(double[] ratings)
     {
         double sum = 0;
-        for(int action=0; action < ratings.Length; action++){
-            if(ratings[action] > 0)
+        for (int action = 0; action < ratings.Length; action++) {
+            if (ratings[action] > 0)
             {
                 sum += Math.Pow(ratings[action], 3);
             }
@@ -537,5 +542,29 @@ public class Agent : MonoBehaviour
 
         // Chose a random element from the action distribution
         return distribution[random.Next(counter)];
+    }
+
+    public void CalculateActionCount(AgentBehavior behavior) {
+        switch (behavior.action) {
+            case AgentBehavior.Actions.SoloTime:
+                actionCount.soloCount++;
+                break;
+            case AgentBehavior.Actions.InteractionTime:
+                actionCount.interactionCount++;
+                break;
+            case AgentBehavior.Actions.Rest:
+                actionCount.restCount++;
+                break;
+            case AgentBehavior.Actions.Communication:
+                actionCount.communicationCount++;
+                break;
+            case AgentBehavior.Actions.Disagreement:
+                actionCount.communicationCount++;
+                break;
+        }
+    }
+
+    public void ResetActionCount() {
+        actionCount = new ActionCount();
     }
 }

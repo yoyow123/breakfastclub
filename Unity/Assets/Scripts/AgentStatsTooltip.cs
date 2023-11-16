@@ -51,7 +51,7 @@ public class AgentStatsTooltip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(agent)
+        if (agent)
         {
             transform.position = agent.transform.position + position_offset;
             //Debug.Log("Plotting" + transform.position);
@@ -65,6 +65,8 @@ public class AgentStatsTooltip : MonoBehaviour
             LogText.text = agent.GetLastMessage();
             ActionText.text = agent.currentAction.ToString();
             DesireText.text = agent.Desire.ToString();
+
+            Debug.Log(String.Format("Rest x {0}", 0)) ;
         }
     }
 }

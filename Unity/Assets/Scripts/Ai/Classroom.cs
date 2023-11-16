@@ -529,6 +529,8 @@ public class Classroom : MonoBehaviour
 
         LoadSampleConfig(sampleConfigFile);
         foreach (Agent a in agents) {
+            //reset action count as zero
+            a.ResetActionCount();
             Destroy(a.gameObject);
         }
         SpawnAgents();

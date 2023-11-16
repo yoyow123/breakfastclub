@@ -21,6 +21,8 @@ public abstract class AgentBehavior
     protected int transition_cnter;
     protected int retry_cnter;
 
+    public int actionCount = 0;
+
     protected AgentBehavior(Agent agent, Actions state, String name, Dictionary<string, double> config)
     {
         this.agent = agent;

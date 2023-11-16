@@ -11,6 +11,7 @@ public struct PersonalityType
     public double extraversion;
     public double agreeableness;
     public double neuroticism;
+    public string color;
     public string typeName1;
     public string typeName2;
     public string roleName;
@@ -19,10 +20,11 @@ public struct PersonalityType
     public double engagement;
     public double focus;
     public string[] tags;
+    public string[] additionalTags;
 
     public PersonalityType(string name, double o, double c, double e, double a, double n, 
-                                        string type1, string type2, string roleName, string roleDes,
-                                        double incentives, double engage, double focus, string[] tags)
+                                         string color,string type1, string type2, string roleName, string roleDes,
+                                        double incentives, double engage, double focus, string[] tags, string[] additionalTags)
     {
         this.name = name;
         openess = o;
@@ -30,6 +32,7 @@ public struct PersonalityType
         extraversion = e;
         agreeableness = a;
         neuroticism = n;
+        this.color = color;
         typeName1 = type1;
         typeName2 = type2;
         this.roleName = roleName;
@@ -38,6 +41,7 @@ public struct PersonalityType
         this.engagement = engage;
         this.focus = focus;
         this.tags = tags;
+        this.additionalTags = additionalTags;
     }
 }
 
@@ -50,7 +54,7 @@ public class Personality
     public double extraversion { get; set; }
     public double agreeableness { get; protected set; }
     public double neuroticism { get; protected set; }
-
+    public string color { get; protected set; }
     public string typeName1{ get; protected set; }
 
     public string typeName2 { get; protected set; }
@@ -66,6 +70,8 @@ public class Personality
     public double focus { get; protected set; }
 
     public string[] tags { get; protected set; }
+
+    public string[] additionalTags { get; protected set; }
 
 
     public Personality(string name, double o, double c, double e, double a, double n)
@@ -84,7 +90,8 @@ public class Personality
         conscientousness = pt.conscientousness;
         extraversion = pt.extraversion;
         agreeableness = pt.agreeableness;
-       neuroticism = pt.neuroticism;
+        neuroticism = pt.neuroticism;
+        color = pt.color;
         typeName1 = pt.typeName1;
         typeName2 = pt.typeName2;
         roleName = pt.roleName;
@@ -93,6 +100,7 @@ public class Personality
         engagement = pt.engagement;
         focus = pt.focus;
         tags = pt.tags;
+        additionalTags = pt.additionalTags;
     }
 
     public Personality(Random random, PersonalityType pt)
