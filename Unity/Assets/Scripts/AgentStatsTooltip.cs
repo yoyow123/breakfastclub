@@ -1,41 +1,42 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class AgentStatsTooltip : MonoBehaviour
 {
 
-    public Text TitleText;
-    public Text NameText;
-    public Text AgentText;
-    public Text MotivationText;
-    public Text HappinessText;
-    public Text AttentionText;
-    public Text PersonalityText;
-    public Text ScoreText;
-    public Text LogText;
-    public Text ActionText;
-    public Text DesireText;
-
+    public TextMeshProUGUI TitleText;
+    public TextMeshProUGUI NameText;
+    public TextMeshProUGUI AgentText;
+    public TextMeshProUGUI typeNameText;
+    public TextMeshProUGUI MotivationText;
+    public TextMeshProUGUI HappinessText;
+    public TextMeshProUGUI AttentionText;
+    public TextMeshProUGUI PersonalityText;
+    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI LogText;
+    public TextMeshProUGUI ActionText;
+    public TextMeshProUGUI DesireText;
     public Vector3 position_offset;
-
     public Agent agent { protected set; get; }
     
     // Start is called before the first frame update
     void Start()
     {
-/*        TitleText = transform.Find("TitleText").GetComponent<Text>();
-        NameText = transform.Find("NameText").GetComponent<Text>();
-        AgentText = transform.Find("AgentText").GetComponent<Text>();
-        MotivationText = transform.Find("MotivationText").GetComponent<Text>();
-        HappinessText = transform.Find("HappinessText").GetComponent<Text>();
-        AttentionText = transform.Find("AttentionText").GetComponent<Text>();
-        PersonalityText = transform.Find("PersonalityText").GetComponent<Text>();
-        ScoreText = transform.Find("ScoreText").GetComponent<Text>();
-        LogText = transform.Find("LogText").GetComponent<Text>();
-        ActionText = transform.Find("ActionText").GetComponent<Text>();
-        DesireText = transform.Find("DesireText").GetComponent<Text>();*/
+        /*
+        TitleText = transform.Find("TitleText").GetComponent<TextMeshProUGUI>();
+        NameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+        AgentText = transform.Find("AgentText").GetComponent<TextMeshProUGUI>();
+        MotivationText = transform.Find("MotivationText").GetComponent<TextMeshProUGUI>();
+        HappinessText = transform.Find("HappinessText").GetComponent<TextMeshProUGUI>();
+        AttentionText = transform.Find("AttentionText").GetComponent<TextMeshProUGUI>();
+        PersonalityText = transform.Find("PersonalityText").GetComponent<TextMeshProUGUI>();
+        ScoreText = transform.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        LogText = transform.Find("LogText").GetComponent<TextMeshProUGUI>();
+        ActionText = transform.Find("ActionText").GetComponent<TextMeshProUGUI>();
+        DesireText = transform.Find("DesireText").GetComponent<TextMeshProUGUI>();*/
     }
 
     public void SetAgent(Agent newAgent)
@@ -57,10 +58,11 @@ public class AgentStatsTooltip : MonoBehaviour
             //Debug.Log("Plotting" + transform.position);
             NameText.text = agent.studentname;
             AgentText.text = agent.name;
-            MotivationText.text = agent.motivation.ToString("0.00");
-            HappinessText.text = agent.happiness.ToString("0.00");
-            AttentionText.text = agent.attention.ToString("0.00");
-            PersonalityText.text = agent.personality.ToString();
+            typeNameText.text = string.Format("{0} & {1}", agent.personality.typeName1, agent.personality.typeName2);
+            MotivationText.text = GetLevelText(agent.motivation);
+            HappinessText.text = GetLevelText(agent.happiness);
+            AttentionText.text = String.Format("{0} - {1}", GetLevelText(agent.attention), agent.personality.roleDescription);
+            //PersonalityText.text = agent.personality.ToString();
             ScoreText.text = agent.GetScores();
             LogText.text = agent.GetLastMessage();
             ActionText.text = agent.currentAction.ToString();
@@ -68,5 +70,18 @@ public class AgentStatsTooltip : MonoBehaviour
 
             Debug.Log(String.Format("Rest x {0}", 0)) ;
         }
+    }
+    string GetLevelText(double value) {
+        string level = "";
+        if (value < 0.3)
+            level = "Low";
+        else if (value >= 0.3 && value < 0.6)
+        {
+            level = "Medium";
+        }
+        else if (value >= 0.6)
+            level = "High";
+
+        return level;
     }
 }

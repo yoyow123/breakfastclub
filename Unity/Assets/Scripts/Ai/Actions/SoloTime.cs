@@ -148,7 +148,7 @@ public class SoloTime : AgentBehavior
         {
             case ActionState.INACTIVE:
             case ActionState.MOVING:
-                agent.LogDebug(String.Format("Stopping before reaching the Table!"));
+                agent.LogDebug(String.Format("Stopping before reaching the hub!"));
                 break;
 
             case ActionState.AWAITING:
@@ -156,7 +156,7 @@ public class SoloTime : AgentBehavior
                 break;
 
             case ActionState.ACTION:
-                agent.LogDebug(String.Format("Ending study alone on table {0}!", lastTable));
+                agent.LogDebug(String.Format("Ending study alone on hub {0}!", lastTable.name));
                 break;
         }
         if (lastTable)

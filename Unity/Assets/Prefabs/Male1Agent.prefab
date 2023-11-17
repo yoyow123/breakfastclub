@@ -502,10 +502,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 2906156141564357211, guid: 336ff1a582a1cfa4ba6aa88c491077cc,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6078102342352700178, guid: 336ff1a582a1cfa4ba6aa88c491077cc,
         type: 3}
       propertyPath: m_SortingOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137243684403186014, guid: 336ff1a582a1cfa4ba6aa88c491077cc,
+        type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 2988818297817782727}
+    - target: {fileID: 6137243684403186014, guid: 336ff1a582a1cfa4ba6aa88c491077cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7583890408439504992, guid: 336ff1a582a1cfa4ba6aa88c491077cc,
         type: 3}

@@ -15,7 +15,7 @@ public struct PersonalityType
     public string typeName1;
     public string typeName2;
     public string roleName;
-    public string roleDescripton;
+    public string roleDescription;
     public double incentives;
     public double engagement;
     public double focus;
@@ -36,7 +36,7 @@ public struct PersonalityType
         typeName1 = type1;
         typeName2 = type2;
         this.roleName = roleName;
-        this.roleDescripton = roleDes;
+        this.roleDescription = roleDes;
         this.incentives = incentives;
         this.engagement = engage;
         this.focus = focus;
@@ -61,7 +61,7 @@ public class Personality
 
     public string roleName { get; protected set; }
 
-    public string roleDescripton { get; protected set; }
+    public string roleDescription { get; protected set; }
 
     public double incentives { get; protected set; }
 
@@ -95,7 +95,7 @@ public class Personality
         typeName1 = pt.typeName1;
         typeName2 = pt.typeName2;
         roleName = pt.roleName;
-        roleDescripton = pt.roleDescripton;
+        roleDescription = pt.roleDescription;
         incentives = pt.incentives;
         engagement = pt.engagement;
         focus = pt.focus;

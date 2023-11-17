@@ -58,44 +58,47 @@ public class AgentUI : MonoBehaviour
     // If agents are too far away from their navAgent destination their animation will be walking
     private void SetAnimationState()
     {
-        /*        distanceMoved = Vector3.Distance(transform.position, prevPosition);
-                Debug.Log("Distance Moved " + distanceMoved);
-                if(distanceMoved > 0.4)
-                {
-                    textureController.SetTexture(0);
-                    animationstate = AnimationState.Walking;
-                   // isFront = !((transform.position - prevPosition).x < 1);
-                }*/
-        // isFront = true;
-        if ((agent.currentAction is Disagreement) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
+         distanceMoved = Vector3.Distance(transform.position, prevPosition);
+      //   Debug.Log("Distance Moved " + distanceMoved);
+        if (distanceMoved > 0.4)
         {
-            textureController.SetTexture(2);
-            _animationstate = AnimationState.Diagreement;
-        }
-        else if (agent.currentAction is Rest)
-        {
-            textureController.SetTexture(1);
-            //animationstate = AnimationState.Walking;
-            _animationstate = AnimationState.Rest;
+            textureController.SetTexture(0);
+            _animationstate = AnimationState.Walking;
+            // isFront = !((transform.position - prevPosition).x < 1);
         }
         else
-        if ((agent.currentAction is InteractionTime) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
         {
-            Debug.Log("Agent " + agent.name + " Interaction Time");
-            textureController.SetTexture(0);
-            _animationstate = AnimationState.InteractionTime;
-        }
-        else
-        if ((agent.currentAction is Communication) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
-        {
-            textureController.SetTexture(0);
-            _animationstate = AnimationState.Communication;
-        }
-        else if ((agent.currentAction is SoloTime) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
-        {
-            Debug.Log("Agent " + agent.name + " Solo Time");
-            textureController.SetTexture(0);
-            _animationstate = AnimationState.SoloTime;
+            // isFront = true;
+            if ((agent.currentAction is Disagreement) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
+            {
+                textureController.SetTexture(2);
+                _animationstate = AnimationState.Diagreement;
+            }
+            else if (agent.currentAction is Rest)
+            {
+                textureController.SetTexture(1);
+                //animationstate = AnimationState.Walking;
+                _animationstate = AnimationState.Rest;
+            }
+            else
+            if ((agent.currentAction is InteractionTime) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
+            {
+                Debug.Log("Agent " + agent.name + " Interaction Time");
+                textureController.SetTexture(0);
+                _animationstate = AnimationState.InteractionTime;
+            }
+            else
+            if ((agent.currentAction is Communication) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
+            {
+                textureController.SetTexture(0);
+                _animationstate = AnimationState.Communication;
+            }
+            else if ((agent.currentAction is SoloTime) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
+            {
+                Debug.Log("Agent " + agent.name + " Solo Time");
+                textureController.SetTexture(0);
+                _animationstate = AnimationState.SoloTime;
+            }
         }
         //isFront = (navAgent.destination - transform.position).z < 0.5;
         //isFront = !((transform.position - prevPosition).z > 0.01) || ((transform.position - prevPosition).x > 0.01);
@@ -148,10 +151,11 @@ public class AgentUI : MonoBehaviour
 
     void OnMouseDown()
     {
+        statsTags.RefreshTags();
         //return;
         //If your mouse hovers over the GameObject with the script attached, output this message
         //Debug.Log(string.Format("OnMouseDown GameObject {0}.", this.name));
-        if(statsTooltip.agent == agent)
+        if (statsTooltip.agent == agent)
         {
             //Debug.Log(string.Format("Dissable stats."));
             statsTooltip.SetAgent(null);

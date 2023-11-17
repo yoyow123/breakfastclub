@@ -41,8 +41,8 @@ public class Agent : MonoBehaviour
     public double happiness { get; set; }
     public double motivation { get; set; }
     public double attention { get; protected set; }
-    private int lastMessagesIdx = 0;
-    private string[] lastMessages = new string[5];
+    [SerializeField] private int lastMessagesIdx = 0;
+    [SerializeField] private string[] lastMessages = new string[5];
     private StringBuilder lastMessageStringBuilder = new StringBuilder();
 
     //private List<AgentBehavior> behaviors = new List<AgentBehavior>();
@@ -196,7 +196,7 @@ public class Agent : MonoBehaviour
     {
         lastMessageStringBuilder.Clear();
         for (int i = 0; i < lastMessages.Length; i++) {
-            lastMessageStringBuilder.AppendLine(lastMessages[(lastMessagesIdx + i) % lastMessages.Length]);
+            lastMessageStringBuilder.AppendLine(lastMessages[i]);
         }
         return lastMessageStringBuilder.ToString();
     }
@@ -432,7 +432,9 @@ public class Agent : MonoBehaviour
         for (int actionidx = 0; actionidx < behaviors.Count; actionidx++)
         {
             AgentBehavior behavior = behaviors.Values.ElementAt(actionidx);
-            sb.Append(String.Format($"{behavior.name}:{this.scores[actionidx]:N2} "));
+
+            if(behavior.name!="Rest")
+            sb.Append(String.Format($"{behavior.name}:{this.scores[actionidx]:N2}\t"));
         }
         return sb.ToString();
     }

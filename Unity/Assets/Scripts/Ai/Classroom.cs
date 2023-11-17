@@ -526,15 +526,18 @@ public class Classroom : MonoBehaviour
     }
 
     public void Reload() {
-
-        LoadSampleConfig(sampleConfigFile);
         foreach (Agent a in agents) {
             //reset action count as zero
             a.ResetActionCount();
             Destroy(a.gameObject);
         }
+        agents = null;
+
+        LoadSimulationConfig(simulationConfigFile);
+        LoadSampleConfig(sampleConfigFile);
         SpawnAgents();
         agents = FindObjectsOfType<Agent>();
+        peerActionScores = GetPeerActionScore(agents);
 
     }
     
