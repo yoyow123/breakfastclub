@@ -175,11 +175,11 @@ public class SoloTime : AgentBehavior
             case ActionState.INACTIVE:
                 return String.Format($"{name}({state})");
             case ActionState.MOVING:
-                return String.Format($"{name}({state}) walking towards {lastTable} for some solo time.");
+                return String.Format($"{name}({state}) walking towards {lastTable.name} for some solo time.");
             case ActionState.AWAITING:
-                return String.Format($"{name}({state}) peacefully wandering at  {lastTable}");
+                return String.Format($"{name}({state}) peacefully wandering at  {lastTable.name}");
             case ActionState.ACTION:
-                return String.Format($"{name}({state}) immersing in solo activities at  {lastTable}");
+                return String.Format($"{name}({state}) immersing in solo activities at  {lastTable.name}");
         }
         return "Invalid State!";
     }

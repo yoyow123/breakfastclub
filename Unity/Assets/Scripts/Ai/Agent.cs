@@ -51,6 +51,8 @@ public class Agent : MonoBehaviour
     public AgentBehavior Desire { get; protected set; }
     public AgentBehavior previousAction { get; protected set; }
 
+    public List<AgentBehavior> actionLists = new List<AgentBehavior>();
+
     private Queue pendingInteractions = new Queue();
 
     public System.Random random;
@@ -138,6 +140,25 @@ public class Agent : MonoBehaviour
         LogState();
 
         SelectAction();
+
+        //record previous activity
+        if (actionLists.Count == 0)
+        {
+            if (currentAction != previousAction && previousAction != null && previousAction.state == AgentBehavior.ActionState.INACTIVE)
+                actionLists.Add(previousAction);
+        }
+        else if (actionLists.Count < 4)
+        {
+            if (currentAction != previousAction && previousAction != actionLists[actionLists.Count - 1] && previousAction.state == AgentBehavior.ActionState.INACTIVE)
+            {
+                actionLists.Add(previousAction);
+            }
+        }
+        else
+        {
+            actionLists.Clear();
+        }
+
 
         HandleInteractions();
 
@@ -350,6 +371,19 @@ public class Agent : MonoBehaviour
             return false;
         }
     }
+    public string GetPreviousActionLists()
+    {
+        string str = "";
+        if (actionLists.Count > 0)
+        {
+            for (int i = 0; i < actionLists.Count; i++)
+            {
+                str += actionLists[i].name + "(INACTIVE) " + "\n";
+            }
+        }
+        return str;
+    }
+
 
     private void HandleInteractions()
     {

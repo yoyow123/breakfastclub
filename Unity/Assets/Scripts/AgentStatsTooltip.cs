@@ -18,6 +18,8 @@ public class AgentStatsTooltip : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI LogText;
     public TextMeshProUGUI ActionText;
+    public TextMeshProUGUI currentActionText;
+    public TextMeshProUGUI prevActionText;
     public TextMeshProUGUI DesireText;
     public Vector3 position_offset;
     public Agent agent { protected set; get; }
@@ -66,9 +68,9 @@ public class AgentStatsTooltip : MonoBehaviour
             ScoreText.text = agent.GetScores();
             LogText.text = agent.GetLastMessage();
             ActionText.text = agent.currentAction.ToString();
-            DesireText.text = agent.Desire.ToString();
-
-            Debug.Log(String.Format("Rest x {0}", 0)) ;
+            currentActionText.text = agent.currentAction.ToString();
+            prevActionText.text = agent.GetPreviousActionLists();
+           // DesireText.text = agent.Desire.ToString();
         }
     }
     string GetLevelText(double value) {

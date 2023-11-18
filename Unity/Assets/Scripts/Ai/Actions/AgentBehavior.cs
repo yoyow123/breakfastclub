@@ -44,6 +44,11 @@ public abstract class AgentBehavior
         return String.Format("{0}({1})", name, state);
     }
 
+    public virtual string GetInActiveString() {
+
+        return String.Format("{0}({1})", name, ActionState.INACTIVE);
+    }
+
     public List<int> GetPermutedIndices(int count)
     {
         List<int> pool = new List<int>();

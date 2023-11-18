@@ -83,7 +83,7 @@ public class AgentUI : MonoBehaviour
             else
             if ((agent.currentAction is InteractionTime) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
             {
-                Debug.Log("Agent " + agent.name + " Interaction Time");
+              //  Debug.Log("Agent " + agent.name + " Interaction Time");
                 textureController.SetTexture(0);
                 _animationstate = AnimationState.InteractionTime;
             }
@@ -95,7 +95,7 @@ public class AgentUI : MonoBehaviour
             }
             else if ((agent.currentAction is SoloTime) && (agent.currentAction.state == AgentBehavior.ActionState.ACTION))
             {
-                Debug.Log("Agent " + agent.name + " Solo Time");
+                //Debug.Log("Agent " + agent.name + " Solo Time");
                 textureController.SetTexture(0);
                 _animationstate = AnimationState.SoloTime;
             }
