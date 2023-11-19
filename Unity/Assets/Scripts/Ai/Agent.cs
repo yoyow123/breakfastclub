@@ -52,6 +52,7 @@ public class Agent : MonoBehaviour
     public AgentBehavior previousAction { get; protected set; }
 
     public List<AgentBehavior> actionLists = new List<AgentBehavior>();
+    public List<String> actionStringLists = new List<String>();
 
     private Queue pendingInteractions = new Queue();
 
@@ -145,7 +146,9 @@ public class Agent : MonoBehaviour
         if (actionLists.Count == 0)
         {
             if (currentAction != previousAction && previousAction != null && previousAction.state == AgentBehavior.ActionState.INACTIVE)
+            {
                 actionLists.Add(previousAction);
+            }
         }
         else if (actionLists.Count < 4)
         {
@@ -276,6 +279,26 @@ public class Agent : MonoBehaviour
         happiness = AgentBehavior.boundValue(0.0, happiness + change, 1.0);
     }
 
+    private void updateActionStringList(AgentBehavior currentAction)
+    {
+        String curActionString = currentAction.ToString();
+        if (actionStringLists.Count > 0)
+        {
+            if (!curActionString.Equals(actionStringLists[actionStringLists.Count - 1]))
+            {
+                actionStringLists.Add(curActionString);
+            }
+        }
+        else
+        {
+            actionStringLists.Add(curActionString);
+        }
+
+        if (actionStringLists.Count > 4)
+        {
+            actionStringLists.RemoveAt(0); // Remove the oldest element
+        }
+    }
 
     private bool StartAction(AgentBehavior newAction, bool setDesire = true, bool startAlternativeAction = true)
     {
@@ -299,6 +322,8 @@ public class Agent : MonoBehaviour
                 {
                     Desire = newAction;
                 }
+
+                updateActionStringList(currentAction);
             }
             else
             {
@@ -306,6 +331,8 @@ public class Agent : MonoBehaviour
                 newAction.execute();
                 if (newAction.state == AgentBehavior.ActionState.ACTION)
                     ticksOnThisTask++;
+
+                updateActionStringList(currentAction);
             }
             return true;
         }
@@ -327,6 +354,7 @@ public class Agent : MonoBehaviour
                     {
                         LogDebug(String.Format($"We are already executing the desired action! Just stick with it!"));
                         currentAction.execute();
+                        updateActionStringList(currentAction);
                         return true;
                     }
                     else
@@ -337,6 +365,7 @@ public class Agent : MonoBehaviour
                             previousAction = currentAction;
                             currentAction = Desire;
                             currentAction.execute();
+                            updateActionStringList(currentAction);
                             return true;
                         }
                         else
@@ -358,6 +387,7 @@ public class Agent : MonoBehaviour
                 if (StartAction(best_action, setDesire = false, startAlternativeAction = false))
                 {
                     LogDebug($"Could not execute {newAction} instead chose {best_action}! ...");
+                    updateActionStringList(best_action);
                     return true;
                 }
             }
@@ -367,18 +397,25 @@ public class Agent : MonoBehaviour
             previousAction = currentAction;
             currentAction = behaviors["Rest"];
             currentAction.execute();
-
+            updateActionStringList(currentAction);
             return false;
         }
     }
     public string GetPreviousActionLists()
     {
         string str = "";
-        if (actionLists.Count > 0)
+        /*if (actionLists.Count > 0)
         {
             for (int i = 0; i < actionLists.Count; i++)
             {
                 str += actionLists[i].name + "(INACTIVE) " + "\n";
+            }
+        }*/
+        if (actionStringLists.Count > 1)
+        {
+            for (int i = 0; i < actionStringLists.Count - 1; i++)
+            {
+                str += actionStringLists[i] + "\n";
             }
         }
         return str;
