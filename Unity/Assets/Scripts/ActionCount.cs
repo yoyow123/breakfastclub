@@ -21,5 +21,10 @@ public class ActionCount
 		this.soloCount = soloCount;
 		this.interactionCount = interactionCount;
 	}
+
+	public int GetTotalCount() { 
+		return this.communicationCount + this.interactionCount;
+	}
+
 }
 
