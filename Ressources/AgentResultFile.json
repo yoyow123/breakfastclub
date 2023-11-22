@@ -1,0 +1,55 @@
+{
+    "name": "Sophia",
+    "gptName": "GPT:Ask Cris about FileMaker",
+    "actionCount": {
+        "restCount": 3,
+        "communicationCount": 0,
+        "disagreementCount": 0,
+        "soloCount": 0,
+        "interactionCount": 0
+    }
+}
+{
+    "name": "Bob",
+    "gptName": "GPT:Bilingual Storyteller",
+    "actionCount": {
+        "restCount": 3,
+        "communicationCount": 0,
+        "disagreementCount": 0,
+        "soloCount": 0,
+        "interactionCount": 0
+    }
+}
+{
+    "name": "Nathan",
+    "gptName": "GPT:Ask Cris about FileMaker",
+    "actionCount": {
+        "restCount": 3,
+        "communicationCount": 0,
+        "disagreementCount": 0,
+        "soloCount": 0,
+        "interactionCount": 0
+    }
+}
+{
+    "name": "Ivy",
+    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+    "actionCount": {
+        "restCount": 3,
+        "communicationCount": 0,
+        "disagreementCount": 0,
+        "soloCount": 0,
+        "interactionCount": 0
+    }
+}
+{
+    "name": "Alice",
+    "gptName": "GPT:Bilingual Translation",
+    "actionCount": {
+        "restCount": 3,
+        "communicationCount": 0,
+        "disagreementCount": 0,
+        "soloCount": 0,
+        "interactionCount": 0
+    }
+}

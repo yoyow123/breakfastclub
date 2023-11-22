@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.IO;
 
 public class AgentsManager : MonoBehaviour
 {
+    public string saveFilePath;
     public List<Agent> agents = new List<Agent>();
     public List<Agent> topAgents = new List<Agent>();
     public int maxResults = 5;
@@ -22,6 +24,8 @@ public class AgentsManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             GetTheTopResult();
+
+            Save(saveFilePath);
         }
     }
 
@@ -36,10 +40,17 @@ public class AgentsManager : MonoBehaviour
             Debug.Log(string.Format("Name:{0} , Total Count:{1}", a.name, a.actionCount.GetTotalCount())); 
         }
     }
-    public void Save() {
+    public void Save(string configPath) {
+        string[] datas = new string[maxResults];
+        int j = 0;
         for (int i = 0; i < topAgents.Count; i++) {
-          // AgentResult result = new AgentResult(topAgents[i].name,topAgents.
-         }
+            AgentResult result = new AgentResult(topAgents[i].personality.name ,topAgents[i].gptName, topAgents[i].actionCount);
+           // jsonData += JsonUtility.ToJson(result);
+            datas[j] = JsonUtility.ToJson(result,true);
+            j++;
+        }
+        File.WriteAllLines(saveFilePath,datas);
+        Debug.Log("Save data");
     }
 
     IEnumerator Init() {

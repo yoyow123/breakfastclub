@@ -60,6 +60,8 @@ public class Agent : MonoBehaviour
 
     public ActionCount actionCount = new ActionCount();
 
+    public string gptName;
+
     public void initAgent(string name, System.Random random, Personality personality)
     {
         this.random = random;
@@ -110,6 +112,9 @@ public class Agent : MonoBehaviour
             conformity = SC.Agent["CONFORMITY"];
         }
         //personality.extraversion = 0.9f;
+
+        //select tag and append to gpt: 
+        SetGptName();
     }
 
     // Start is called before the first frame update
@@ -636,7 +641,10 @@ public class Agent : MonoBehaviour
                 break;
         }
     }
-
+    public void SetGptName() {
+        int randNum = UnityEngine.Random.Range(1, personality.additionalTags.Length);
+        gptName = string.Format("GPT:{0}", personality.additionalTags[randNum]);
+    }
     public void ResetActionCount() {
         actionCount = new ActionCount();
     }
