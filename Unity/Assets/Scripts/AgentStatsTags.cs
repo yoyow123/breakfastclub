@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class AgentStatsTags : MonoBehaviour
 {
     public Button matchButton, selectButton;
-    public Transform tagGroup;
-    public Transform selectGroup;
+    public Button nextButton, confirmButton;
     public Transform additionalTagGroup;
-    public GameObject tagPrefab, additionalTagPrefab;
+    public GameObject tagPrefab;
 
     public GameObject selectGroupPrefab;
+    public List<GameObject> additionTags;
     public List<GameObject> selectGroups = new List<GameObject>();
-    public Transform selectionPageTransform;
+    public Transform selectionPage;
+    public int currentPageIndex = 0;
 
     public List<string> allTags = new List<string>();
     public List<string> selectedTags = new List<string>();
@@ -32,7 +33,8 @@ public class AgentStatsTags : MonoBehaviour
     {
         matchButton.onClick.AddListener(() => FindMatch());
         selectButton.onClick.AddListener(() => EnableSelectionPage());
-        //selectionPage.gameObject.SetActive(false);
+        nextButton.onClick.AddListener(() => NextSelectionPage());
+        selectionPage.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,14 +44,9 @@ public class AgentStatsTags : MonoBehaviour
 
     public void UpdateTagObject() {
 
-     //   if (selectedTags.Count != 0) return;
+        //   if (selectedTags.Count != 0) return;
 
         // update the info of selected tags
-        for (int i = 0; i < tagGroup.childCount; i++)
-        {
-            GameObject tagObj = tagGroup.GetChild(i).gameObject;
-           // tagObj.GetComponentInChildren<TextMeshProUGUI>().text = selectedTags[i];
-        }
 
         //prepare enough selection groups
         if (allTags.Count > 0)
@@ -66,7 +63,7 @@ public class AgentStatsTags : MonoBehaviour
             int num = 0;
 
             while (num != division) {
-                GameObject groupObj = Instantiate(selectGroupPrefab, selectionPageTransform);
+                GameObject groupObj = Instantiate(selectGroupPrefab, selectionPage);
                 if (!selectGroups.Contains(groupObj))
                 selectGroups.Add(groupObj);
                 num++;          
@@ -108,31 +105,33 @@ public class AgentStatsTags : MonoBehaviour
 
         int i = 0;
         //select the tags randomly
-        while(i != maxTags)
+        while (i != maxTags)
         {
             int rand = Random.Range(0, allTags.Count);
             string tag = allTags[rand];
             // selected tags randomly
             if (!selectedTags.Contains(tag))
                 selectedTags.Add(tag);
-
             i++;
+        }
+
+
+        for (int k = 0; k < selectedTags.Count;k++)
+        {
+            GameObject tagObj = additionTags[k];
+            tagObj.GetComponentInChildren<TextMeshProUGUI>().text = selectedTags[k];
+
         }
     }
 
-    public void ResetTags() {
+		public void ResetTags() {
         allTags.Clear();
         selectedTags.Clear();
-        if (selectGroup.childCount > 0) {
-            for (int i = 0; i < selectGroup.childCount; i++) {
-                Destroy(selectGroup.GetChild(i).gameObject);
-            }            
-        }
     }
 
     public void SetAgent(Agent newAgent)
     {
-       // ResetTags();
+        //ResetTags();
         agent = newAgent;
         if (agent)
         {
@@ -147,7 +146,7 @@ public class AgentStatsTags : MonoBehaviour
 
     public void FindMatch()
     {
-        RefreshTags();
+     /*   RefreshTags();
 
         int randNum = Random.Range(0, additionalTagGroup.childCount);
         GameObject g = additionalTagGroup.GetChild(randNum).gameObject;
@@ -158,12 +157,12 @@ public class AgentStatsTags : MonoBehaviour
             int num = Random.Range(0, tagGroup.childCount);
             GameObject tag = tagGroup.GetChild(randNum).gameObject;
             tag.transform.Find("TagsInColor").GetComponent<Image>().color = matchColor;
-        }
+        }*/
     }
 
     public void RefreshTags() {
 
-        for (int i = 0; i < additionalTagGroup.childCount; i++)
+     /*   for (int i = 0; i < additionalTagGroup.childCount; i++)
         {
             GameObject tagObj = additionalTagGroup.GetChild(i).gameObject;
             tagObj.transform.Find("TagsInColor").GetComponent<Image>().color = defaultColor;
@@ -173,11 +172,30 @@ public class AgentStatsTags : MonoBehaviour
         {
             GameObject tagObj = tagGroup.GetChild(i).gameObject;
             tagObj.transform.Find("TagsInColor").GetComponent<Image>().color = defaultColor;
-        }
+        }*/
     }
 
     public void EnableSelectionPage() {
-       // selectionPage.SetActive(true);
+        selectionPage.gameObject.SetActive(true);
+        selectGroups[0].SetActive(true);
+        for (int i = 1; i < selectGroups.Count; i++) {
+            selectGroups[i].SetActive(false);
+        }
+    }
+
+    public void NextSelectionPage() {
+        for (int i = 0; i < selectGroups.Count; i++)
+        {
+            selectGroups[i].SetActive(false);
+        }
+        if (currentPageIndex + 1 < selectGroups.Count)
+            currentPageIndex++;
+        else
+            currentPageIndex = 0;
+
+
+        selectGroups[currentPageIndex].SetActive(true);
+
     }
 
 }
