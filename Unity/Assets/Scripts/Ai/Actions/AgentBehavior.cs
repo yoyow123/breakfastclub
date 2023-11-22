@@ -80,7 +80,7 @@ public abstract class AgentBehavior
     // Check preconditions for this action
     public abstract bool possible();
 
-    // Evaluate how well suited this action is for the given agent
+    // Evaluate how well suited this action is for the given89 agent
     public abstract double rate();
 
     // Helper function that is called in rate() implemented in each behavior
