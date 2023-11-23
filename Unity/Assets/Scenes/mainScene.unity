@@ -1908,7 +1908,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh148840
+  m_Name: pb_Mesh180258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2686,6 +2686,51 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 972857934434198912, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 39.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 972857934434198912, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_fontSizeMin
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 972857934434198913, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 972857934434198913, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 972857934705247186, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 565
+      objectReference: {fileID: 0}
+    - target: {fileID: 972857934705247186, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 105.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100046238011761129, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 565
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100046238011761129, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 105.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891346930057457593, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3784789407172292403, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2791,16 +2836,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3784789407877954680, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_Padding.m_Left
+      value: -18
+      objectReference: {fileID: 0}
     - target: {fileID: 3863110899020088610, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
         type: 3}
       propertyPath: m_Name
       value: AgentStatsTooltip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401247593418993721, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316888450584162356, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6103915228150247760, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
         type: 3}
       propertyPath: confirmButton
       value: 
       objectReference: {fileID: 744734755}
+    - target: {fileID: 6708016628061947554, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7379865996684941999, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7453543191701052221, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506352619761785568, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8236602457199900009, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
         type: 3}
       propertyPath: m_AnchorMax.y
