@@ -159,7 +159,7 @@ public class Classroom : MonoBehaviour
     {
         turnCnt++;
 
-        Debug.Log($"Turn: {turnCnt}");
+        //Debug.Log($"Turn: {turnCnt}");
 
         // Update this list every turn (agents might leave or enter the classroom)
         agents = FindObjectsOfType<Agent>();

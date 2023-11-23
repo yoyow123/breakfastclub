@@ -3255,6 +3255,11 @@ PrefabInstance:
       objectReference: {fileID: 1209217261117248773}
     - target: {fileID: 4459444527884278411, guid: 30fa80c2ccfdd1143a7cd36a3261c20b,
         type: 3}
+      propertyPath: selectTagsGroup
+      value: 
+      objectReference: {fileID: 3784789407627615727}
+    - target: {fileID: 4459444527884278411, guid: 30fa80c2ccfdd1143a7cd36a3261c20b,
+        type: 3}
       propertyPath: selectGroupPrefab
       value: 
       objectReference: {fileID: 6234695032077310488, guid: 66df614779b28164da34202ba2709c99,
@@ -3324,6 +3329,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6759923164679648821, guid: 30fa80c2ccfdd1143a7cd36a3261c20b,
+        type: 3}
+      propertyPath: m_Name
+      value: SelectTagsGroup (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 7239742160163045931, guid: 30fa80c2ccfdd1143a7cd36a3261c20b,
         type: 3}
       propertyPath: m_Name
@@ -3334,6 +3344,12 @@ PrefabInstance:
 --- !u!224 &7453543192219218110 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1019530602214710117, guid: 30fa80c2ccfdd1143a7cd36a3261c20b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7590350586632219611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3784789407627615727 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6759923164679648820, guid: 30fa80c2ccfdd1143a7cd36a3261c20b,
     type: 3}
   m_PrefabInstance: {fileID: 7590350586632219611}
   m_PrefabAsset: {fileID: 0}

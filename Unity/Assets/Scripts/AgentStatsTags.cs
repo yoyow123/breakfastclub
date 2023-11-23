@@ -8,17 +8,21 @@ public class AgentStatsTags : MonoBehaviour
 {
     public Button matchButton, selectButton;
     public Button nextButton, confirmButton;
-    public Transform additionalTagGroup;
-    public GameObject tagPrefab;
 
+    public Transform additionalTagGroup;
+    public Transform selectTagsGroup;
+
+
+    public GameObject tagPrefab;
     public GameObject selectGroupPrefab;
-    public List<GameObject> additionTags;
     public List<GameObject> selectGroups = new List<GameObject>();
     public Transform selectionPage;
+
     public int currentPageIndex = 0;
 
-    public List<string> allTags = new List<string>();
+    [HideInInspector] public List<string> allTags = new List<string>();
     public List<string> selectedTags = new List<string>();
+    public List<string> tempTags = new List<string>();
     [SerializeField] private int maxTags = 6;
     [SerializeField] private int maxTagPerGroup = 9;
 
@@ -28,12 +32,16 @@ public class AgentStatsTags : MonoBehaviour
 
     [SerializeField] private Color defaultColor;
     [SerializeField] private Color matchColor;
+
+    [SerializeField] private bool isInit = false;
+    private bool isRandomCoroutine = false;
     // Start is called before the first frame update
     void Start()
     {
         matchButton.onClick.AddListener(() => FindMatch());
         selectButton.onClick.AddListener(() => EnableSelectionPage());
         nextButton.onClick.AddListener(() => NextSelectionPage());
+        confirmButton.onClick.AddListener(() => ConfirmTags());
         selectionPage.gameObject.SetActive(false);
     }
 
@@ -42,7 +50,8 @@ public class AgentStatsTags : MonoBehaviour
     {
     }
 
-    public void UpdateTagObject() {
+    public void UpdateTagObject()
+    {
 
         //   if (selectedTags.Count != 0) return;
 
@@ -58,80 +67,74 @@ public class AgentStatsTags : MonoBehaviour
             if (remainder > 0)
                 division += 1;
 
-            Debug.Log("***ALL TAG:" + allTags.Count +",Need : "+division);
+            Debug.Log("***ALL TAG:" + allTags.Count + ",Need : " + division);
 
             int num = 0;
 
-            while (num != division) {
+            while (num != division)
+            {
                 GameObject groupObj = Instantiate(selectGroupPrefab, selectionPage);
                 if (!selectGroups.Contains(groupObj))
-                selectGroups.Add(groupObj);
-                num++;          
+                    selectGroups.Add(groupObj);
+                num++;
             }
+            // return if insufficient group count
+            if (selectGroups.Count != num)
+                return;
 
-            int groupNum = 0;
+            int tagIndex = 0;
             
-
-            for (int i = 1; i < allTags.Count; i++)
+            while (tagIndex < allTags.Count)
             {
-                int div = i / maxTagPerGroup;
-                int mod = i% maxTagPerGroup;
-
-                GameObject tagObj = Instantiate(tagPrefab, selectGroups[groupNum].transform);
-                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = allTags[i-1];
-
-                if (div > 0)
-                {
-                    if (mod == 0 && groupNum + 1 < selectGroups.Count)
-                    {
-                        groupNum++;
-                    }
-                }
+                GameObject tagObj = Instantiate(tagPrefab, selectGroups[GetGroupNum(tagIndex)].transform);
+                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = allTags[tagIndex];
+                tagIndex++;
             }
-            // selectGroup_2.gameObject.SetActive(false);
         }
     }
-
+    private int GetGroupNum(int tagIndex) {
+        return tagIndex / maxTagPerGroup;
+    
+    }
     public void LoadTags()
     {
         if (!agent) return;
 
+        Debug.Log("---Load Tags---");
         //Additional Tags
         additionalTagGroup.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = agent.personality.additionalTags[0];
         additionalTagGroup.GetChild(1).GetComponentInChildren<TextMeshProUGUI>().text = agent.gptName;
 
         //Tags
-        allTags.AddRange(agent.personality.tags);
+        if (!isRandomCoroutine)
+            StartCoroutine(SelectTagsCoroutine());
 
-        int i = 0;
-        //select the tags randomly
-        while (i != maxTags)
+        if (selectedTags.Count == selectTagsGroup.childCount)
         {
-            int rand = Random.Range(0, allTags.Count);
-            string tag = allTags[rand];
-            // selected tags randomly
-            if (!selectedTags.Contains(tag))
-                selectedTags.Add(tag);
-            i++;
+            for (int i = 0; i < selectTagsGroup.childCount; i++)
+            {
+                GameObject tagObj = selectTagsGroup.GetChild(i).gameObject;
+                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = selectedTags[i];
+
+            }
         }
-
-
-        for (int k = 0; k < selectedTags.Count;k++)
-        {
-            GameObject tagObj = additionTags[k];
-            tagObj.GetComponentInChildren<TextMeshProUGUI>().text = selectedTags[k];
-
-        }
+        Debug.Log("**Select Tags :" + selectedTags.Count + ", TagsCount : " + selectTagsGroup.childCount);
     }
 
-		public void ResetTags() {
+    public void ResetState()
+    {
         allTags.Clear();
         selectedTags.Clear();
+        tempTags.Clear();
+
+        for (int i = 0; i < selectGroups.Count; i++)
+            Destroy(selectGroups[i]);
+
+        selectGroups.Clear();
     }
 
     public void SetAgent(Agent newAgent)
     {
-        //ResetTags();
         agent = newAgent;
         if (agent)
         {
@@ -196,6 +199,72 @@ public class AgentStatsTags : MonoBehaviour
 
         selectGroups[currentPageIndex].SetActive(true);
 
+    }
+
+    public void AddTempTags(string text) {
+        if (tempTags.Count < maxTags) {
+            if (!tempTags.Contains(text))
+                tempTags.Add(text);
+        }
+    }
+
+    public void RemoveTempTags(string text) {
+        if (tempTags.Count > 0)
+        {
+            if (tempTags.Contains(text))
+                tempTags.Remove(text);
+        }
+    }
+
+    public void ConfirmTags() {
+        selectedTags.Clear();
+        if (selectedTags.Count == 0)
+            selectedTags.AddRange(tempTags);
+
+        if (selectedTags.Count != selectTagsGroup.childCount)
+        {
+            int r = selectTagsGroup.childCount - selectedTags.Count;
+
+            for (int j = 6 - r - 1; j < selectTagsGroup.childCount; j++)
+            {
+                GameObject tagObj = selectTagsGroup.GetChild(j).gameObject;
+                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = "";
+            }
+        }
+
+        for (int i = 0; i < selectedTags.Count; i++)
+        {
+            GameObject tagObj = selectTagsGroup.GetChild(i).gameObject;
+            tagObj.GetComponentInChildren<TextMeshProUGUI>().text = selectedTags[i];
+        }
+
+
+        // when user just highlight 4,then it show 
+
+        selectionPage.gameObject.SetActive(false);
+
+    }
+
+
+    private IEnumerator SelectTagsCoroutine() {
+
+        isRandomCoroutine = true;
+        allTags.AddRange(agent.personality.tags);
+        Debug.Log("**All tags: " +allTags.Count);
+        //select the tags randomly
+        while (selectedTags.Count  != maxTags)
+        {
+            int rand = Random.Range(0, allTags.Count);
+            string tag = allTags[rand];
+            // selected tags randomly
+            if (!selectedTags.Contains(tag))
+                selectedTags.Add(tag);
+
+        }
+        if (tempTags.Count ==0)
+            tempTags.AddRange(selectedTags);
+        yield return null;
+        isRandomCoroutine = false;
     }
 
 }
