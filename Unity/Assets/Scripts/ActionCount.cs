@@ -11,6 +11,7 @@ public class ActionCount
 	public int disagreementCount;
 	public int soloCount;
 	public int interactionCount;
+	public int totalCount;
 
 	public ActionCount() { }
 	public ActionCount(int restCount, int communicationCount, int disagreementCount,	
@@ -20,11 +21,9 @@ public class ActionCount
 		this.disagreementCount = disagreementCount;
 		this.soloCount = soloCount;
 		this.interactionCount = interactionCount;
+		this.totalCount = communicationCount + interactionCount;
 	}
 
-	public int GetTotalCount() { 
-		return this.communicationCount + this.interactionCount;
-	}
 
 }
 

@@ -33,11 +33,11 @@ public class AgentsManager : MonoBehaviour
 
         Debug.Log("---Top Result----");
 
-        topAgents = agents.OrderBy(t => t.actionCount.GetTotalCount()).Take(maxResults).ToList();
+        topAgents = agents.OrderByDescending(t => t.actionCount.totalCount).Take(maxResults).ToList();
 
         foreach (Agent a in topAgents)
         {
-            Debug.Log(string.Format("Name:{0} , Total Count:{1}", a.name, a.actionCount.GetTotalCount())); 
+            Debug.Log(string.Format("Name:{0} , Total Count:{1}", a.name, a.actionCount.totalCount)); 
         }
     }
     public void Save(string configPath) {
@@ -52,6 +52,7 @@ public class AgentsManager : MonoBehaviour
         File.WriteAllLines(saveFilePath,datas);
         Debug.Log("Save data");
     }
+
 
     IEnumerator Init() {
 

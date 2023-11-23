@@ -629,15 +629,17 @@ public class Agent : MonoBehaviour
                 break;
             case AgentBehavior.Actions.InteractionTime:
                 actionCount.interactionCount++;
+                actionCount.totalCount++;
                 break;
             case AgentBehavior.Actions.Rest:
                 actionCount.restCount++;
                 break;
             case AgentBehavior.Actions.Communication:
                 actionCount.communicationCount++;
+                actionCount.totalCount++;
                 break;
             case AgentBehavior.Actions.Disagreement:
-                actionCount.communicationCount++;
+                actionCount.disagreementCount++;
                 break;
         }
     }

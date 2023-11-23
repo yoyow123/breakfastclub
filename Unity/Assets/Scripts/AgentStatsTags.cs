@@ -131,6 +131,8 @@ public class AgentStatsTags : MonoBehaviour
             Destroy(selectGroups[i]);
 
         selectGroups.Clear();
+
+        selectionPage.gameObject.SetActive(false);
     }
 
     public void SetAgent(Agent newAgent)

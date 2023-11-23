@@ -1,55 +1,60 @@
 {
-    "name": "Sophia",
-    "gptName": "GPT:Ask Cris about FileMaker",
+    "name": "Quinn",
+    "gptName": "GPT:Academic Writer (Professional Version)",
     "actionCount": {
         "restCount": 3,
-        "communicationCount": 0,
+        "communicationCount": 7,
         "disagreementCount": 0,
         "soloCount": 0,
-        "interactionCount": 0
+        "interactionCount": 19,
+        "totalCount": 26
     }
 }
 {
-    "name": "Bob",
-    "gptName": "GPT:Bilingual Storyteller",
+    "name": "Leo",
+    "gptName": "GPT:Career Compass",
     "actionCount": {
-        "restCount": 3,
-        "communicationCount": 0,
+        "restCount": 5,
+        "communicationCount": 7,
         "disagreementCount": 0,
         "soloCount": 0,
-        "interactionCount": 0
+        "interactionCount": 17,
+        "totalCount": 24
     }
 }
 {
-    "name": "Nathan",
-    "gptName": "GPT:Ask Cris about FileMaker",
+    "name": "Eva",
+    "gptName": "GPT:CARTOON versus CARTOON",
     "actionCount": {
-        "restCount": 3,
-        "communicationCount": 0,
+        "restCount": 6,
+        "communicationCount": 14,
         "disagreementCount": 0,
         "soloCount": 0,
-        "interactionCount": 0
+        "interactionCount": 9,
+        "totalCount": 23
     }
 }
 {
-    "name": "Ivy",
-    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+    "name": "Paul",
+    "gptName": "GPT:CARTOON versus CARTOON",
     "actionCount": {
-        "restCount": 3,
-        "communicationCount": 0,
+        "restCount": 7,
+        "communicationCount": 8,
         "disagreementCount": 0,
         "soloCount": 0,
-        "interactionCount": 0
+        "interactionCount": 14,
+        "totalCount": 22
     }
 }
 {
-    "name": "Alice",
-    "gptName": "GPT:Bilingual Translation",
+    "name": "Jack",
+    "gptName": "GPT:Atman Academy POAP Maker",
     "actionCount": {
-        "restCount": 3,
-        "communicationCount": 0,
-        "disagreementCount": 0,
+        "restCount": 5,
+        "communicationCount": 5,
+        "disagreementCount": 3,
         "soloCount": 0,
-        "interactionCount": 0
+        "interactionCount": 16,
+        "totalCount": 21
     }
 }
