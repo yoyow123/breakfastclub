@@ -24,6 +24,8 @@ public class AgentTagInfo
 
 public class AgentsManager : MonoBehaviour
 {
+    [SerializeField] private AgentStatsTags agentStatsTags;
+
     public string saveFilePath;
     public List<Agent> agents = new List<Agent>();
     public List<Agent> topAgents = new List<Agent>();
@@ -39,20 +41,29 @@ public class AgentsManager : MonoBehaviour
     public int maxMatchedTags = 6;
 
     public bool IsInitCoroutine = false;
+    public bool isMatched = false;
     // Start is called before the first frame update
     void Start()
     {
+        agentStatsTags = FindObjectOfType<AgentStatsTags>();
         StartCoroutine(Init());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!String.IsNullOrEmpty(currentAgentTagInfo.name))
+        if (currentAgentTagInfo != null && !String.IsNullOrEmpty(currentAgentTagInfo.name))
         {
-            GetAllTags();
-            SelectMatchedTags();
+            if (!isMatched)
+            {
+                GetAllTags();
+                SelectMatchedTags();
+                agentStatsTags.SetAgent(currentAgent);
+                isMatched = true;
+            }
         }
+
+
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -85,7 +96,7 @@ public class AgentsManager : MonoBehaviour
         File.WriteAllLines(saveFilePath,datas);
         Debug.Log("Save data");
     }
-    public void SetCurrentAgent(Agent agent) {
+    public void SetAgent(Agent agent) {
         currentAgent = agent;
         currentAgentTagInfo = new AgentTagInfo(agent.personality.name, agent.personality.tags.ToList());
 
@@ -97,18 +108,27 @@ public class AgentsManager : MonoBehaviour
         {
             if (currentAgentTagInfo.name != agentTagsLists[i].name)
             {
-                Debug.Log("Current is: " + currentAgentTagInfo.name + ", Add tags from:" + agentTagsLists[i].name);
+                //Debug.Log("Current is: " + currentAgentTagInfo.name + ", Add tags from:" + agentTagsLists[i].name);
                 allComparedTags.AddRange(agentTagsLists[i].tags);
             }
         }
     }
     public void SelectMatchedTags() {
         var result = currentAgentTagInfo.tags.Intersect(allComparedTags);
-        currentMatchedTags.AddRange(result);
-
+        foreach (string str in result)
+        {
+            if(!currentMatchedTags.Contains(str))
+            currentMatchedTags.Add(str);
+        }
         Debug.Log("Matched tags " + currentMatchedTags.Count);
     }
 
+    public void ResetState() {
+        allComparedTags.Clear();
+        currentMatchedTags.Clear();
+        isMatched = false;
+
+    }
     IEnumerator Init() {
 
         IsInitCoroutine = true;

@@ -154,6 +154,7 @@ public class AgentUI : MonoBehaviour
     void OnMouseDown()
     {
         statsTags.ResetState();
+        agentsManager.ResetState();
         //return;
         //If your mouse hovers over the GameObject with the script attached, output this message
         //Debug.Log(string.Format("OnMouseDown GameObject {0}.", this.name));
@@ -161,14 +162,15 @@ public class AgentUI : MonoBehaviour
         {
             //Debug.Log(string.Format("Dissable stats."));
             statsTooltip.SetAgent(null);
+            agentsManager.SetAgent(null);
             statsTags.SetAgent(null);
         }
         else
         {
             //Debug.Log(string.Format("Enable stats."));
             statsTooltip.SetAgent(agent);
-            agentsManager.SetCurrentAgent(agent);
-            statsTags.SetAgent(agent);
+            agentsManager.SetAgent(agent);
+            //statsTags.SetAgent(agent);
         }   
     }
 }

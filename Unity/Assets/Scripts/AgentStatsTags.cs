@@ -35,26 +35,20 @@ public class AgentStatsTags : MonoBehaviour
     [SerializeField] private Color matchColor;
 
     [SerializeField] private bool isInit = false;
-    private bool isRandomCoroutine = false;
+    private bool isTagCoroutine = false;
     // Start is called before the first frame update
     void Start()
     {
         agentsManager = FindObjectOfType<AgentsManager>();
-        matchButton.onClick.AddListener(() => FindMatch());
         selectButton.onClick.AddListener(() => EnableSelectionPage());
         nextButton.onClick.AddListener(() => NextSelectionPage());
         confirmButton.onClick.AddListener(() => ConfirmTags());
         selectionPage.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void UpdateTagObject()
     {
-
+        Debug.Log("-------Generate Tag Group----");
         //   if (selectedTags.Count != 0) return;
 
         // update the info of selected tags
@@ -107,19 +101,14 @@ public class AgentStatsTags : MonoBehaviour
         additionalTagGroup.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = agent.personality.additionalTags[0];
         additionalTagGroup.GetChild(1).GetComponentInChildren<TextMeshProUGUI>().text = agent.gptName;
 
-        //Tags
-        if (!isRandomCoroutine)
+        // Get all tags of the current agent
+        if (allTags.Count == 0)
+            allTags.AddRange(agent.personality.tags);
+
+        //Get all matched tags and show in ui by default
+        if (!isTagCoroutine)
             StartCoroutine(SelectTagsCoroutine());
 
-        if (selectedTags.Count == selectTagsGroup.childCount)
-        {
-            for (int i = 0; i < selectTagsGroup.childCount; i++)
-            {
-                GameObject tagObj = selectTagsGroup.GetChild(i).gameObject;
-                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = selectedTags[i];
-
-            }
-        }
         Debug.Log("**Select Tags :" + selectedTags.Count + ", TagsCount : " + selectTagsGroup.childCount);
     }
 
@@ -149,38 +138,6 @@ public class AgentStatsTags : MonoBehaviour
         else { gameObject.SetActive(false); }
     }
 
-
-
-    public void FindMatch()
-    {
-     /*   RefreshTags();
-
-        int randNum = Random.Range(0, additionalTagGroup.childCount);
-        GameObject g = additionalTagGroup.GetChild(randNum).gameObject;
-        g.transform.Find("TagsInColor").GetComponent<Image>().color = matchColor;
-
-        for (int i = 0; i < 3; i++)
-        {
-            int num = Random.Range(0, tagGroup.childCount);
-            GameObject tag = tagGroup.GetChild(randNum).gameObject;
-            tag.transform.Find("TagsInColor").GetComponent<Image>().color = matchColor;
-        }*/
-    }
-
-    public void RefreshTags() {
-
-     /*   for (int i = 0; i < additionalTagGroup.childCount; i++)
-        {
-            GameObject tagObj = additionalTagGroup.GetChild(i).gameObject;
-            tagObj.transform.Find("TagsInColor").GetComponent<Image>().color = defaultColor;
-        }
-
-        for (int i = 0; i < tagGroup.childCount; i++)
-        {
-            GameObject tagObj = tagGroup.GetChild(i).gameObject;
-            tagObj.transform.Find("TagsInColor").GetComponent<Image>().color = defaultColor;
-        }*/
-    }
 
     public void EnableSelectionPage() {
         selectionPage.gameObject.SetActive(true);
@@ -252,23 +209,47 @@ public class AgentStatsTags : MonoBehaviour
 
     private IEnumerator SelectTagsCoroutine() {
 
-        isRandomCoroutine = true;
-        allTags.AddRange(agent.personality.tags);
-       // Debug.Log("**All Matched tags: " + agentsManager.currentMatchedTags.Count);
-        //select the tags randomly
-        while (selectedTags.Count  != maxTags)
-        {
-            int rand = Random.Range(0, agentsManager.currentMatchedTags.Count);
-            string tag = agentsManager.currentMatchedTags[rand];
-            // selected tags randomly
-            if (!selectedTags.Contains(tag))
-                selectedTags.Add(tag);
+        isTagCoroutine = true;
 
+        Debug.Log("**All Matched tags: " + agentsManager.currentMatchedTags.Count);
+        foreach (string s in agentsManager.currentMatchedTags) {
+            Debug.Log("Tag: " + s);
+        }
+
+        //  add the matched tags to list
+        for (int i = 0; i < agentsManager.currentMatchedTags.Count; i++)
+        {
+            if (!selectedTags.Contains(agentsManager.currentMatchedTags[i]) && selectedTags.Count !=maxTags)
+                selectedTags.Add(agentsManager.currentMatchedTags[i]);
+        }
+
+        //if less than 6,  then add other unmatched tags to list
+        if (selectedTags.Count < maxTags) {
+            for (int i = 0; i < allTags.Count; i++) 
+            {
+                if (!selectedTags.Contains(allTags[i]) && selectedTags.Count != maxTags)
+                    selectedTags.Add(allTags[i]);
+            }
+        
+        }
+
+
+        if (selectedTags.Count==maxTags)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                GameObject tagObj = selectTagsGroup.GetChild(i).gameObject;
+                Tag tag = tagObj.GetComponent<Tag>();
+                tag.text = selectedTags[i];
+                tag.Init();
+
+            }
         }
         if (tempTags.Count ==0)
             tempTags.AddRange(selectedTags);
+
         yield return null;
-        isRandomCoroutine = false;
+        isTagCoroutine = false;
     }
 
 }

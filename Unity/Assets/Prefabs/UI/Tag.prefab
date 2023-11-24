@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c165307e08e5f704f8578d29e7588a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentsManager: {fileID: 0}
   agentStatsTags: {fileID: 0}
   img: {fileID: 1917653492919265532}
   tmp: {fileID: 7499999740378093568}

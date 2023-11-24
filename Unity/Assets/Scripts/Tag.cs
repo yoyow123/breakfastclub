@@ -6,6 +6,7 @@ using TMPro;
 
 public class Tag : MonoBehaviour
 {
+    [SerializeField] private AgentsManager agentsManager;
     [SerializeField] private AgentStatsTags agentStatsTags;
     [SerializeField] private Image img;
     public TextMeshProUGUI tmp;
@@ -13,32 +14,32 @@ public class Tag : MonoBehaviour
     public Button btn;
     public string text = "";
     public bool isInit = false;
+    public bool isSelected = false;
     public bool isHighLight = false;
     public bool isMatched = false;
     [SerializeField] private Color defaultColor;
     [SerializeField] private Color matchedColor;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        text = tmp.text;
+        agentsManager = FindObjectOfType<AgentsManager>();
         agentStatsTags = FindObjectOfType<AgentStatsTags>();
         SetHighlight(false);
         btn.onClick.AddListener(() => SetHighlight(!isHighLight));
         btn.onClick.AddListener(() => OnSelect());
-        StartCoroutine(Init());
     }
 
 
-	private void Update()
-	{
+    private void Update()
+    {
+
     }
 
     public void SetHighlight(bool isTrue)
     {
         if (isInit)
         {
-            isMatched = true;
             if (agentStatsTags.tempTags.Count >= 6)
             {
                 if (isHighLight)
@@ -47,7 +48,8 @@ public class Tag : MonoBehaviour
                     isHighLight = false;
                 }
             }
-            else {
+            else
+            {
                 highlightImg.enabled = isTrue;
                 isHighLight = isTrue;
             }
@@ -60,7 +62,8 @@ public class Tag : MonoBehaviour
         }
     }
 
-    public void OnSelect() {
+    public void OnSelect()
+    {
         if (isInit)
         {
             if (isHighLight)
@@ -71,22 +74,17 @@ public class Tag : MonoBehaviour
         }
     }
 
-
-    IEnumerator Init() {
-        yield return new WaitForEndOfFrame();
-        if (!isInit)
+    public void Init()
+    {
+        tmp.text = text;
+        if (agentsManager.currentMatchedTags.Contains(text))
         {
-            if (agentStatsTags.tempTags.Contains(text))
-            {
-                img.color = matchedColor;
-                if (!isHighLight)
-                    SetHighlight(true);
-            }
-            else
-            {
-                SetHighlight(false);
-            }
-            isInit = true;
+            img.color = matchedColor;
+            isMatched = true;
         }
+        if (agentStatsTags.selectedTags.Contains(text))
+            isSelected = true;
     }
+
+
 }
