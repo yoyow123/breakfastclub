@@ -185,6 +185,8 @@ public class AgentStatsTags : MonoBehaviour
     }
 
     public void ConfirmTags() {
+
+        Debug.Log("---Confirm Tags---");
         selectedTags.Clear();
         if (selectedTags.Count == 0)
             selectedTags.AddRange(tempTags);
@@ -196,14 +198,22 @@ public class AgentStatsTags : MonoBehaviour
             for (int j = 6 - r - 1; j < selectTagsGroup.childCount; j++)
             {
                 GameObject tagObj = selectTagsGroup.GetChild(j).gameObject;
-                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                Tag tag = tagObj.GetComponent<Tag>();
+                tag.text = "";
+                tag.agentsManager = agentsManager;
+                tag.agentStatsTags = this; 
+                tag.Init();
             }
         }
 
         for (int i = 0; i < selectedTags.Count; i++)
         {
             GameObject tagObj = selectTagsGroup.GetChild(i).gameObject;
-            tagObj.GetComponentInChildren<TextMeshProUGUI>().text = selectedTags[i];
+            Tag tag = tagObj.GetComponent<Tag>();
+            tag.text = selectedTags[i];
+            tag.agentsManager = agentsManager;
+            tag.agentStatsTags = this; 
+            tag.Init();
         }
 
 
