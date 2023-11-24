@@ -45,13 +45,24 @@ public class AgentStatsTags : MonoBehaviour
         confirmButton.onClick.AddListener(() => ConfirmTags());
         selectionPage.gameObject.SetActive(false);
     }
+    public void SetAgent(Agent newAgent)
+    {
+        agent = newAgent;
+        if (agent)
+        {
+            gameObject.SetActive(true);
+            LoadDefaultTags();
+            UpdateTagObject();
+            LoadAllTags();
+
+        }
+        else { gameObject.SetActive(false); }
+    }
+
 
     public void UpdateTagObject()
     {
         Debug.Log("-------Generate Tag Group----");
-        //   if (selectedTags.Count != 0) return;
-
-        // update the info of selected tags
 
         //prepare enough selection groups
         if (allTags.Count > 0)
@@ -78,25 +89,33 @@ public class AgentStatsTags : MonoBehaviour
             if (selectGroups.Count != num)
                 return;
 
-            int tagIndex = 0;
-            
-            while (tagIndex < allTags.Count)
-            {
-                GameObject tagObj = Instantiate(tagPrefab, selectGroups[GetGroupNum(tagIndex)].transform);
-                tagObj.GetComponentInChildren<TextMeshProUGUI>().text = allTags[tagIndex];
-                tagIndex++;
-            }
+
+        }
+    }
+    public void LoadAllTags() {
+        Debug.Log("-------Load All tags---");
+        int tagIndex = 0;
+
+        while (tagIndex < allTags.Count)
+        {
+            GameObject tagObj = Instantiate(tagPrefab, selectGroups[GetGroupNum(tagIndex)].transform);
+            Tag tag = tagObj.GetComponent<Tag>();
+            tag.text = allTags[tagIndex];
+            tag.agentsManager = agentsManager;
+            tag.agentStatsTags = this;
+            tag.Init();
+            tagIndex++;
         }
     }
     private int GetGroupNum(int tagIndex) {
         return tagIndex / maxTagPerGroup;
     
     }
-    public void LoadTags()
+    public void LoadDefaultTags()
     {
         if (!agent) return;
 
-        Debug.Log("---Load Tags---");
+        Debug.Log("---Load Default Tags---");
         //Additional Tags
         additionalTagGroup.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = agent.personality.additionalTags[0];
         additionalTagGroup.GetChild(1).GetComponentInChildren<TextMeshProUGUI>().text = agent.gptName;
@@ -124,18 +143,6 @@ public class AgentStatsTags : MonoBehaviour
         selectGroups.Clear(); 
 
         selectionPage.gameObject.SetActive(false);
-    }
-
-    public void SetAgent(Agent newAgent)
-    {
-        agent = newAgent;
-        if (agent)
-        {
-            gameObject.SetActive(true);
-            LoadTags();
-            UpdateTagObject();
-        }
-        else { gameObject.SetActive(false); }
     }
 
 
@@ -241,6 +248,8 @@ public class AgentStatsTags : MonoBehaviour
                 GameObject tagObj = selectTagsGroup.GetChild(i).gameObject;
                 Tag tag = tagObj.GetComponent<Tag>();
                 tag.text = selectedTags[i];
+                tag.agentsManager = agentsManager;
+                tag.agentStatsTags = this;;
                 tag.Init();
 
             }

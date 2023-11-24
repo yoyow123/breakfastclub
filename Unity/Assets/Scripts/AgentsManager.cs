@@ -114,13 +114,14 @@ public class AgentsManager : MonoBehaviour
         }
     }
     public void SelectMatchedTags() {
+        Debug.Log("---Matched Tags-------");
         var result = currentAgentTagInfo.tags.Intersect(allComparedTags);
         foreach (string str in result)
         {
             if(!currentMatchedTags.Contains(str))
             currentMatchedTags.Add(str);
         }
-        Debug.Log("Matched tags " + currentMatchedTags.Count);
+       // Debug.Log("Matched tags " + currentMatchedTags.Count);
     }
 
     public void ResetState() {
