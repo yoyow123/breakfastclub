@@ -21,7 +21,7 @@ public class AgentUI : MonoBehaviour
     private NavMeshAgent navAgent;
     private Camera cam;
     private Agent agent;
-    private Canvas UICanvas;
+    [SerializeField] private Canvas UICanvas;
     [SerializeField] private AgentStatsTooltip statsTooltip;
     [SerializeField] private AgentStatsTags statsTags;
     [SerializeField] private AgentsManager agentsManager;
@@ -41,8 +41,8 @@ public class AgentUI : MonoBehaviour
         cam = FindObjectOfType<Camera>();
         agent = gameObject.GetComponent<Agent>();
 
-        UICanvas = FindObjectOfType<Canvas>();
-        statsTooltip = UICanvas.transform.Find("AgentStatsTooltip").GetComponent<AgentStatsTooltip>();
+       // UICanvas = FindObjectOfType<Canvas>();
+        statsTooltip = FindObjectOfType<AgentStatsTooltip>();
         statsTags = statsTooltip.GetComponentInChildren<AgentStatsTags>();
         agentsManager = FindObjectOfType<AgentsManager>();
         AgentNameText = transform.Find("NameText").GetComponent<TMPro.TextMeshPro>();

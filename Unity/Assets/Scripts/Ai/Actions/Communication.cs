@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Communication : AgentBehavior
 {
@@ -115,7 +117,6 @@ public class Communication : AgentBehavior
                 }
 
             case ActionState.ACTION:
-                //actionCount++;
                 agent.motivation = boundValue(0.0, agent.motivation + config["MOTIVATION_INCREASE"], 1.0);
                 agent.happiness = boundValue(0.0, agent.happiness + config["HAPPINESS_INCREASE"], 1.0);
                 agent.navagent.destination = otherAgent.transform.position;
@@ -179,7 +180,12 @@ public class Communication : AgentBehavior
                 break;
 
             case ActionState.ACTION:
+                Debug.Log(String.Format("**Communication**{0} GOT A FRIEND :{1} ", agent.personality.name, otherAgent.personality.name));
                 agent.LogDebug($"Ending Communicationting with {otherAgent}!");
+
+                Friend friend = new Friend(otherAgent.personality.name, otherAgent.gptName, otherAgent.actionCount);
+                if (!agent.friendLists.Contains(friend))
+                    agent.friendLists.Add(friend);
                 break;
         }
         retry_cnter = 0;
@@ -206,6 +212,7 @@ public class Communication : AgentBehavior
                 return String.Format($"{name}({state}) waiting to interact with {otherAgent.studentname}");
             case ActionState.ACTION:
                 return String.Format($"{name}({state}) actively involving in a conversation with {otherAgent.studentname}");
+
         }
         return "Invalid State!";
     }

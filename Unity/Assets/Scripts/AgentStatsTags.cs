@@ -67,7 +67,7 @@ public class AgentStatsTags : MonoBehaviour
         //prepare enough selection groups
         if (allTags.Count > 0)
         {
-            //17/9 = 1
+            //17/9 = 2
             int division = allTags.Count / maxTagPerGroup;
             int remainder = allTags.Count % maxTagPerGroup;
 
@@ -194,7 +194,7 @@ public class AgentStatsTags : MonoBehaviour
         if (selectedTags.Count != selectTagsGroup.childCount)
         {
             int r = selectTagsGroup.childCount - selectedTags.Count;
-
+            // when the number of selected tag is not 6
             for (int j = 6 - r - 1; j < selectTagsGroup.childCount; j++)
             {
                 GameObject tagObj = selectTagsGroup.GetChild(j).gameObject;
@@ -230,7 +230,7 @@ public class AgentStatsTags : MonoBehaviour
 
         Debug.Log("**All Matched tags: " + agentsManager.currentMatchedTags.Count);
         foreach (string s in agentsManager.currentMatchedTags) {
-            Debug.Log("Tag: " + s);
+            //Debug.Log("Tag: " + s);
         }
 
         //  add the matched tags to list

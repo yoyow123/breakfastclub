@@ -60,6 +60,8 @@ public class Agent : MonoBehaviour
 
     public ActionCount actionCount = new ActionCount();
 
+    public List<Friend> friendLists = new List<Friend>();
+
     public string gptName;
 
     public void initAgent(string name, System.Random random, Personality personality)
@@ -452,6 +454,8 @@ public class Agent : MonoBehaviour
             Communication Communication = (Communication)behaviors["Communication"];
             Communication.acceptInviation(otherAgent);
             StartAction(Communication);
+            Friend friend = new Friend(otherAgent.personality.name, otherAgent.gptName, otherAgent.actionCount);
+        
         }
         else
         {

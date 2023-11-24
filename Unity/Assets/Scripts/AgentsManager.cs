@@ -75,20 +75,15 @@ public class AgentsManager : MonoBehaviour
 
     void GetTheTopResult() {
 
-        Debug.Log("---Top Result----");
+        Debug.Log("---Get Result----");
 
-        topAgents = agents.OrderByDescending(t => t.actionCount.totalCount).Take(maxResults).ToList();
-
-        foreach (Agent a in topAgents)
-        {
-            Debug.Log(string.Format("Name:{0} , Total Count:{1}", a.name, a.actionCount.totalCount)); 
-        }
+       // topAgents = agents.OrderByDescending(t => t.actionCount.totalCount).Take(maxResults).ToList();
     }
     public void Save(string configPath) {
         string[] datas = new string[maxResults];
         int j = 0;
         for (int i = 0; i < topAgents.Count; i++) {
-            AgentResult result = new AgentResult(topAgents[i].personality.name ,topAgents[i].gptName, topAgents[i].actionCount);
+            AgentResult result = new AgentResult(agents[i].personality.name ,agents[i].friendLists);
            // jsonData += JsonUtility.ToJson(result);
             datas[j] = JsonUtility.ToJson(result,true);
             j++;

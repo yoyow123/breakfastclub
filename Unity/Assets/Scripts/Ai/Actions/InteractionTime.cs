@@ -100,14 +100,18 @@ public class InteractionTime : AgentBehavior
         List<Agent> others = lastTable.getOtherAgents(agent);
         foreach (Agent other in others)
         {
-                if (other.currentAction is InteractionTime)
+            if (other.currentAction is InteractionTime)
+            {
+                if ((other.currentAction.state is ActionState.AWAITING) || (other.currentAction.state is ActionState.ACTION))
                 {
-                        if ((other.currentAction.state is ActionState.AWAITING) || (other.currentAction.state is ActionState.ACTION))
-                        {
-                            agent.LogDebug(String.Format("Found at least one other agent {0} on hub!", other));
-                            return true;
-                        }
+                    agent.LogDebug(String.Format("Found at least one other agent {0} on hub!", other));
+                    Friend friend = new Friend(other.personality.name, other.gptName, other.actionCount);
+                    Debug.Log(String.Format("**Interaction Time**{0} GOT A FRIEND :{1} ", agent.personality.name, other.personality.name));
+                    if (!agent.friendLists.Contains(friend))
+                        agent.friendLists.Add(friend);
+                    return true;
                 }
+            }
         }
         agent.LogDebug(String.Format("Could not find anyone at the table ready to study!"));
         state = ActionState.AWAITING;
@@ -214,11 +218,11 @@ public class InteractionTime : AgentBehavior
                 break;
 
             case ActionState.AWAITING:
-                agent.LogDebug(String.Format("Stopping to wait for a study group at {0}!", lastTable));
+                agent.LogDebug(String.Format("Stopping to wait for a social group at {0}!", lastTable.name));
                 break;
 
             case ActionState.ACTION:
-                agent.LogDebug(String.Format("Stop studying at {0}!", lastTable));
+                agent.LogDebug(String.Format("Stop interacting at {0}!", lastTable.name));
                 break;
         }
         if (lastTable)
