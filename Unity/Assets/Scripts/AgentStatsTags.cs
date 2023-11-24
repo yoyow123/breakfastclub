@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class AgentStatsTags : MonoBehaviour
 {
+    [SerializeField] private AgentsManager agentsManager;
     public Button matchButton, selectButton;
     public Button nextButton, confirmButton;
 
@@ -38,6 +39,7 @@ public class AgentStatsTags : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        agentsManager = FindObjectOfType<AgentsManager>();
         matchButton.onClick.AddListener(() => FindMatch());
         selectButton.onClick.AddListener(() => EnableSelectionPage());
         nextButton.onClick.AddListener(() => NextSelectionPage());
@@ -130,7 +132,7 @@ public class AgentStatsTags : MonoBehaviour
         for (int i = 0; i < selectGroups.Count; i++)
             Destroy(selectGroups[i]);
 
-        selectGroups.Clear();
+        selectGroups.Clear(); 
 
         selectionPage.gameObject.SetActive(false);
     }
@@ -252,12 +254,12 @@ public class AgentStatsTags : MonoBehaviour
 
         isRandomCoroutine = true;
         allTags.AddRange(agent.personality.tags);
-        Debug.Log("**All tags: " +allTags.Count);
+       // Debug.Log("**All Matched tags: " + agentsManager.currentMatchedTags.Count);
         //select the tags randomly
         while (selectedTags.Count  != maxTags)
         {
-            int rand = Random.Range(0, allTags.Count);
-            string tag = allTags[rand];
+            int rand = Random.Range(0, agentsManager.currentMatchedTags.Count);
+            string tag = agentsManager.currentMatchedTags[rand];
             // selected tags randomly
             if (!selectedTags.Contains(tag))
                 selectedTags.Add(tag);

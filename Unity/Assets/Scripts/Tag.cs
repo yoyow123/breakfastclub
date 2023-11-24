@@ -7,13 +7,16 @@ using TMPro;
 public class Tag : MonoBehaviour
 {
     [SerializeField] private AgentStatsTags agentStatsTags;
+    [SerializeField] private Image img;
     public TextMeshProUGUI tmp;
     public Image highlightImg;
     public Button btn;
     public string text = "";
     public bool isInit = false;
     public bool isHighLight = false;
-
+    public bool isMatched = false;
+    [SerializeField] private Color defaultColor;
+    [SerializeField] private Color matchedColor;
 
     // Start is called before the first frame update
     void Start()
@@ -29,13 +32,13 @@ public class Tag : MonoBehaviour
 
 	private void Update()
 	{
-
     }
 
     public void SetHighlight(bool isTrue)
     {
         if (isInit)
         {
+            isMatched = true;
             if (agentStatsTags.tempTags.Count >= 6)
             {
                 if (isHighLight)
@@ -75,6 +78,7 @@ public class Tag : MonoBehaviour
         {
             if (agentStatsTags.tempTags.Contains(text))
             {
+                img.color = matchedColor;
                 if (!isHighLight)
                     SetHighlight(true);
             }

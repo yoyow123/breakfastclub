@@ -2858,6 +2858,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6103915228150247760, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
         type: 3}
+      propertyPath: matchColor.b
+      value: 0.050418302
+      objectReference: {fileID: 0}
+    - target: {fileID: 6103915228150247760, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: matchColor.g
+      value: 0.9716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 6103915228150247760, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
+      propertyPath: matchColor.r
+      value: 0.9683514
+      objectReference: {fileID: 0}
+    - target: {fileID: 6103915228150247760, guid: 3a769131ebe25a64f90ed3bf54cc4e32,
+        type: 3}
       propertyPath: confirmButton
       value: 
       objectReference: {fileID: 744734755}

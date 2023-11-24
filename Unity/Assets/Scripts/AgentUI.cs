@@ -24,6 +24,7 @@ public class AgentUI : MonoBehaviour
     private Canvas UICanvas;
     [SerializeField] private AgentStatsTooltip statsTooltip;
     [SerializeField] private AgentStatsTags statsTags;
+    [SerializeField] private AgentsManager agentsManager;
     [SerializeField] private TextureController textureController;
     [SerializeField] private Animator agentAnimator;
     [SerializeField] private Animator bubbleAnimator;
@@ -43,8 +44,9 @@ public class AgentUI : MonoBehaviour
         UICanvas = FindObjectOfType<Canvas>();
         statsTooltip = UICanvas.transform.Find("AgentStatsTooltip").GetComponent<AgentStatsTooltip>();
         statsTags = statsTooltip.GetComponentInChildren<AgentStatsTags>();
+        agentsManager = FindObjectOfType<AgentsManager>();
         AgentNameText = transform.Find("NameText").GetComponent<TMPro.TextMeshPro>();
-
+     
         AgentNameText.SetText(agent.studentname);
     }
 
@@ -165,8 +167,8 @@ public class AgentUI : MonoBehaviour
         {
             //Debug.Log(string.Format("Enable stats."));
             statsTooltip.SetAgent(agent);
+            agentsManager.SetCurrentAgent(agent);
             statsTags.SetAgent(agent);
-
         }   
     }
 }
