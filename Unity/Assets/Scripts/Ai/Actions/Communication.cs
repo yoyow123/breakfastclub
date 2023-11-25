@@ -183,6 +183,7 @@ public class Communication : AgentBehavior
                 agent.LogDebug($"Ending Communicationting with {otherAgent}!");
                 agent.AddActionCount(this);
                 agent.AddFriends(otherAgent);
+                otherAgent.AddFriends(agent);
 
                 break;
         }

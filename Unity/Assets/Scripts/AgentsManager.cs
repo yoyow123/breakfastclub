@@ -91,7 +91,7 @@ public class AgentsManager : MonoBehaviour
         friendListsInfo.datas.Clear();
         for (int i = 0; i < agents.Count; i++) {
             var friends = agents[i].friendLists.OrderByDescending(t => t.count).Take(maxResults).ToList();
-            AgentResult result = new AgentResult(agents[i].personality.name, friends);
+            AgentResult result = new AgentResult(agents[i].personality.name, agents[i].gptName,agents[i].actionCount, friends);
             if (!friendListsInfo.datas.Contains(result))
                 friendListsInfo.datas.Add(result);
         }

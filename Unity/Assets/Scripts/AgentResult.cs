@@ -25,12 +25,16 @@ public class Friend {
 public class AgentResult
 {
 	public string name;
+	public string gptName;
+	public ActionCount actionCount;
 	public List<Friend> friends = new List<Friend>();
 
 	public AgentResult() { }
 
-	public AgentResult(string name, List<Friend> friends) {
+	public AgentResult(string name, string gptName, ActionCount actionCount, List<Friend> friends) {
 		this.name = name;
+		this.gptName = gptName;
+		this.actionCount = actionCount;
 		this.friends = friends;
 	}
 }
