@@ -43,7 +43,7 @@ public class AgentUI : MonoBehaviour
 
        // UICanvas = FindObjectOfType<Canvas>();
         statsTooltip = FindObjectOfType<AgentStatsTooltip>();
-        statsTags = statsTooltip.GetComponentInChildren<AgentStatsTags>();
+        statsTags = FindObjectOfType<AgentStatsTags>();
         agentsManager = FindObjectOfType<AgentsManager>();
         AgentNameText = transform.Find("NameText").GetComponent<TMPro.TextMeshPro>();
      

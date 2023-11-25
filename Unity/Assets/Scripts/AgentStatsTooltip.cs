@@ -23,6 +23,8 @@ public class AgentStatsTooltip : MonoBehaviour
     public TextMeshProUGUI DesireText;
     public Vector3 position_offset;
     public Agent agent { protected set; get; }
+
+    public bool isActived = false;
     
     // Start is called before the first frame update
     void Start()
@@ -47,8 +49,12 @@ public class AgentStatsTooltip : MonoBehaviour
         if (agent)
         {
             gameObject.SetActive(true);
+            isActived = true;
         }
-        else { gameObject.SetActive(false); }
+        else { 
+            gameObject.SetActive(false);
+            isActived = false;
+        }
     }
 
     // Update is called once per frame

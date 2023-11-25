@@ -6,15 +6,12 @@ using UnityEngine.UI;
 
 public class OpenURL : MonoBehaviour
 {
-    public Button btn;
+    [SerializeField] private AgentStatsTooltip tooltip;
     public string url;
     // Start is called before the first frame update
-    void Start()
-    {
-        btn.onClick.AddListener(() => OnBrowse(url));
-    }
 
-    public void OnBrowse(string url) {
+    public void OnMouseDown() {
+        if(!tooltip.isActived)
         Application.OpenURL(url);
     }
 }
