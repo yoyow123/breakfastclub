@@ -666,13 +666,13 @@ public class Agent : MonoBehaviour
             {
                 friendLists.Add(friend);
             }
-            Debug.Log(String.Format("****{0} GOT THE FIRST FRIEND :{1} ", personality.name, otherAgent.personality.name));
+            //Debug.Log(String.Format("****{0} GOT THE FIRST FRIEND :{1} ", personality.name, otherAgent.personality.name));
         }
         else
         {
             var result = friendLists.Where(t => t.agent && t.agent.Equals(otherAgent));
 
-            Debug.Log("****Duplicated Friends****:" + result.Count());
+           // Debug.Log("****Duplicated Friends****:" + result.Count());
             if (result.Count() == 0)
             {
                 // No duplicate
@@ -681,12 +681,12 @@ public class Agent : MonoBehaviour
                 {
                     friendLists.Add(friend);
                 }
-                Debug.Log(String.Format("****{0} GOT A NEW FRIEND :{1} ", personality.name, otherAgent.personality.name));
+               // Debug.Log(String.Format("****{0} GOT A NEW FRIEND :{1} ", personality.name, otherAgent.personality.name));
             }
             else {
                 foreach (Friend f in result)
                 {
-                    Debug.Log(String.Format("****{0} GOT A Repeated FRIEND :{1} already In friendLists {2} ", personality.name, otherAgent.personality.name, f.agent.personality.name));
+                 //   Debug.Log(String.Format("****{0} GOT A Repeated FRIEND :{1} already In friendLists {2} ", personality.name, otherAgent.personality.name, f.agent.personality.name));
                     f.count++;
                 }
             }

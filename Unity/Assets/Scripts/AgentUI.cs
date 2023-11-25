@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using System;
 using Spriter2UnityDX;
+using TMPro;
 
 public class AgentUI : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class AgentUI : MonoBehaviour
     private Camera cam;
     private Agent agent;
     [SerializeField] private Canvas UICanvas;
+    [SerializeField] private TextMeshProUGUI tmp;
     [SerializeField] private AgentStatsTooltip statsTooltip;
     [SerializeField] private AgentStatsTags statsTags;
     [SerializeField] private AgentsManager agentsManager;
@@ -150,6 +152,22 @@ public class AgentUI : MonoBehaviour
             else { animationstate = AnimationState.Walking; }
         }*/
     }
+    public void DisableHeart() {
+        UICanvas.enabled = false;
+    }
+
+    public void EnableHeart(int matchedNum) {
+        if (matchedNum > 0)
+        {
+            UICanvas.enabled = true;
+            string str = String.Format(" x {0}", matchedNum);
+            tmp.text = str;
+        }
+        else {
+            UICanvas.enabled = false;
+        }
+    }
+
 
     void OnMouseDown()
     {

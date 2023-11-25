@@ -16,13 +16,15 @@ public class FriendListsInfo  {
 public class AgentTagInfo
 {
     public string name = "";
+    public Agent agent;
     public List<string> tags;
 
     public AgentTagInfo() { }
 
-    public AgentTagInfo(string name, List<string> tags) {
-        this.name = name;
-        this.tags = tags;
+    public AgentTagInfo(Agent agent) {
+        this.agent = agent;
+        name = agent.personality.name;
+        this.tags = agent.personality.tags.ToList();
     }
 }
 
@@ -65,6 +67,7 @@ public class AgentsManager : MonoBehaviour
                 GetAllTags();
                 SelectMatchedTags();
                 agentStatsTags.SetAgent(currentAgent);
+                ShowMatchedInfo();
                 isMatched = true;
             }
         }
@@ -96,10 +99,6 @@ public class AgentsManager : MonoBehaviour
                 friendListsInfo.datas.Add(result);
         }
 
-/*        for (int i = 0; i < friendListsInfo.datas.Count; i++) {
-            Debug.Log(friendListsInfo.datas[i].name);
-        }
-*/
         if (friendListsInfo.datas.Count > 0)
         {
             string str = JsonUtility.ToJson(friendListsInfo,true);
@@ -112,7 +111,7 @@ public class AgentsManager : MonoBehaviour
     public void SetAgent(Agent agent) {
         currentAgent = agent;
         if(currentAgent !=null)
-        currentAgentTagInfo = new AgentTagInfo(currentAgent.personality.name, currentAgent.personality.tags.ToList());
+        currentAgentTagInfo = new AgentTagInfo(currentAgent);
 
     }
 
@@ -138,6 +137,24 @@ public class AgentsManager : MonoBehaviour
        // Debug.Log("Matched tags " + currentMatchedTags.Count);
     }
 
+    public void ShowMatchedInfo() {
+        for (int i = 0; i < agentTagsLists.Count; i++)
+        {
+            if (currentAgentTagInfo.name != agentTagsLists[i].name)
+            {
+                //Debug.Log("Current is: " + currentAgentTagInfo.name + ", Add tags from:" + agentTagsLists[i].name);
+                var result = currentAgentTagInfo.tags.Intersect(agentTagsLists[i].tags);
+                Debug.Log(string.Format("{0} has {1} matched tags with current Agent {2}", agentTagsLists[i].name, result.Count(), currentAgentTagInfo.name));
+                GameObject agent = agentTagsLists[i].agent.gameObject;
+                agent.GetComponent<AgentUI>().EnableHeart(result.Count());
+            }
+            else {
+                GameObject agent = currentAgentTagInfo.agent.gameObject;
+                agent.GetComponent<AgentUI>().DisableHeart();
+            }
+        }
+    }
+
     public void ResetState() {
         allComparedTags.Clear();
         currentMatchedTags.Clear();
@@ -152,7 +169,7 @@ public class AgentsManager : MonoBehaviour
         agents.AddRange(list);
 
         for (int i = 0; i < agents.Count; i++) {
-            AgentTagInfo agentTagInfo = new AgentTagInfo(agents[i].personality.name, agents[i].personality.tags.ToList());          
+            AgentTagInfo agentTagInfo = new AgentTagInfo(agents[i]);          
             if(!agentTagsLists.Contains(agentTagInfo))
             agentTagsLists.Add(agentTagInfo);
         

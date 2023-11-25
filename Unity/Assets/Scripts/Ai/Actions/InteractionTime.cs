@@ -148,6 +148,7 @@ public class InteractionTime : AgentBehavior
 
             case ActionState.ACTION:
                 agent.SetTable(true);
+                otherAgent.SetTable(true);
                 agent.motivation = boundValue(0.0, agent.motivation + config["MOTIVATION_INCREASE"], 1.0);
                 agent.happiness = boundValue(0.0, agent.happiness + config["HAPPINESS_INCREASE"], 1.0);
 
@@ -228,6 +229,7 @@ public class InteractionTime : AgentBehavior
                 otherAgent.AddFriends(agent);
                 agent.AddActionCount(this);
                 agent.SetTable(false);
+                otherAgent.SetTable(false);
 
 
                 break;
