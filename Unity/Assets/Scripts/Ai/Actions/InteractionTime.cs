@@ -223,6 +223,7 @@ public class InteractionTime : AgentBehavior
                 agent.LogDebug(String.Format("Stop interacting at {0}!", lastTable.name));
 
                 agent.AddFriends(otherAgent);
+                agent.AddActionCount(this);
 
 
                 break;

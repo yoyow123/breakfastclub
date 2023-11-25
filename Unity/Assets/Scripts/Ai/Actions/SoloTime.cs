@@ -157,6 +157,7 @@ public class SoloTime : AgentBehavior
 
             case ActionState.ACTION:
                 agent.LogDebug(String.Format("Ending study alone on hub {0}!", lastTable.name));
+                agent.AddActionCount(this);
                 break;
         }
         if (lastTable)

@@ -1,60 +1,91 @@
 {
+    "name": "Sophia",
+    "friends": []
+}{
+    "name": "Bob",
+    "friends": []
+}{
+    "name": "Nathan",
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -98522
+            },
+            "name": "Henry",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 0
+            },
+            "count": 1
+        }
+    ]
+}{
+    "name": "Ivy",
+    "friends": []
+}{
+    "name": "Alice",
+    "friends": []
+}{
+    "name": "Mia",
+    "friends": []
+}{
+    "name": "David",
+    "friends": []
+}{
+    "name": "Henry",
+    "friends": []
+}{
     "name": "Quinn",
-    "gptName": "GPT:Academic Writer (Professional Version)",
-    "actionCount": {
-        "restCount": 3,
-        "communicationCount": 7,
-        "disagreementCount": 0,
-        "soloCount": 0,
-        "interactionCount": 19,
-        "totalCount": 26
-    }
-}
-{
-    "name": "Leo",
-    "gptName": "GPT:Career Compass",
-    "actionCount": {
-        "restCount": 5,
-        "communicationCount": 7,
-        "disagreementCount": 0,
-        "soloCount": 0,
-        "interactionCount": 17,
-        "totalCount": 24
-    }
-}
-{
+    "friends": []
+}{
     "name": "Eva",
-    "gptName": "GPT:CARTOON versus CARTOON",
-    "actionCount": {
-        "restCount": 6,
-        "communicationCount": 14,
-        "disagreementCount": 0,
-        "soloCount": 0,
-        "interactionCount": 9,
-        "totalCount": 23
-    }
-}
-{
+    "friends": []
+}{
     "name": "Paul",
-    "gptName": "GPT:CARTOON versus CARTOON",
-    "actionCount": {
-        "restCount": 7,
-        "communicationCount": 8,
-        "disagreementCount": 0,
-        "soloCount": 0,
-        "interactionCount": 14,
-        "totalCount": 22
-    }
-}
-{
+    "friends": []
+}{
+    "name": "Katherine",
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -98368
+            },
+            "name": "Quinn",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 0
+            },
+            "count": 1
+        }
+    ]
+}{
+    "name": "Tyler",
+    "friends": []
+}{
+    "name": "Ryan",
+    "friends": []
+}{
+    "name": "Olivia",
+    "friends": []
+}{
+    "name": "Grace",
+    "friends": []
+}{
     "name": "Jack",
-    "gptName": "GPT:Atman Academy POAP Maker",
-    "actionCount": {
-        "restCount": 5,
-        "communicationCount": 5,
-        "disagreementCount": 3,
-        "soloCount": 0,
-        "interactionCount": 16,
-        "totalCount": 21
-    }
+    "friends": []
+}{
+    "name": "Leo",
+    "friends": []
+}{
+    "name": "Charlie",
+    "friends": []
+}{
+    "name": "Frank",
+    "friends": []
 }

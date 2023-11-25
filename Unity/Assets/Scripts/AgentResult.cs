@@ -6,12 +6,16 @@ using UnityEngine;
 [Serializable]
 public class Friend {
 	public Agent agent;
+	public string name;
+	public ActionCount actionCount;
 	public int count=0;
 
 	public Friend() { }
 
-	public Friend(Agent agent ,int count) {
+	public Friend(Agent agent, ActionCount actionCount, int count) {
 		this.agent = agent;
+		this.name = agent.personality.name;
+		this.actionCount = actionCount;
 		this.count = count;
 	}
 }

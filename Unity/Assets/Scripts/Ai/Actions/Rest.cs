@@ -54,6 +54,7 @@ public class Rest : AgentBehavior
 
     public override void end()
     {
+        agent.AddActionCount(this);
         state = ActionState.INACTIVE;
     }
 }

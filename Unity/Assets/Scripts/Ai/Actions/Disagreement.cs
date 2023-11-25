@@ -148,6 +148,7 @@ public class Disagreement : AgentBehavior
                 agent.LogDebug(String.Format("Ending Disagreement with {0}!", otherAgent));
                 otherAgent = null;
 
+                agent.AddActionCount(this);
                 // Give the agent an happiness boost in order to not start Disagreement again imediately
                 agent.happiness += config["HAPPINESS_BOOST"];
                 break;

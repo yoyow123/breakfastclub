@@ -533,8 +533,6 @@ public class Agent : MonoBehaviour
             if (success)
             {
                 LogInfo(String.Format("Starting Action {0}.", best_action));
-
-                CalculateActionCount(best_action);
             }
             else
             {
@@ -627,21 +625,19 @@ public class Agent : MonoBehaviour
         return distribution[random.Next(counter)];
     }
 
-    public void CalculateActionCount(AgentBehavior behavior) {
+    public void AddActionCount(AgentBehavior behavior) {
         switch (behavior.action) {
             case AgentBehavior.Actions.SoloTime:
                 actionCount.soloCount++;
                 break;
             case AgentBehavior.Actions.InteractionTime:
                 actionCount.interactionCount++;
-                actionCount.totalCount++;
                 break;
             case AgentBehavior.Actions.Rest:
                 actionCount.restCount++;
                 break;
             case AgentBehavior.Actions.Communication:
                 actionCount.communicationCount++;
-                actionCount.totalCount++;
                 break;
             case AgentBehavior.Actions.Disagreement:
                 actionCount.disagreementCount++;
@@ -655,7 +651,7 @@ public class Agent : MonoBehaviour
 
         if (friendLists.Count < 1)
         {
-            Friend friend = new Friend(otherAgent, 1);
+            Friend friend = new Friend(otherAgent, otherAgent.actionCount, 1);
             if (!friendLists.Contains(friend))
             {
                 friendLists.Add(friend);
@@ -670,7 +666,7 @@ public class Agent : MonoBehaviour
             if (result.Count() == 0)
             {
                 // No duplicate
-                Friend friend = new Friend(otherAgent, 1);
+                Friend friend = new Friend(otherAgent, otherAgent.actionCount, 1);
                 if (!friendLists.Contains(friend))
                 {
                     friendLists.Add(friend);

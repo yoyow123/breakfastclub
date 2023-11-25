@@ -181,7 +181,7 @@ public class Communication : AgentBehavior
 
             case ActionState.ACTION:
                 agent.LogDebug($"Ending Communicationting with {otherAgent}!");
-                //Add friends
+                agent.AddActionCount(this);
                 agent.AddFriends(otherAgent);
 
                 break;
