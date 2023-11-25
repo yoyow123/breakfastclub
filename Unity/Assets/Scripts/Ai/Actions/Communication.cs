@@ -180,12 +180,10 @@ public class Communication : AgentBehavior
                 break;
 
             case ActionState.ACTION:
-                Debug.Log(String.Format("**Communication**{0} GOT A FRIEND :{1} ", agent.personality.name, otherAgent.personality.name));
                 agent.LogDebug($"Ending Communicationting with {otherAgent}!");
+                //Add friends
+                agent.AddFriends(otherAgent);
 
-                Friend friend = new Friend(otherAgent.personality.name, otherAgent.gptName, otherAgent.actionCount);
-                if (!agent.friendLists.Contains(friend))
-                    agent.friendLists.Add(friend);
                 break;
         }
         retry_cnter = 0;

@@ -60,9 +60,11 @@ public class Agent : MonoBehaviour
 
     public ActionCount actionCount = new ActionCount();
 
+    public string gptName;
+
     public List<Friend> friendLists = new List<Friend>();
 
-    public string gptName;
+
 
     public void initAgent(string name, System.Random random, Personality personality)
     {
@@ -454,7 +456,6 @@ public class Agent : MonoBehaviour
             Communication Communication = (Communication)behaviors["Communication"];
             Communication.acceptInviation(otherAgent);
             StartAction(Communication);
-            Friend friend = new Friend(otherAgent.personality.name, otherAgent.gptName, otherAgent.actionCount);
         
         }
         else
@@ -645,6 +646,45 @@ public class Agent : MonoBehaviour
             case AgentBehavior.Actions.Disagreement:
                 actionCount.disagreementCount++;
                 break;
+        }
+    }
+    public void AddFriends(Agent otherAgent)
+    {
+        // No Friend :(
+
+
+        if (friendLists.Count < 1)
+        {
+            Friend friend = new Friend(otherAgent, 1);
+            if (!friendLists.Contains(friend))
+            {
+                friendLists.Add(friend);
+            }
+            Debug.Log(String.Format("****{0} GOT THE FIRST FRIEND :{1} ", personality.name, otherAgent.personality.name));
+        }
+        else
+        {
+            var result = friendLists.Where(t => t.agent && t.agent.Equals(otherAgent));
+
+            Debug.Log("****Duplicated Friends****:" + result.Count());
+            if (result.Count() == 0)
+            {
+                // No duplicate
+                Friend friend = new Friend(otherAgent, 1);
+                if (!friendLists.Contains(friend))
+                {
+                    friendLists.Add(friend);
+                }
+                Debug.Log(String.Format("****{0} GOT A NEW FRIEND :{1} ", personality.name, otherAgent.personality.name));
+            }
+            else {
+                foreach (Friend f in result)
+                {
+                    Debug.Log(String.Format("****{0} GOT A Repeated FRIEND :{1} already In friendLists {2} ", personality.name, otherAgent.personality.name, f.agent.personality.name));
+                    f.count++;
+                }
+            }
+
         }
     }
     public void SetGptName() {

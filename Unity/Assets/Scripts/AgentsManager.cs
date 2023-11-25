@@ -83,9 +83,9 @@ public class AgentsManager : MonoBehaviour
         string[] datas = new string[maxResults];
         int j = 0;
         for (int i = 0; i < topAgents.Count; i++) {
-            AgentResult result = new AgentResult(agents[i].personality.name ,agents[i].friendLists);
+            //AgentResult result = new AgentResult(agents[i].personality.name ,agents[i].friendLists);
            // jsonData += JsonUtility.ToJson(result);
-            datas[j] = JsonUtility.ToJson(result,true);
+            //datas[j] = JsonUtility.ToJson(result,true);
             j++;
         }
         File.WriteAllLines(saveFilePath,datas);

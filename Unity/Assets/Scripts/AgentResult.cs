@@ -5,17 +5,14 @@ using UnityEngine;
 
 [Serializable]
 public class Friend {
-	public string name;
-	public string gptName;
-	public ActionCount actionCount;
-	public int count = 0;
+	public Agent agent;
+	public int count=0;
 
 	public Friend() { }
 
-	public Friend(string name, string gptName, ActionCount actionCount) {
-		this.name = name;
-		this.gptName = gptName;
-		this.actionCount = actionCount;
+	public Friend(Agent agent ,int count) {
+		this.agent = agent;
+		this.count = count;
 	}
 }
 [Serializable]

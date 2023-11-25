@@ -6,6 +6,7 @@ public class InteractionTime : AgentBehavior
 {
     private Table lastTable;
     private Vector3 destination;
+    private Agent otherAgent;
     public InteractionTime(Agent agent) : base(agent, AgentBehavior.Actions.InteractionTime, "InteractionTime", agent.SC.InteractionTime) { }
     /*
      *  • requirements: no quarrel, free individual table, attention
@@ -105,10 +106,7 @@ public class InteractionTime : AgentBehavior
                 if ((other.currentAction.state is ActionState.AWAITING) || (other.currentAction.state is ActionState.ACTION))
                 {
                     agent.LogDebug(String.Format("Found at least one other agent {0} on hub!", other));
-                    Friend friend = new Friend(other.personality.name, other.gptName, other.actionCount);
-                    Debug.Log(String.Format("**Interaction Time**{0} GOT A FRIEND :{1} ", agent.personality.name, other.personality.name));
-                    if (!agent.friendLists.Contains(friend))
-                        agent.friendLists.Add(friend);
+                    otherAgent = other;
                     return true;
                 }
             }
@@ -223,6 +221,10 @@ public class InteractionTime : AgentBehavior
 
             case ActionState.ACTION:
                 agent.LogDebug(String.Format("Stop interacting at {0}!", lastTable.name));
+
+                agent.AddFriends(otherAgent);
+
+
                 break;
         }
         if (lastTable)
