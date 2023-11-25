@@ -76,6 +76,7 @@ public class InteractionTime : AgentBehavior
             case ActionState.ACTION:
                 if (table_ready())
                 {
+                    agent.SetTable(true);
                     if (agent.classroom.noise >= agent.personality.conscientousness * config["NOISE_THRESHOLD"])
                     {
                         agent.LogDebug(String.Format("Cant learn its too noisy {0} > {1}", agent.classroom.noise, agent.personality.conscientousness * config["NOISE_THRESHOLD"]));
@@ -146,6 +147,7 @@ public class InteractionTime : AgentBehavior
                 }
 
             case ActionState.ACTION:
+                agent.SetTable(true);
                 agent.motivation = boundValue(0.0, agent.motivation + config["MOTIVATION_INCREASE"], 1.0);
                 agent.happiness = boundValue(0.0, agent.happiness + config["HAPPINESS_INCREASE"], 1.0);
 
@@ -224,6 +226,7 @@ public class InteractionTime : AgentBehavior
 
                 agent.AddFriends(otherAgent);
                 agent.AddActionCount(this);
+                agent.SetTable(false);
 
 
                 break;

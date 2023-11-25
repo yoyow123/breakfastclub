@@ -17,6 +17,7 @@ public class AgentStatsTags : MonoBehaviour
     public GameObject tagPrefab;
     public GameObject selectGroupPrefab;
     public List<GameObject> selectGroups = new List<GameObject>();
+    public Transform firstPage;
     public Transform selectionPage;
 
     public int currentPageIndex = 0;
@@ -147,6 +148,7 @@ public class AgentStatsTags : MonoBehaviour
 
 
     public void EnableSelectionPage() {
+        firstPage.gameObject.SetActive(false);
         selectionPage.gameObject.SetActive(true);
         selectGroups[0].SetActive(true);
         for (int i = 1; i < selectGroups.Count; i++) {
@@ -220,6 +222,7 @@ public class AgentStatsTags : MonoBehaviour
         // when user just highlight 4,then it show 
 
         selectionPage.gameObject.SetActive(false);
+        firstPage.gameObject.SetActive(true);
 
     }
 

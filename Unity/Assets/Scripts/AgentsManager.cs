@@ -95,7 +95,8 @@ public class AgentsManager : MonoBehaviour
     }
     public void SetAgent(Agent agent) {
         currentAgent = agent;
-        currentAgentTagInfo = new AgentTagInfo(agent.personality.name, agent.personality.tags.ToList());
+        if(currentAgent !=null)
+        currentAgentTagInfo = new AgentTagInfo(currentAgent.personality.name, currentAgent.personality.tags.ToList());
 
     }
 

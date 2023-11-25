@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Text;
 using System.Linq;
+using UnityEngine.UI;
 
 public struct InteractionRequest
 {
@@ -58,6 +59,8 @@ public class Agent : MonoBehaviour
 
     public System.Random random;
 
+    [SerializeField] private SpriteRenderer interactionTable;
+
     public ActionCount actionCount = new ActionCount();
 
     public string gptName;
@@ -88,6 +91,9 @@ public class Agent : MonoBehaviour
         behaviors.Add("Communication", new Communication(this));
         behaviors.Add("SoloTime", new SoloTime(this));
         behaviors.Add("InteractionTime", new InteractionTime(this));
+
+        SetTable(false);
+
 
         // Set the default action state to Break
         currentAction = behaviors["Rest"];
@@ -530,9 +536,13 @@ public class Agent : MonoBehaviour
         if (best_action != null)
         {
             bool success = StartAction(best_action);
+
             if (success)
             {
                 LogInfo(String.Format("Starting Action {0}.", best_action));
+                if ( !(best_action is InteractionTime)) {
+                    SetTable(false);
+                }
             }
             else
             {
@@ -683,6 +693,10 @@ public class Agent : MonoBehaviour
 
         }
     }
+    public void SetTable(bool isEnable) {
+        interactionTable.enabled = isEnable;
+    }
+
     public void SetGptName() {
         int randNum = UnityEngine.Random.Range(1, personality.additionalTags.Length);
         gptName = string.Format("GPT:{0}", personality.additionalTags[randNum]);

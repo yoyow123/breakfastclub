@@ -1,6 +1,35 @@
 {
     "name": "Sophia",
-    "friends": []
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -272808
+            },
+            "name": "Ryan",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 1,
+                "soloCount": 0,
+                "interactionCount": 0
+            },
+            "count": 1
+        },
+        {
+            "agent": {
+                "instanceID": -272328
+            },
+            "name": "Jack",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 1,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 0
+            },
+            "count": 1
+        }
+    ]
 }{
     "name": "Bob",
     "friends": []
@@ -9,7 +38,7 @@
     "friends": [
         {
             "agent": {
-                "instanceID": -98522
+                "instanceID": -273768
             },
             "name": "Henry",
             "actionCount": {
@@ -17,7 +46,21 @@
                 "communicationCount": 0,
                 "disagreementCount": 0,
                 "soloCount": 0,
-                "interactionCount": 0
+                "interactionCount": 1
+            },
+            "count": 1
+        },
+        {
+            "agent": {
+                "instanceID": -273128
+            },
+            "name": "Katherine",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 1,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
             },
             "count": 1
         }
@@ -27,7 +70,22 @@
     "friends": []
 }{
     "name": "Alice",
-    "friends": []
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -273768
+            },
+            "name": "Henry",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        }
+    ]
 }{
     "name": "Mia",
     "friends": []
@@ -36,24 +94,12 @@
     "friends": []
 }{
     "name": "Henry",
-    "friends": []
-}{
-    "name": "Quinn",
-    "friends": []
-}{
-    "name": "Eva",
-    "friends": []
-}{
-    "name": "Paul",
-    "friends": []
-}{
-    "name": "Katherine",
     "friends": [
         {
             "agent": {
-                "instanceID": -98368
+                "instanceID": -274408
             },
-            "name": "Quinn",
+            "name": "Ivy",
             "actionCount": {
                 "restCount": 1,
                 "communicationCount": 0,
@@ -65,27 +111,202 @@
         }
     ]
 }{
-    "name": "Tyler",
+    "name": "Quinn",
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -271848
+            },
+            "name": "Frank",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 1,
+                "disagreementCount": 1,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        }
+    ]
+}{
+    "name": "Eva",
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -274888
+            },
+            "name": "Sophia",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 1,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        }
+    ]
+}{
+    "name": "Paul",
     "friends": []
+}{
+    "name": "Katherine",
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -273608
+            },
+            "name": "Quinn",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        },
+        {
+            "agent": {
+                "instanceID": -274568
+            },
+            "name": "Nathan",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 1,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        }
+    ]
+}{
+    "name": "Tyler",
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -274568
+            },
+            "name": "Nathan",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 1,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        }
+    ]
 }{
     "name": "Ryan",
     "friends": []
 }{
     "name": "Olivia",
-    "friends": []
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -273448
+            },
+            "name": "Eva",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        }
+    ]
 }{
     "name": "Grace",
-    "friends": []
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -273608
+            },
+            "name": "Quinn",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        }
+    ]
 }{
     "name": "Jack",
-    "friends": []
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -273928
+            },
+            "name": "David",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 1,
+                "soloCount": 0,
+                "interactionCount": 0
+            },
+            "count": 1
+        }
+    ]
 }{
     "name": "Leo",
     "friends": []
 }{
     "name": "Charlie",
-    "friends": []
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -272968
+            },
+            "name": "Tyler",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 1
+            },
+            "count": 1
+        }
+    ]
 }{
     "name": "Frank",
-    "friends": []
+    "friends": [
+        {
+            "agent": {
+                "instanceID": -274728
+            },
+            "name": "Bob",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 1,
+                "soloCount": 0,
+                "interactionCount": 0
+            },
+            "count": 1
+        },
+        {
+            "agent": {
+                "instanceID": -273288
+            },
+            "name": "Paul",
+            "actionCount": {
+                "restCount": 1,
+                "communicationCount": 0,
+                "disagreementCount": 0,
+                "soloCount": 0,
+                "interactionCount": 0
+            },
+            "count": 1
+        }
+    ]
 }
