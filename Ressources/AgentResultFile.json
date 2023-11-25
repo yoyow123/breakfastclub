@@ -1,312 +1,943 @@
 {
-    "name": "Sophia",
-    "friends": [
+    "datas": [
         {
-            "agent": {
-                "instanceID": -272808
-            },
-            "name": "Ryan",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 1,
-                "soloCount": 0,
-                "interactionCount": 0
-            },
-            "count": 1
-        },
-        {
-            "agent": {
-                "instanceID": -272328
-            },
-            "name": "Jack",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 1,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 0
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Bob",
-    "friends": []
-}{
-    "name": "Nathan",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -273768
-            },
-            "name": "Henry",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        },
-        {
-            "agent": {
-                "instanceID": -273128
-            },
-            "name": "Katherine",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 1,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Ivy",
-    "friends": []
-}{
-    "name": "Alice",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -273768
-            },
-            "name": "Henry",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Mia",
-    "friends": []
-}{
-    "name": "David",
-    "friends": []
-}{
-    "name": "Henry",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -274408
-            },
-            "name": "Ivy",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 0
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Quinn",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -271848
-            },
-            "name": "Frank",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 1,
-                "disagreementCount": 1,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Eva",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -274888
-            },
             "name": "Sophia",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 1,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Paul",
-    "friends": []
-}{
-    "name": "Katherine",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -273608
-            },
-            "name": "Quinn",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -60350
+                    },
+                    "name": "Ryan",
+                    "gptName": "GPT:Afterlife GPT",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -59870
+                    },
+                    "name": "Jack",
+                    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 0,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60830
+                    },
+                    "name": "Paul",
+                    "gptName": "GPT:Career Compass",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 2,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61150
+                    },
+                    "name": "Quinn",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
         },
         {
-            "agent": {
-                "instanceID": -274568
-            },
-            "name": "Nathan",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 1,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Tyler",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -274568
-            },
-            "name": "Nathan",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 1,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Ryan",
-    "friends": []
-}{
-    "name": "Olivia",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -273448
-            },
-            "name": "Eva",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Grace",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -273608
-            },
-            "name": "Quinn",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Jack",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -273928
-            },
-            "name": "David",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 1,
-                "soloCount": 0,
-                "interactionCount": 0
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Leo",
-    "friends": []
-}{
-    "name": "Charlie",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -272968
-            },
-            "name": "Tyler",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 1
-            },
-            "count": 1
-        }
-    ]
-}{
-    "name": "Frank",
-    "friends": [
-        {
-            "agent": {
-                "instanceID": -274728
-            },
             "name": "Bob",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 1,
-                "soloCount": 0,
-                "interactionCount": 0
-            },
-            "count": 1
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -59710
+                    },
+                    "name": "Leo",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61950
+                    },
+                    "name": "Ivy",
+                    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 1,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -59390
+                    },
+                    "name": "Frank",
+                    "gptName": "GPT:Climate Change Assistant",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 4,
+                        "disagreementCount": 1,
+                        "soloCount": 2,
+                        "interactionCount": 3
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60670
+                    },
+                    "name": "Katherine",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 2,
+                        "communicationCount": 3,
+                        "disagreementCount": 0,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
         },
         {
-            "agent": {
-                "instanceID": -273288
-            },
+            "name": "Nathan",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -61310
+                    },
+                    "name": "Henry",
+                    "gptName": "GPT:Afterlife GPT",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 1,
+                        "interactionCount": 2
+                    },
+                    "count": 2
+                },
+                {
+                    "agent": {
+                        "instanceID": -60670
+                    },
+                    "name": "Katherine",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 2,
+                        "communicationCount": 3,
+                        "disagreementCount": 0,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Ivy",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -62270
+                    },
+                    "name": "Bob",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Alice",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -61310
+                    },
+                    "name": "Henry",
+                    "gptName": "GPT:Afterlife GPT",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 1,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60510
+                    },
+                    "name": "Tyler",
+                    "gptName": "GPT:Code God",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 0,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -62270
+                    },
+                    "name": "Bob",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Mia",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -60670
+                    },
+                    "name": "Katherine",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 2,
+                        "communicationCount": 3,
+                        "disagreementCount": 0,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -62430
+                    },
+                    "name": "Sophia",
+                    "gptName": "GPT:Ask Cris about FileMaker",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 3,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61790
+                    },
+                    "name": "Alice",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 2,
+                        "communicationCount": 1,
+                        "disagreementCount": 2,
+                        "soloCount": 1,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "David",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -62270
+                    },
+                    "name": "Bob",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -62110
+                    },
+                    "name": "Nathan",
+                    "gptName": "GPT:Ask Cris about FileMaker",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61150
+                    },
+                    "name": "Quinn",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Henry",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -61950
+                    },
+                    "name": "Ivy",
+                    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 1,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -62110
+                    },
+                    "name": "Nathan",
+                    "gptName": "GPT:Ask Cris about FileMaker",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -59390
+                    },
+                    "name": "Frank",
+                    "gptName": "GPT:Climate Change Assistant",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 4,
+                        "disagreementCount": 1,
+                        "soloCount": 2,
+                        "interactionCount": 3
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Quinn",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -59390
+                    },
+                    "name": "Frank",
+                    "gptName": "GPT:Climate Change Assistant",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 4,
+                        "disagreementCount": 1,
+                        "soloCount": 2,
+                        "interactionCount": 3
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60350
+                    },
+                    "name": "Ryan",
+                    "gptName": "GPT:Afterlife GPT",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Eva",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -62430
+                    },
+                    "name": "Sophia",
+                    "gptName": "GPT:Ask Cris about FileMaker",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 3,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -62270
+                    },
+                    "name": "Bob",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60830
+                    },
+                    "name": "Paul",
+                    "gptName": "GPT:Career Compass",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 2,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
             "name": "Paul",
-            "actionCount": {
-                "restCount": 1,
-                "communicationCount": 0,
-                "disagreementCount": 0,
-                "soloCount": 0,
-                "interactionCount": 0
-            },
-            "count": 1
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -61310
+                    },
+                    "name": "Henry",
+                    "gptName": "GPT:Afterlife GPT",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 1,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Katherine",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -61150
+                    },
+                    "name": "Quinn",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -62110
+                    },
+                    "name": "Nathan",
+                    "gptName": "GPT:Ask Cris about FileMaker",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61630
+                    },
+                    "name": "Mia",
+                    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+                    "actionCount": {
+                        "restCount": 2,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -62270
+                    },
+                    "name": "Bob",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61470
+                    },
+                    "name": "David",
+                    "gptName": "GPT:Bilingual Storyteller",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Tyler",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -62110
+                    },
+                    "name": "Nathan",
+                    "gptName": "GPT:Ask Cris about FileMaker",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61950
+                    },
+                    "name": "Ivy",
+                    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+                    "actionCount": {
+                        "restCount": 4,
+                        "communicationCount": 1,
+                        "disagreementCount": 0,
+                        "soloCount": 1,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Ryan",
+            "friends": []
+        },
+        {
+            "name": "Olivia",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -60990
+                    },
+                    "name": "Eva",
+                    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 1,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61150
+                    },
+                    "name": "Quinn",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60030
+                    },
+                    "name": "Grace",
+                    "gptName": "GPT:Bilingual Social Post Creator",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 3,
+                        "disagreementCount": 1,
+                        "soloCount": 3,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Grace",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -61150
+                    },
+                    "name": "Quinn",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61470
+                    },
+                    "name": "David",
+                    "gptName": "GPT:Bilingual Storyteller",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -59390
+                    },
+                    "name": "Frank",
+                    "gptName": "GPT:Climate Change Assistant",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 4,
+                        "disagreementCount": 1,
+                        "soloCount": 2,
+                        "interactionCount": 3
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -59710
+                    },
+                    "name": "Leo",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Jack",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -61470
+                    },
+                    "name": "David",
+                    "gptName": "GPT:Bilingual Storyteller",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60350
+                    },
+                    "name": "Ryan",
+                    "gptName": "GPT:Afterlife GPT",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -61790
+                    },
+                    "name": "Alice",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 2,
+                        "communicationCount": 1,
+                        "disagreementCount": 2,
+                        "soloCount": 1,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Leo",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -60990
+                    },
+                    "name": "Eva",
+                    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 1,
+                        "interactionCount": 2
+                    },
+                    "count": 2
+                },
+                {
+                    "agent": {
+                        "instanceID": -61150
+                    },
+                    "name": "Quinn",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60190
+                    },
+                    "name": "Olivia",
+                    "gptName": "GPT:Adzviser:  The GPT alternative to Supermetric",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 3,
+                        "disagreementCount": 1,
+                        "soloCount": 3,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Charlie",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -60510
+                    },
+                    "name": "Tyler",
+                    "gptName": "GPT:Code God",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 0,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60350
+                    },
+                    "name": "Ryan",
+                    "gptName": "GPT:Afterlife GPT",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 0,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -59710
+                    },
+                    "name": "Leo",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "name": "Frank",
+            "friends": [
+                {
+                    "agent": {
+                        "instanceID": -62270
+                    },
+                    "name": "Bob",
+                    "gptName": "GPT:Bilingual Translation",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 2,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 4
+                },
+                {
+                    "agent": {
+                        "instanceID": -60830
+                    },
+                    "name": "Paul",
+                    "gptName": "GPT:Career Compass",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 1,
+                        "disagreementCount": 1,
+                        "soloCount": 2,
+                        "interactionCount": 0
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -60030
+                    },
+                    "name": "Grace",
+                    "gptName": "GPT:Bilingual Social Post Creator",
+                    "actionCount": {
+                        "restCount": 3,
+                        "communicationCount": 3,
+                        "disagreementCount": 1,
+                        "soloCount": 3,
+                        "interactionCount": 1
+                    },
+                    "count": 1
+                },
+                {
+                    "agent": {
+                        "instanceID": -59710
+                    },
+                    "name": "Leo",
+                    "gptName": "GPT:Atman Academy POAP Maker",
+                    "actionCount": {
+                        "restCount": 1,
+                        "communicationCount": 2,
+                        "disagreementCount": 0,
+                        "soloCount": 0,
+                        "interactionCount": 2
+                    },
+                    "count": 1
+                }
+            ]
         }
     ]
 }

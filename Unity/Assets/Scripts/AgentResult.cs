@@ -7,6 +7,7 @@ using UnityEngine;
 public class Friend {
 	public Agent agent;
 	public string name;
+	public string gptName;
 	public ActionCount actionCount;
 	public int count=0;
 
@@ -15,6 +16,7 @@ public class Friend {
 	public Friend(Agent agent, ActionCount actionCount, int count) {
 		this.agent = agent;
 		this.name = agent.personality.name;
+		this.gptName = agent.gptName;
 		this.actionCount = actionCount;
 		this.count = count;
 	}

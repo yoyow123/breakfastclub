@@ -7,6 +7,11 @@ using System.IO;
 
 
 
+[System.Serializable]
+public class FriendListsInfo  {
+    public List<AgentResult> datas;
+}
+
 [Serializable]
 public class AgentTagInfo
 {
@@ -33,6 +38,7 @@ public class AgentsManager : MonoBehaviour
     public List<AgentTagInfo> agentTagsLists = new List<AgentTagInfo>();
     public List<string> allComparedTags = new List<string>();
     public List<string> currentMatchedTags = new List<string>();
+    public FriendListsInfo friendListsInfo;
 
     public AgentTagInfo currentAgentTagInfo;
     public Agent currentAgent;
@@ -82,16 +88,26 @@ public class AgentsManager : MonoBehaviour
        // topAgents = agents.OrderByDescending(t => t.actionCount.totalCount).Take(maxResults).ToList();
     }
     public void Save(string configPath) {
-        string jsonData = "";
-        int j = 0;
+        friendListsInfo.datas.Clear();
         for (int i = 0; i < agents.Count; i++) {
             var friends = agents[i].friendLists.OrderByDescending(t => t.count).Take(maxResults).ToList();
             AgentResult result = new AgentResult(agents[i].personality.name, friends);
-             jsonData += JsonUtility.ToJson(result,true);
-            j++;
+            if (!friendListsInfo.datas.Contains(result))
+                friendListsInfo.datas.Add(result);
         }
-        File.WriteAllText(saveFilePath,jsonData);
-        Debug.Log("Save data");
+
+/*        for (int i = 0; i < friendListsInfo.datas.Count; i++) {
+            Debug.Log(friendListsInfo.datas[i].name);
+        }
+*/
+        if (friendListsInfo.datas.Count > 0)
+        {
+            string str = JsonUtility.ToJson(friendListsInfo,true);
+            File.WriteAllText(saveFilePath, str);
+            Debug.Log("Save data");
+        }
+
+
     }
     public void SetAgent(Agent agent) {
         currentAgent = agent;
