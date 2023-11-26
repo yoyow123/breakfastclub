@@ -61,7 +61,7 @@ public class InteractionTime : AgentBehavior
                     retry_cnter++;
 
                     // If we waited long enough, thats it, stop trying and stop studying
-                    //if(retry_cnter > (int)(config["MAX_RETRIES"]* agent.personality.conscientousness))
+                    //if(retry_cnter > (int)(config["MAX_RETRIES"]* agent.personality.conscientiousness))
                     if (retry_cnter > (int)(config["MAX_RETRIES"]))
                     {
                         agent.LogDebug(String.Format("Fed up with waiting will stop trying!"));
@@ -77,9 +77,9 @@ public class InteractionTime : AgentBehavior
                 if (table_ready())
                 {
                     agent.SetTable(true);
-                    if (agent.classroom.noise >= agent.personality.conscientousness * config["NOISE_THRESHOLD"])
+                    if (agent.classroom.noise >= agent.personality.conscientiousness * config["NOISE_THRESHOLD"])
                     {
-                        agent.LogDebug(String.Format("Cant learn its too noisy {0} > {1}", agent.classroom.noise, agent.personality.conscientousness * config["NOISE_THRESHOLD"]));
+                        agent.LogDebug(String.Format("Cant learn its too noisy {0} > {1}", agent.classroom.noise, agent.personality.conscientiousness * config["NOISE_THRESHOLD"]));
                         state = ActionState.AWAITING;
                         //return false;
                     }

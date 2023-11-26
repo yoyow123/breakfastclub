@@ -7,7 +7,7 @@ public struct PersonalityType
     // Each Trial can have values between [0, 1]
     // A value of -1 will cause a random number to be used from a uniform distribution between [0, 1]
     public double openess;
-    public double conscientousness;
+    public double conscientiousness;
     public double extraversion;
     public double agreeableness;
     public double neuroticism;
@@ -28,7 +28,7 @@ public struct PersonalityType
     {
         this.name = name;
         openess = o;
-        conscientousness = c;
+        conscientiousness = c;
         extraversion = e;
         agreeableness = a;
         neuroticism = n;
@@ -50,7 +50,7 @@ public class Personality
 {
     public string name { get; protected set; }
     public double openess { get; protected set; }
-    public double conscientousness { get; protected set; }
+    public double conscientiousness { get; protected set; }
     public double extraversion { get; set; }
     public double agreeableness { get; protected set; }
     public double neuroticism { get; protected set; }
@@ -78,7 +78,7 @@ public class Personality
     {
         this.name = name;
         openess = o;
-        conscientousness = c;
+        conscientiousness = c;
         extraversion = e;
         agreeableness = a;
         neuroticism = n;
@@ -87,7 +87,7 @@ public class Personality
     public Personality(PersonalityType pt) {
         name = pt.name;
         openess = pt.openess;
-        conscientousness = pt.conscientousness;
+        conscientiousness = pt.conscientiousness;
         extraversion = pt.extraversion;
         agreeableness = pt.agreeableness;
         neuroticism = pt.neuroticism;
@@ -111,10 +111,10 @@ public class Personality
         else
             openess = pt.openess;
 
-        if (pt.conscientousness < 0)
-            conscientousness = random.Next(100) / 100.0;
+        if (pt.conscientiousness < 0)
+            conscientiousness = random.Next(100) / 100.0;
         else
-            conscientousness = pt.conscientousness;
+            conscientiousness = pt.conscientiousness;
 
         if (pt.extraversion < 0)
             extraversion = random.Next(100) / 100.0;
@@ -143,8 +143,8 @@ public class Personality
         extraversion = random.Next(100) / 100.0;
         openess = random.Next(100) / 100.0;
         agreeableness = random.Next(100) / 100.0;
-        conscientousness = random.Next(100) / 100.0;
+        conscientiousness = random.Next(100) / 100.0;
     }
 
-    public override string ToString() { return "T:" + name + " O:" + openess + " C:" + conscientousness + " E:" + extraversion + " A:" + agreeableness + " N:" + neuroticism; }
+    public override string ToString() { return "T:" + name + " O:" + openess + " C:" + conscientiousness + " E:" + extraversion + " A:" + agreeableness + " N:" + neuroticism; }
 }

@@ -57,10 +57,11 @@ public class SoloTime : AgentBehavior
                 }
                 state = ActionState.ACTION;
                 return true;
+                return true;
             case ActionState.ACTION:
-                if (agent.classroom.noise >= agent.personality.conscientousness * config["NOISE_THRESHOLD"])
+                if (agent.classroom.noise >= agent.personality.conscientiousness * config["NOISE_THRESHOLD"])
                 {
-                    agent.LogDebug($"Its too loud! Cannot learn! {agent.classroom.noise} > {agent.personality.conscientousness * config["NOISE_THRESHOLD"]}. Will Wait!");
+                    agent.LogDebug($"Its too loud! Cannot learn! {agent.classroom.noise} > {agent.personality.conscientiousness * config["NOISE_THRESHOLD"]}. Will Wait!");
                     state = ActionState.AWAITING;
                 }
                 else

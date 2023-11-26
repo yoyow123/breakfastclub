@@ -111,7 +111,7 @@ public class Agent : MonoBehaviour
             // Calculate agent conformity
             double stability = (1.0 - personality.neuroticism) * 0.5
                     + personality.agreeableness * 0.6
-                    + personality.conscientousness * 0.6;
+                    + personality.conscientiousness * 0.6;
 
             double plasticity = personality.extraversion * 0.8 + personality.openess * 0.5;
 
@@ -139,7 +139,7 @@ public class Agent : MonoBehaviour
         turnCnt = -2;
         LogX(String.Format($"{studentname}|{personality.name}|{conformity}||"), "S");
         turnCnt = -1;
-        LogX(String.Format($"{personality.openess}|{personality.conscientousness}|{personality.extraversion}|{personality.agreeableness}|{personality.neuroticism}"), "S");
+        LogX(String.Format($"{personality.openess}|{personality.conscientiousness}|{personality.extraversion}|{personality.agreeableness}|{personality.neuroticism}"), "S");
 
         turnCnt = 0;
         LogInfo("Agent Personality: " + personality);
@@ -264,7 +264,7 @@ public class Agent : MonoBehaviour
         {
             if (currentAction.state == AgentBehavior.ActionState.ACTION)
             {
-                attention = AgentBehavior.boundValue(0.0, personality.conscientousness + motivation - classroom.noise * SC.Agent["ATTENTION_NOISE_SCALE"], 1.0);
+                attention = AgentBehavior.boundValue(0.0, personality.conscientiousness + motivation - classroom.noise * SC.Agent["ATTENTION_NOISE_SCALE"], 1.0);
             }
         }
     }
@@ -456,6 +456,8 @@ public class Agent : MonoBehaviour
 
     private void HandleCommunication(Agent otherAgent)
     {
+        var result = personality.tags.Intersect(otherAgent.personality.tags);
+
         if ((currentAction is Communication) || (Desire is Communication))
         {
             LogDebug(String.Format("Accept invitation to Communication with {0} ...", otherAgent));
@@ -466,11 +468,16 @@ public class Agent : MonoBehaviour
         }
         else
         {
-            // An agent is convinced to Communication based on its conscientousness trait.
+            // An agent is convinced to Communication based on its conscientiousness trait.
             // Agents high on consciousness are more difficult to convince/distract
             float x = random.Next(100) / 100.0f;
-            LogDebug(String.Format("Agent proposal {0} >= {1} ...", x, personality.conscientousness));
-            if (x >= personality.conscientousness)
+            LogDebug(String.Format("Agent proposal {0} >= {1} ...", x, personality.conscientiousness));
+            float value = result.Count() * 0.01f;
+            float c = (float)personality.conscientiousness - value;
+            if (c < 0) 
+                c = 0;
+            Debug.Log(String.Format("--{0}--Conscientiousness : {1}, Changes:{2}, Tags : {3}", personality.name, personality.conscientiousness, c, result.Count()));
+            if (x >= c)
             {
                 LogDebug(String.Format("Agent got convinced by {0} to start Communicationting ...", otherAgent));
                 Communication Communication = (Communication)behaviors["Communication"];
@@ -479,13 +486,15 @@ public class Agent : MonoBehaviour
             }
             else
             {
-                LogDebug(String.Format("Agent keeps to current action ({0} < {1})", x, personality.conscientousness));
+                LogDebug(String.Format("Agent keeps to current action ({0} < {1})", x, personality.conscientiousness));
             }
         }
     }
 
     private void HandleDisagreement(Agent otherAgent)
     {
+        var result = personality.tags.Intersect(otherAgent.personality.tags);
+
         if ((currentAction is Disagreement) || (Desire is Disagreement))
         {
             LogDebug(String.Format("Agent wanted to Disagreement! Now he can do so with {0} ...", otherAgent));
@@ -495,11 +504,17 @@ public class Agent : MonoBehaviour
         }
         else
         {
-            // An agent is convinced to Communication based on its conscientousness trait.
+            // An agent is convinced to Communication based on its conscientiousness trait.
             // Agents high on consciousness are more difficult to convince/distract
             double x = random.Next(100) / 100.0;
-            LogDebug(String.Format("Agent proposal {0} >= {1} ...", x, personality.agreeableness * happiness));
-            if (x >= (personality.agreeableness * happiness))
+
+            float value = result.Count() * 0.01f;
+            float a = (float)personality.agreeableness + value;
+            if (a< 0)
+                a = 0;
+            Debug.Log(String.Format("--{0}-Agreeableness : {1}, Changes:{2} , Tags : {3}", personality.name, personality.agreeableness, a,result.Count()));
+            LogDebug(String.Format("Agent proposal {0} >= {1} ...", x, a * happiness));
+            if (x >= (a * happiness))
             {
                 LogDebug(String.Format("Agent got convinced by {0} to start Disagreementing ...", otherAgent));
                 Disagreement Disagreement = (Disagreement)behaviors["Disagreement"];
@@ -565,8 +580,8 @@ public class Agent : MonoBehaviour
         // Look at:
         // https://www.wolframalpha.com/input/?i=plot+3.0+*+e**(-(1.0-0.3)*x)+from+x%3D0+to+5
         double score_bias = 0;
-        //score_bias = (int)(ACTION_SCORE_BIAS * Math.Exp(-(1.0 - personality.conscientousness) * (float)ticksOnThisTask));
-        score_bias = (int)(SC.Agent["ACTION_SCORE_BIAS"] * Math.Exp(-(1.0 - personality.conscientousness) * SC.Agent["ACTION_SCORE_DECAY"] * (float)ticksOnThisTask));
+        //score_bias = (int)(ACTION_SCORE_BIAS * Math.Exp(-(1.0 - personality.conscientiousness) * (float)ticksOnThisTask));
+        score_bias = (int)(SC.Agent["ACTION_SCORE_BIAS"] * Math.Exp(-(1.0 - personality.conscientiousness) * SC.Agent["ACTION_SCORE_DECAY"] * (float)ticksOnThisTask));
 
         for (int actionidx = 0; actionidx < behaviors.Count; actionidx++)
         {
@@ -599,6 +614,7 @@ public class Agent : MonoBehaviour
         //int max_action = System.Array.IndexOf(scores, scores.Max());
         chosen_action = prob_action;
 
+  
         return behaviors.Values.ElementAt(chosen_action);
     }
 
@@ -630,12 +646,11 @@ public class Agent : MonoBehaviour
                 counter += normalized_rating;
             }
         }
-
         // Chose a random element from the action distribution
         return distribution[random.Next(counter)];
     }
 
-    public void AddActionCount(AgentBehavior behavior) {
+    public void AddActionCount(AgentBehavior behavior) { 
         switch (behavior.action) {
             case AgentBehavior.Actions.SoloTime:
                 actionCount.soloCount++;
@@ -681,12 +696,12 @@ public class Agent : MonoBehaviour
                 {
                     friendLists.Add(friend);
                 }
-               // Debug.Log(String.Format("****{0} GOT A NEW FRIEND :{1} ", personality.name, otherAgent.personality.name));
+                //Debug.Log(String.Format("****{0} GOT A NEW FRIEND :{1} ", personality.name, otherAgent.personality.name));
             }
             else {
                 foreach (Friend f in result)
                 {
-                 //   Debug.Log(String.Format("****{0} GOT A Repeated FRIEND :{1} already In friendLists {2} ", personality.name, otherAgent.personality.name, f.agent.personality.name));
+                  //  Debug.Log(String.Format("****{0} GOT A Repeated FRIEND :{1} already In friendLists {2} ", personality.name, otherAgent.personality.name, f.agent.personality.name));
                     f.count++;
                 }
             }
