@@ -45,6 +45,7 @@ public class AgentStatsTags : MonoBehaviour
         nextButton.onClick.AddListener(() => NextSelectionPage());
         confirmButton.onClick.AddListener(() => ConfirmTags());
         selectionPage.gameObject.SetActive(false);
+        firstPage.gameObject.SetActive(true);
     }
     public void SetAgent(Agent newAgent)
     {
@@ -52,6 +53,7 @@ public class AgentStatsTags : MonoBehaviour
         if (agent)
         {
             gameObject.SetActive(true);
+            firstPage.gameObject.SetActive(true);
             LoadDefaultTags();
             UpdateTagObject();
             LoadAllTags();
@@ -144,6 +146,10 @@ public class AgentStatsTags : MonoBehaviour
         selectGroups.Clear(); 
 
         selectionPage.gameObject.SetActive(false);
+    }
+
+    public void EnableFirstPage() {
+        firstPage.gameObject.SetActive(true);
     }
 
 
