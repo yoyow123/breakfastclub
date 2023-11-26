@@ -108,6 +108,7 @@ public class InteractionTime : AgentBehavior
                 {
                     agent.LogDebug(String.Format("Found at least one other agent {0} on hub!", other));
                     otherAgent = other;
+                    otherAgent.SetTable(true);
                     return true;
                 }
             }
