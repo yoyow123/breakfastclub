@@ -472,8 +472,7 @@ public class Agent : MonoBehaviour
             // Agents high on consciousness are more difficult to convince/distract
             float x = random.Next(100) / 100.0f;
             LogDebug(String.Format("Agent proposal {0} >= {1} ...", x, personality.conscientiousness));
-            float value = result.Count() * 0.01f;
-            float c = (float)personality.conscientiousness - value;
+            float c = (float)personality.conscientiousness * (1 - result.Count() / 100.0f);
             if (c < 0) 
                 c = 0;
             Debug.Log(String.Format("--{0}--Conscientiousness : {1}, Changes:{2}, Tags : {3}", personality.name, personality.conscientiousness, c, result.Count()));
@@ -506,10 +505,9 @@ public class Agent : MonoBehaviour
         {
             // An agent is convinced to Communication based on its conscientiousness trait.
             // Agents high on consciousness are more difficult to convince/distract
-            double x = random.Next(100) / 100.0;
+            double x = random.Next(100) / 100.0; 
 
-            float value = result.Count() * 0.01f;
-            float a = (float)personality.agreeableness + value;
+            float a = (float)personality.agreeableness * (1 + result.Count() / 100.0f);
             if (a< 0)
                 a = 0;
             Debug.Log(String.Format("--{0}-Agreeableness : {1}, Changes:{2} , Tags : {3}", personality.name, personality.agreeableness, a,result.Count()));
