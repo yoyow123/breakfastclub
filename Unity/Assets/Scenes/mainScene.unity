@@ -2252,6 +2252,12 @@ PrefabInstance:
       propertyPath: tooltip
       value: 
       objectReference: {fileID: 9206367021096342245}
+    - target: {fileID: 2007673904844923439, guid: 998d94847242ad243bb30a4fa992378d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05ea128bca8f39349bb0503a4e2cd037,
+        type: 3}
     - target: {fileID: 2007673904980956497, guid: 998d94847242ad243bb30a4fa992378d,
         type: 3}
       propertyPath: m_Mesh
