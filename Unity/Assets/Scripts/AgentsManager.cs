@@ -67,7 +67,7 @@ public class AgentsManager : MonoBehaviour
                 GetAllTags();
                 SelectMatchedTags();
                 agentStatsTags.SetAgent(currentAgent);
-                ShowMatchedInfo();
+                //ShowMatchedInfo();
                 isMatched = true;
             }
         }
@@ -144,9 +144,10 @@ public class AgentsManager : MonoBehaviour
             {
                 //Debug.Log("Current is: " + currentAgentTagInfo.name + ", Add tags from:" + agentTagsLists[i].name);
                 var result = currentAgentTagInfo.tags.Intersect(agentTagsLists[i].tags);
-                Debug.Log(string.Format("{0} has {1} matched tags with current Agent {2}", agentTagsLists[i].name, result.Count(), currentAgentTagInfo.name));
+                //Debug.Log(string.Format("{0} has {1} matched tags with current Agent {2}", agentTagsLists[i].name, result.Count(), currentAgentTagInfo.name));
                 GameObject agent = agentTagsLists[i].agent.gameObject;
                 agent.GetComponent<AgentUI>().EnableHeart(result.Count());
+                Debug.Log("Enable Heart");
             }
             else {
                 GameObject agent = currentAgentTagInfo.agent.gameObject;
@@ -155,11 +156,35 @@ public class AgentsManager : MonoBehaviour
         }
     }
 
-    public void ResetState() {
+    public void DisableAllHeart()
+    {
+        if (agentTagsLists.Count < 1) return;
+
+        for (int i = 0; i < agentTagsLists.Count; i++)
+        {
+            GameObject agent = agentTagsLists[i].agent.gameObject;
+            agent.GetComponent<AgentUI>().DisableHeart();
+        }
+    }
+
+    public void ResetState()
+    {
         allComparedTags.Clear();
         currentMatchedTags.Clear();
         isMatched = false;
+    }
 
+    public void ResetForReload() {
+        DisableAllHeart();
+        agents.Clear();
+        agentTagsLists.Clear();
+        allComparedTags.Clear();
+        currentMatchedTags.Clear();
+        isMatched = false;
+        IsInitCoroutine = false;
+
+        if (!IsInitCoroutine)
+            StartCoroutine(Init());
     }
     IEnumerator Init() {
 

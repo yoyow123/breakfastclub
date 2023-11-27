@@ -120,6 +120,8 @@ public class Classroom : MonoBehaviour
 
     System.Random random;
 
+    [SerializeField] private AgentsManager agentsManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -526,6 +528,9 @@ public class Classroom : MonoBehaviour
     }
 
     public void Reload() {
+
+        agentsManager.ResetForReload();
+
         foreach (Agent a in agents) {
             //reset action count as zero
             a.ResetActionCount();

@@ -161,9 +161,9 @@ public class AgentUI : MonoBehaviour
         {
             UICanvas.enabled = true;
             string str = String.Format(" x {0}", matchedNum);
-            tmp.text = str;
-        }
-        else {
+			tmp.text = str;
+		}
+		else {
             UICanvas.enabled = false;
         }
     }
@@ -171,6 +171,7 @@ public class AgentUI : MonoBehaviour
 
     void OnMouseDown()
     {
+        agentsManager.DisableAllHeart();
         statsTags.ResetState();
         agentsManager.ResetState();
         //return;
@@ -188,7 +189,9 @@ public class AgentUI : MonoBehaviour
             //Debug.Log(string.Format("Enable stats."));
             statsTooltip.SetAgent(agent);
             agentsManager.SetAgent(agent);
+            agentsManager.ShowMatchedInfo();
             //statsTags.SetAgent(agent);
-        }   
+        }
     }
+
 }
