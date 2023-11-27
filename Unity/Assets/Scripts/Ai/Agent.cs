@@ -475,7 +475,7 @@ public class Agent : MonoBehaviour
             float c = (float)personality.conscientiousness * (1 - result.Count() / 100.0f);
             if (c < 0) 
                 c = 0;
-            Debug.Log(String.Format("--{0}--Conscientiousness : {1}, Changes:{2}, Tags : {3}", personality.name, personality.conscientiousness, c, result.Count()));
+            //Debug.Log(String.Format("--{0}--Conscientiousness : {1}, Changes:{2}, Tags : {3}", personality.name, personality.conscientiousness, c, result.Count()));
             if (x >= c)
             {
                 LogDebug(String.Format("Agent got convinced by {0} to start Communicationting ...", otherAgent));
